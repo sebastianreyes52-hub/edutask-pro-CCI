@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduTask</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5f9;
+            color: #1f2937;
+        }
+
+        /* LOGIN */
+
+        #pantallaLogin {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+        }
+
+        .cajaLogin {
+            background-color: white;
+            width: 90%;
+            max-width: 430px;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            font-size: 45px;
+        }
+
+        .cajaLogin h1 {
+            color: #2563eb;
+        }
+
+        .cajaLogin p {
+            color: #64748b;
+        }
+
+        .campo {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #dbe3ef;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .botonPrincipal {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .botonPrincipal:hover {
+            background-color: #1d4ed8;
+        }
+
+        .botonSecundario {
+            background: none;
+            border: none;
+            color: #2563eb;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* PAGINA PRINCIPAL */
+
+        #paginaPrincipal {
+            display: none;
+        }
+
+        header {
+            background-color: #2563eb;
+            color: white;
+            padding: 20px;
+        }
+
+        .encabezado {
+            max-width: 1000px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .encabezado h1 {
+            color: white;
+            margin: 0;
+        }
+
+        .contenido {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .bienvenida {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .bienvenida h2 {
+            color: #2563eb;
+        }
+
+        /* BOTONES */
+
+        .botones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+        }
+
+        .botones button {
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            background-color: white;
+            color: #2563eb;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .botones button:hover {
+            background-color: #eaf1ff;
+        }
+
+        /* TARJETAS */
+
+        #seccionFunciones {
+            margin-top: 25px;
+        }
+
+        .tarjeta {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .tarjeta h2 {
+            color: #2563eb;
+        }
+
+        input {
+            padding: 11px;
+            border: 2px solid #dbe3ef;
+            border-radius: 8px;
+            font-size: 15px;
+            margin: 5px;
+        }
+
+        .botonAccion {
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .botonAccion:hover {
+            background-color: #1d4ed8;
+        }
+
+        .elemento {
+            background-color: #f2f5f9;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .completada {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        #tiempo {
+            font-size: 50px;
+            color: #2563eb;
+            margin: 20px;
+        }
+
+        .puesto {
+            background-color: #f2f5f9;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .miPuesto {
+            background-color: #eaf1ff;
+            border: 2px solid #2563eb;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- PANTALLA DE LOGIN -->
+
+    <div id="pantallaLogin">
+
+        <div class="cajaLogin">
+
+            <div class="logo">
+                📚
+            </div>
+
+            <h1>EduTask</h1>
+
+            <p id="textoLogin">
+                Inicia sesión para continuar
+            </p>
+
+            <div id="formularioLogin">
+
+                <input
+                    class="campo"
+                    type="email"
+                    id="correoLogin"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    class="campo"
+                    type="password"
+                    id="passwordLogin"
+                    placeholder="Contraseña"
+                >
+
+                <button
+                    class="botonPrincipal"
+                    onclick="iniciarSesion()"
+                >
+                    Iniciar sesión
+                </button>
+
+                <button
+                    class="botonSecundario"
+                    onclick="mostrarRegistro()"
+                >
+                    Crear una cuenta
+                </button>
+
+            </div>
+
+
+            <div id="formularioRegistro" style="display:none;">
+
+                <input
+                    class="campo"
+                    type="text"
+                    id="nombreRegistro"
+                    placeholder="Nombre completo"
+                >
+
+                <input
+                    class="campo"
+                    type="email"
+                    id="correoRegistro"
+                    placeholder="Correo electrónico"
+                >
+
+                <input
+                    class="campo"
+                    type="password"
+                    id="passwordRegistro"
+                    placeholder="Contraseña"
+                >
+
+                <button
+                    class="botonPrincipal"
+                    onclick="registrarUsuario()"
+                >
+                    Crear cuenta
+                </button>
+
+                <button
+                    class="botonSecundario"
+                    onclick="mostrarLogin()"
+                >
+                    Ya tengo una cuenta
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PAGINA PRINCIPAL -->
+
+    <div id="paginaPrincipal">
+
+        <header>
+
+            <div class="encabezado">
+
+                <h1>📚 EduTask</h1>
+
+                <span id="bienvenida">
+                    ¡Hola!
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <div class="contenido">
+
+            <div class="bienvenida">
+
+                <h2 id="saludo">
+                    Bienvenido a EduTask
+                </h2>
+
+                <p>
+                    Tu espacio para organizar tus actividades académicas.
+                </p>
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="botones">
+
+                <button onclick="mostrarTareas()">
+                    📝 Tareas
+                </button>
+
+                <button onclick="mostrarCalendario()">
+                    📅 Calendario
+                </button>
+
+                <button onclick="mostrarExamenes()">
+                    📖 Exámenes
+                </button>
+
+                <button onclick="mostrarEstudiar()">
+                    ⏱️ Estudiar
+                </button>
+
+                <button onclick="mostrarClasificacion()">
+                    🏆 Clasificación
+                </button>
+
+            </div>
+
+
+            <div id="seccionFunciones"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- FIREBASE -->
+
+    <script type="module">
+
+        import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            doc,
+            setDoc,
+            getDoc,
+            updateDoc,
+            increment,
+            collection,
+            getDocs,
+            orderBy,
+            query
+        }
+        from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCQ4H-lseaO2FQyWkqhCgV_JodNbnyHt2A",
+            authDomain: "edu-task-pro.firebaseapp.com",
+            projectId: "edu-task-pro",
+            storageBucket: "edu-task-pro.firebasestorage.app",
+            messagingSenderId: "1054276439872",
+            appId: "1:1054276439872:web:66b9be34410a69ef32f4a5",
+            measurementId: "G-H1XVWDX40D"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+
+        const auth = getAuth(app);
+
+        const db = getFirestore(app);
+
+
+        let usuarioActual = null;
+
+        let temporizador = null;
+
+        let segundosRestantes = 25 * 60;
+
+
+
+        /* =====================================================
+           MOSTRAR LOGIN
+           ===================================================== */
+
+        window.mostrarLogin = function() {
+
+            document.getElementById("formularioLogin").style.display = "block";
+
+            document.getElementById("formularioRegistro").style.display = "none";
+
+            document.getElementById("textoLogin").textContent =
+                "Inicia sesión para continuar";
+
+        };
+
+
+
+        /* =====================================================
+           MOSTRAR REGISTRO
+           ===================================================== */
+
+        window.mostrarRegistro = function() {
+
+            document.getElementById("formularioLogin").style.display = "none";
+
+            document.getElementById("formularioRegistro").style.display = "block";
+
+            document.getElementById("textoLogin").textContent =
+                "Crea tu cuenta de estudiante";
+
+        };
+
+
+
+        /* =====================================================
+           REGISTRAR USUARIO
+           ===================================================== */
+
+        window.registrarUsuario = async function() {
+
+            const nombre =
+                document.getElementById("nombreRegistro").value.trim();
+
+            const correo =
+                document.getElementById("correoRegistro").value.trim();
+
+            const password =
+                document.getElementById("passwordRegistro").value;
+
+
+            if (nombre === "" || correo === "" || password === "") {
+
+                alert("Completa todos los campos.");
+
+                return;
+
+            }
+
+
+            if (password.length < 6) {
+
+                alert("La contraseña debe tener al menos 6 caracteres.");
+
+                return;
+
+            }
+
+
+            try {
+
+                const resultado =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        correo,
+                        password
+                    );
+
+
+                const usuario = resultado.user;
+
+
+                /* Creamos el estudiante en Firestore */
+
+                await setDoc(
+                    doc(db, "estudiantes", usuario.uid),
+                    {
+                        nombre: nombre,
+                        correo: correo,
+                        xp: 0
+                    }
+                );
+
+
+                alert("Cuenta creada correctamente.");
+
+                entrarAPagina(nombre);
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "No se pudo crear la cuenta: " +
+                    traducirError(error.code)
+                );
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           INICIAR SESION
+           ===================================================== */
+
+        window.iniciarSesion = async function() {
+
+            const correo =
+                document.getElementById("correoLogin").value.trim();
+
+            const password =
+                document.getElementById("passwordLogin").value;
+
+
+            if (correo === "" || password === "") {
+
+                alert("Escribe tu correo y contraseña.");
+
+                return;
+
+            }
+
+
+            try {
+
+                const resultado =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        correo,
+                        password
+                    );
+
+
+                const usuario = resultado.user;
+
+
+                const documento =
+                    await getDoc(
+                        doc(db, "estudiantes", usuario.uid)
+                    );
+
+
+                if (documento.exists()) {
+
+                    const datos = documento.data();
+
+                    entrarAPagina(datos.nombre);
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "No se pudo iniciar sesión: " +
+                    traducirError(error.code)
+                );
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           ENTRAR A LA PAGINA
+           ===================================================== */
+
+        function entrarAPagina(nombre) {
+
+            document.getElementById("pantallaLogin").style.display = "none";
+
+            document.getElementById("paginaPrincipal").style.display = "block";
+
+            document.getElementById("bienvenida").textContent =
+                "¡Hola, " + nombre + "!";
+
+            document.getElementById("saludo").textContent =
+                "Bienvenido a EduTask, " + nombre + ".";
+
+        }
+
+
+
+        /* =====================================================
+           TAREAS
+           ===================================================== */
+
+        window.mostrarTareas = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>Mis tareas</h2>
+
+                    <p>
+                        Agrega las tareas que tengas pendientes.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="nuevaTarea"
+                        placeholder="Ej: Trabajo de matemáticas"
+                    >
+
+                    <button
+                        class="botonAccion"
+                        onclick="agregarTarea()"
+                    >
+                        Agregar tarea
+                    </button>
+
+                    <div id="listaTareas"></div>
+
+                </div>
+
+            `;
+
+        };
+
+
+        window.agregarTarea = function() {
+
+            const tarea =
+                document.getElementById("nuevaTarea").value.trim();
+
+
+            if (tarea === "") {
+
+                alert("Escribe una tarea.");
+
+                return;
+
+            }
+
+
+            document.getElementById("listaTareas").innerHTML += `
+
+                <div class="elemento">
+
+                    <input
+                        type="checkbox"
+                        onchange="completarTarea(this)"
+                    >
+
+                    <span>${tarea}</span>
+
+                </div>
+
+            `;
+
+
+            document.getElementById("nuevaTarea").value = "";
+
+        };
+
+
+        window.completarTarea = function(casilla) {
+
+            const tarea =
+                casilla.parentElement.querySelector("span");
+
+            tarea.classList.toggle("completada");
+
+        };
+
+
+
+        /* =====================================================
+           CALENDARIO
+           ===================================================== */
+
+        window.mostrarCalendario = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>Calendario</h2>
+
+                    <p>
+                        Agrega tus actividades.
+                    </p>
+
+                    <input
+                        type="date"
+                        id="fechaActividad"
+                    >
+
+                    <input
+                        type="text"
+                        id="nombreActividad"
+                        placeholder="Nombre de la actividad"
+                    >
+
+                    <button
+                        class="botonAccion"
+                        onclick="agregarActividad()"
+                    >
+                        Agregar
+                    </button>
+
+                    <div id="listaActividades"></div>
+
+                </div>
+
+            `;
+
+        };
+
+
+        window.agregarActividad = function() {
+
+            const fecha =
+                document.getElementById("fechaActividad").value;
+
+            const actividad =
+                document
+                .getElementById("nombreActividad")
+                .value
+                .trim();
+
+
+            if (fecha === "" || actividad === "") {
+
+                alert("Completa la fecha y la actividad.");
+
+                return;
+
+            }
+
+
+            document.getElementById("listaActividades").innerHTML += `
+
+                <div class="elemento">
+
+                    📅 ${fecha} — ${actividad}
+
+                </div>
+
+            `;
+
+
+            document.getElementById("nombreActividad").value = "";
+
+        };
+
+
+
+        /* =====================================================
+           EXAMENES
+           ===================================================== */
+
+        window.mostrarExamenes = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>Mis exámenes</h2>
+
+                    <p>
+                        Agrega los exámenes que tengas próximos.
+                    </p>
+
+                    <input
+                        type="text"
+                        id="nuevoExamen"
+                        placeholder="Ej: Examen de química"
+                    >
+
+                    <input
+                        type="date"
+                        id="fechaExamen"
+                    >
+
+                    <button
+                        class="botonAccion"
+                        onclick="agregarExamen()"
+                    >
+                        Agregar examen
+                    </button>
+
+                    <div id="listaExamenes"></div>
+
+                </div>
+
+            `;
+
+        };
+
+
+        window.agregarExamen = function() {
+
+            const examen =
+                document
+                .getElementById("nuevoExamen")
+                .value
+                .trim();
+
+            const fecha =
+                document.getElementById("fechaExamen").value;
+
+
+            if (examen === "" || fecha === "") {
+
+                alert("Completa el nombre y la fecha.");
+
+                return;
+
+            }
+
+
+            document.getElementById("listaExamenes").innerHTML += `
+
+                <div class="elemento">
+
+                    📖 ${examen} — ${fecha}
+
+                </div>
+
+            `;
+
+
+            document.getElementById("nuevoExamen").value = "";
+
+        };
+
+
+
+        /* =====================================================
+           POMODORO
+           ===================================================== */
+
+        window.mostrarEstudiar = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>Modo de estudio</h2>
+
+                    <p>
+                        Completa un Pomodoro de 25 minutos
+                        para ganar 50 XP.
+                    </p>
+
+                    <div id="tiempo">
+                        25:00
+                    </div>
+
+                    <button
+                        class="botonAccion"
+                        onclick="iniciarTemporizador()"
+                    >
+                        Iniciar
+                    </button>
+
+                    <button
+                        class="botonAccion"
+                        onclick="pausarTemporizador()"
+                    >
+                        Pausar
+                    </button>
+
+                    <button
+                        class="botonAccion"
+                        onclick="reiniciarTemporizador()"
+                    >
+                        Reiniciar
+                    </button>
+
+                </div>
+
+            `;
+
+
+            segundosRestantes = 25 * 60;
+
+            temporizador = null;
+
+        };
+
+
+
+        window.iniciarTemporizador = function() {
+
+            if (temporizador !== null) {
+
+                return;
+
+            }
+
+
+            temporizador = setInterval(async function() {
+
+                segundosRestantes--;
+
+
+                const minutos =
+                    Math.floor(segundosRestantes / 60);
+
+                const segundos =
+                    segundosRestantes % 60;
+
+
+                const reloj =
+                    document.getElementById("tiempo");
+
+
+                if (reloj) {
+
+                    reloj.textContent =
+                        minutos + ":" +
+                        String(segundos).padStart(2, "0");
+
+                }
+
+
+                if (segundosRestantes <= 0) {
+
+                    clearInterval(temporizador);
+
+                    temporizador = null;
+
+                    await ganarXP();
+
+                }
+
+            }, 1000);
+
+        };
+
+
+
+        window.pausarTemporizador = function() {
+
+            clearInterval(temporizador);
+
+            temporizador = null;
+
+        };
+
+
+
+        window.reiniciarTemporizador = function() {
+
+            clearInterval(temporizador);
+
+            temporizador = null;
+
+            segundosRestantes = 25 * 60;
+
+
+            const reloj =
+                document.getElementById("tiempo");
+
+
+            if (reloj) {
+
+                reloj.textContent = "25:00";
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           GANAR XP
+           ===================================================== */
+
+        async function ganarXP() {
+
+            if (!auth.currentUser) {
+
+                alert("No hay un usuario conectado.");
+
+                return;
+
+            }
+
+
+            try {
+
+                const referencia =
+                    doc(
+                        db,
+                        "estudiantes",
+                        auth.currentUser.uid
+                    );
+
+
+                await updateDoc(
+                    referencia,
+                    {
+                        xp: increment(50)
+                    }
+                );
+
+
+                alert(
+                    "¡Pomodoro completado! Ganaste 50 XP."
+                );
+
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "No se pudieron guardar los XP."
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           CLASIFICACION
+           ===================================================== */
+
+        window.mostrarClasificacion = async function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>🏆 Clasificación</h2>
+
+                    <p>
+                        Los estudiantes aparecen ordenados
+                        según sus XP.
+                    </p>
+
+                    <div id="listaClasificacion">
+                        Cargando clasificación...
+                    </div>
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const referencia =
+                    collection(db, "estudiantes");
+
+
+                const consulta =
+                    query(
+                        referencia,
+                        orderBy("xp", "desc")
+                    );
+
+
+                const resultado =
+                    await getDocs(consulta);
+
+
+                const lista =
+                    document.getElementById(
+                        "listaClasificacion"
+                    );
+
+
+                lista.innerHTML = "";
+
+
+                let posicion = 1;
+
+
+                resultado.forEach(function(documento) {
+
+                    const estudiante =
+                        documento.data();
+
+
+                    const esUsuarioActual =
+                        auth.currentUser &&
+                        documento.id === auth.currentUser.uid;
+
+
+                    lista.innerHTML += `
+
+                        <div class="puesto
+                        ${esUsuarioActual ? "miPuesto" : ""}">
+
+                            <strong>
+                                ${posicion}.
+                                ${estudiante.nombre}
+                            </strong>
+
+                            — ${estudiante.xp || 0} XP
+
+                        </div>
+
+                    `;
+
+
+                    posicion++;
+
+                });
+
+
+                if (posicion === 1) {
+
+                    lista.innerHTML =
+                        "<p>No hay estudiantes registrados todavía.</p>";
+
+                }
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+                document.getElementById(
+                    "listaClasificacion"
+                ).innerHTML = `
+
+                    <p>
+                        No se pudo cargar la clasificación.
+                        Revisa la configuración de Firebase.
+                    </p>
+
+                `;
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           ESTADO DE SESION
+           ===================================================== */
+
+        onAuthStateChanged(auth, async function(usuario) {
+
+            if (usuario) {
+
+                usuarioActual = usuario;
+
+
+                const documento =
+                    await getDoc(
+                        doc(db, "estudiantes", usuario.uid)
+                    );
+
+
+                if (documento.exists()) {
+
+                    const datos = documento.data();
+
+                    entrarAPagina(datos.nombre);
+
+                }
+
+            }
+
+        });
+
+
+
+        /* =====================================================
+           ERRORES DE FIREBASE
+           ===================================================== */
+
+        function traducirError(codigo) {
+
+            if (codigo === "auth/email-already-in-use") {
+                return "Ese correo ya tiene una cuenta.";
+            }
+
+            if (codigo === "auth/invalid-email") {
+                return "El correo no es válido.";
+            }
+
+            if (codigo === "auth/weak-password") {
+                return "La contraseña es demasiado débil.";
+            }
+
+            if (codigo === "auth/invalid-credential") {
+                return "Correo o contraseña incorrectos.";
+            }
+
+            return "Ocurrió un error. Revisa los datos.";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
