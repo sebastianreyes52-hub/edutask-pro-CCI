@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduTask Pro - Gamified Learning</title>
+    <title>EduTask Pro - AI Companion Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +16,6 @@
             --primary: #6366f1;
             --primary-glow: rgba(99, 102, 241, 0.4);
             --accent: #10b981;
-            --accent-glow: rgba(16, 185, 129, 0.4);
             --pink: #ec4899;
             --orange: #f97316;
             --input-bg: rgba(15, 23, 42, 0.6);
@@ -78,38 +76,24 @@
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         .cajaLogin h1 {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 28px; font-weight: 800;
             background: linear-gradient(135deg, #818cf8, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin: 10px 0 5px 0;
         }
 
         .campo {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border: 1.5px solid var(--card-border);
-            border-radius: 14px;
-            font-size: 15px;
-            background: var(--input-bg);
-            color: var(--text-main);
+            width: 100%; padding: 15px; margin: 10px 0;
+            border: 1.5px solid var(--card-border); border-radius: 14px;
+            font-size: 15px; background: var(--input-bg); color: var(--text-main);
             outline: none;
         }
         .campo:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
 
         .btn-glow {
-            width: 100%;
-            padding: 15px;
-            margin-top: 12px;
-            border: none;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--primary), #8b5cf6);
-            color: white;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
+            width: 100%; padding: 15px; margin-top: 12px; border: none; border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6); color: white;
+            font-size: 16px; font-weight: 700; cursor: pointer;
             box-shadow: 0 8px 20px var(--primary-glow);
         }
         .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 12px 25px var(--primary-glow); }
@@ -123,11 +107,9 @@
         #paginaPrincipal { display: none; }
 
         header {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            background: var(--card-bg); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--card-border);
-            padding: 16px 35px;
-            position: sticky; top: 0; z-index: 100;
+            padding: 16px 35px; position: sticky; top: 0; z-index: 100;
         }
 
         .header-content {
@@ -137,38 +119,30 @@
 
         .brand { font-weight: 800; font-size: 22px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
 
-        .header-tools { display: flex; align-items: center; gap: 15px; }
+        .header-tools { display: flex; align-items: center; gap: 12px; }
 
         .user-badge {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
+            background: var(--input-bg); border: 1px solid var(--card-border);
             padding: 6px 14px; border-radius: 20px;
             font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px;
         }
 
-        /* NAV TABS GLASS */
+        /* NAV TABS */
         .nav-container {
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--card-border);
-            padding: 0 35px;
-            overflow-x: auto;
+            background: var(--card-bg); border-bottom: 1px solid var(--card-border);
+            padding: 0 35px; overflow-x: auto;
         }
 
-        .nav-tabs {
-            max-width: 1300px; margin: auto;
-            display: flex; gap: 8px;
-        }
+        .nav-tabs { max-width: 1300px; margin: auto; display: flex; gap: 8px; }
 
         .tab-btn {
-            background: none; border: none;
-            padding: 16px 20px; font-size: 14px; font-weight: 700;
-            color: var(--text-sub); cursor: pointer;
-            border-bottom: 3px solid transparent; white-space: nowrap;
+            background: none; border: none; padding: 16px 20px; font-size: 14px; font-weight: 700;
+            color: var(--text-sub); cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap;
         }
         .tab-btn:hover { color: var(--text-main); }
         .tab-btn.activo { color: var(--primary); border-bottom-color: var(--primary); }
 
-        /* VISTAS */
+        /* MAIN CONTAINER */
         .main-container { max-width: 1300px; margin: 30px auto; padding: 0 25px; }
         .vista-pestana { display: none; animation: slideUp 0.35s ease; }
         .vista-pestana.activa { display: block; }
@@ -178,78 +152,60 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .grid-dashboard { display: grid; grid-template-columns: 2.2fr 1fr; gap: 25px; }
         @media(max-width: 900px) { .grid-dashboard { grid-template-columns: 1fr; } }
 
         /* CARDS GLASS */
         .card-glass {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            border-radius: 22px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border); border-radius: 22px;
+            padding: 28px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin-bottom: 22px;
         }
 
-        .card-glass h2 {
-            margin-top: 0; font-size: 20px; font-weight: 700;
-            display: flex; align-items: center; gap: 10px; color: var(--text-main);
-        }
+        .card-glass h2 { margin-top: 0; font-size: 20px; font-weight: 700; color: var(--text-main); }
 
-        /* STATS CARDS */
         .stat-card {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 18px; padding: 20px;
-            text-align: center;
+            background: var(--input-bg); border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 20px; text-align: center;
         }
         .stat-num { font-size: 32px; font-weight: 800; color: var(--primary); margin: 5px 0; }
         .stat-label { font-size: 13px; color: var(--text-sub); font-weight: 600; }
 
-        /* BARRA DE PROGRESO XP */
+        /* BARRA XP */
         .xp-bar-bg {
-            background: var(--input-bg);
-            border-radius: 12px; height: 16px;
-            overflow: hidden; margin-top: 10px;
-            border: 1px solid var(--card-border);
+            background: var(--input-bg); border-radius: 12px; height: 16px;
+            overflow: hidden; margin-top: 10px; border: 1px solid var(--card-border);
         }
         .xp-bar-fill {
             background: linear-gradient(90deg, var(--primary), var(--pink));
-            height: 100%; width: 0%; transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 12px var(--primary-glow);
+            height: 100%; width: 0%; transition: width 0.6s ease;
         }
 
-        /* ITEM ELEMENT */
+        /* ITEMS */
         .item-row {
-            background: var(--input-bg);
-            border: 1px solid var(--card-border);
+            background: var(--input-bg); border: 1px solid var(--card-border);
             padding: 16px 20px; border-radius: 16px; margin-top: 12px;
             display: flex; align-items: center; justify-content: space-between;
         }
         .tag { font-size: 11px; padding: 4px 10px; border-radius: 8px; color: white; font-weight: 700; }
         .completada { text-decoration: line-through; opacity: 0.4; }
 
-        /* CHAT GLASS */
+        /* CHAT */
         .chat-box {
-            height: 400px; overflow-y: auto;
-            border: 1px solid var(--card-border);
-            border-radius: 18px; padding: 20px;
-            background: var(--input-bg);
+            height: 380px; overflow-y: auto; border: 1px solid var(--card-border);
+            border-radius: 18px; padding: 20px; background: var(--input-bg);
             display: flex; flex-direction: column; gap: 12px;
         }
         .chat-msg {
-            background: var(--card-bg); padding: 12px 18px;
-            border-radius: 16px; max-width: 75%;
-            border: 1px solid var(--card-border);
+            background: var(--card-bg); padding: 12px 18px; border-radius: 16px;
+            max-width: 75%; border: 1px solid var(--card-border);
         }
         .chat-propio { align-self: flex-end; background: var(--primary); color: white; border: none; }
 
-        /* FLASHCARDS 3D */
-        .flashcard {
-            height: 220px; perspective: 1000px; cursor: pointer; margin-top: 15px;
-        }
+        /* FLASHCARDS */
+        .flashcard { height: 200px; perspective: 1000px; cursor: pointer; margin-top: 15px; }
         .flashcard-inner {
             position: relative; width: 100%; height: 100%; text-align: center;
             transition: transform 0.6s; transform-style: preserve-3d;
@@ -259,18 +215,107 @@
         .card-front, .card-back {
             position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
             display: flex; align-items: center; justify-content: center;
-            padding: 25px; border-radius: 20px; font-size: 20px; font-weight: 700;
+            padding: 25px; border-radius: 20px; font-size: 18px; font-weight: 700;
         }
         .card-front { background: linear-gradient(135deg, var(--primary), #4338ca); color: white; }
         .card-back { background: linear-gradient(135deg, var(--accent), #047857); color: white; transform: rotateY(180deg); }
 
         .btn-icon { background: none; border: none; cursor: pointer; font-size: 18px; color: #ef4444; }
+
+        /* =====================================================
+           COMPAÑERO IA FLOTANTE (FLOATING PET)
+           ===================================================== */
+        .ai-floating-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .ai-dialog-bubble {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            padding: 12px 18px;
+            border-radius: 18px;
+            border-bottom-right-radius: 4px;
+            max-width: 250px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        .ai-pet-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 42px;
+            cursor: pointer;
+            box-shadow: 0 0 25px var(--primary-glow);
+            animation: floatPet 4s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .ai-pet-avatar:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        @keyframes floatPet {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .select-pet-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .pet-option-btn {
+            background: var(--input-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 14px;
+            padding: 12px;
+            font-size: 28px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .pet-option-btn:hover, .pet-option-btn.selected {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.2);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- LOGIN / REGISTRO -->
+    <!-- COMPAÑERO IA FLOTANTE -->
+    <div class="ai-floating-container" id="aiPetFloating" style="display:none;">
+        <div class="ai-dialog-bubble" id="aiDialogText">
+            ¡Hola! Soy tu asistente de estudio IA. ¡Haz clic en mí para cambiar de personaje! 🚀
+        </div>
+        <div class="ai-pet-avatar" id="aiPetIcon" onclick="hablarConMascota()">
+            🐱
+        </div>
+    </div>
+
+    <!-- LOGIN -->
     <div id="pantallaLogin">
         <div class="cajaLogin">
             <div class="logo-login">🚀</div>
@@ -300,7 +345,6 @@
             <div class="header-content">
                 <div class="brand">⚡ EduTask Pro</div>
                 <div class="header-tools">
-                    <div class="user-badge">🔥 <span id="valRacha">1</span> Días</div>
                     <div class="user-badge" id="lblUsuario">👤 Estudiante</div>
                     <button class="btn-sub" style="margin:0;" onclick="toggleTema()">🌓</button>
                     <button class="btn-sub" style="margin:0; color:#ef4444;" onclick="cerrarSesion()">🚪</button>
@@ -308,13 +352,13 @@
             </div>
         </header>
 
-        <!-- NAVEGACIÓN DE PESTAÑAS -->
+        <!-- NAV TABS -->
         <div class="nav-container">
             <div class="nav-tabs">
                 <button class="tab-btn activo" onclick="cambiarVista('dashboard', this)">🏠 Tablero</button>
                 <button class="tab-btn" onclick="cambiarVista('tareas', this)">📝 Tareas</button>
                 <button class="tab-btn" onclick="cambiarVista('pomodoro', this)">⏱️ Pomodoro</button>
-                <button class="tab-btn" onclick="cambiarVista('notas', this)">📊 Calculadora Notas</button>
+                <button class="tab-btn" onclick="cambiarVista('notas', this)">📊 Promedio</button>
                 <button class="tab-btn" onclick="cambiarVista('flashcards', this)">🎴 Flashcards</button>
                 <button class="tab-btn" onclick="cambiarVista('apuntes', this)">📓 Apuntes</button>
                 <button class="tab-btn" onclick="cambiarVista('chat', this)">💬 Chat Global</button>
@@ -330,7 +374,7 @@
                     <div>
                         <div class="card-glass">
                             <h2 id="saludoUsuario">¡Hola de nuevo! 👋</h2>
-                            <p style="color: var(--text-sub);">Continúa completando misiones para subir en el ranking del colegio.</p>
+                            <p style="color: var(--text-sub);">Completa tareas y sesiones para ganar XP.</p>
                             
                             <div style="margin-top: 25px;">
                                 <div style="display:flex; justify-content:space-between; font-weight:700;">
@@ -341,17 +385,30 @@
                             </div>
                         </div>
 
+                        <!-- ELEGIR COMPAÑERO IA -->
+                        <div class="card-glass">
+                            <h2>🤖 Selecciona tu Compañero IA Flotante</h2>
+                            <p style="color:var(--text-sub); font-size:14px;">Elegirás quién te acompañará mientras usas la aplicación:</p>
+                            
+                            <div class="select-pet-grid">
+                                <button class="pet-option-btn selected" id="pet-gato" onclick="seleccionarMascota('🐱', '🐱 Gato IA', '¡Miau! Estoy listo para ayudarte a estudiar.')">🐱<br><small style="font-size:10px;">Gato</small></button>
+                                <button class="pet-option-btn" id="pet-perro" onclick="seleccionarMascota('🐶', '🐶 Perro IA', '¡Guau! Vamos a completar todas las tareas hoy.')">🐶<br><small style="font-size:10px;">Perro</small></button>
+                                <button class="pet-option-btn" id="pet-alien" onclick="seleccionarMascota('👽', '👽 Alien IA', '¡Saludos humano! Optimicemos tu cerebro.')">👽<br><small style="font-size:10px;">Alien</small></button>
+                                <button class="pet-option-btn" id="pet-auto" onclick="seleccionarMascota('🚗', '🚗 Ford Fusion 2017', '¡Vroom! Ford Fusion 2017 listo para acelerar tu estudio.')">🚗<br><small style="font-size:10px;">Ford Fusion</small></button>
+                            </div>
+                        </div>
+
                         <div class="grid-3">
                             <div class="stat-card">
-                                <div class="stat-label">Tareas Completadas</div>
+                                <div class="stat-label">Tareas Listas</div>
                                 <div class="stat-num" id="statTareas">0</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-label">Minutos de Estudio</div>
-                                <div class="stat-num" id="statMinutos">0</div>
+                                <div class="stat-label">Nivel Actual</div>
+                                <div class="stat-num" id="statNivelVal">1</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-label">Cartas Memorizadas</div>
+                                <div class="stat-label">Cartas Creadas</div>
                                 <div class="stat-num" id="statCartas">0</div>
                             </div>
                         </div>
@@ -359,18 +416,14 @@
 
                     <div>
                         <div class="card-glass">
-                            <h2>🎯 Misiones Diarias</h2>
+                            <h2>🎯 Misiones de Hoy</h2>
                             <div class="item-row">
-                                <span>📝 Entrega 1 tarea pendiente</span>
+                                <span>📝 Haz 1 tarea</span>
                                 <span class="tag" style="background:var(--primary);">+10 XP</span>
                             </div>
                             <div class="item-row">
-                                <span>⏱️ 25 Minutos de Pomodoro</span>
+                                <span>⏱️ Estudiar 25 min</span>
                                 <span class="tag" style="background:var(--accent);">+50 XP</span>
-                            </div>
-                            <div class="item-row">
-                                <span>💬 Saluda en el Chat Global</span>
-                                <span class="tag" style="background:var(--pink);">+5 XP</span>
                             </div>
                         </div>
                     </div>
@@ -381,7 +434,7 @@
             <div id="vista-tareas" class="vista-pestana">
                 <div class="card-glass">
                     <h2>📝 Gestor de Tareas Académicas</h2>
-                    <input class="campo" type="text" id="inputTarea" placeholder="Nombre de la tarea o taller...">
+                    <input class="campo" type="text" id="inputTarea" placeholder="Escribe el nombre de tu tarea...">
                     <select class="campo" id="selectMateria">
                         <option value="Matemáticas">Matemáticas</option>
                         <option value="Español">Español</option>
@@ -390,28 +443,20 @@
                         <option value="Sociales">Sociales</option>
                         <option value="General">Otras Asignaturas</option>
                     </select>
-                    <button class="btn-glow" onclick="agregarTarea()">Añadir Tarea (+10 XP)</button>
-                    <div id="listaTareas" style="margin-top: 20px;">Cargando tareas...</div>
+                    <button class="btn-glow" onclick="agregarTarea()">Agregar Tarea (+10 XP)</button>
+                    <div id="listaTareas" style="margin-top: 20px;">Cargando...</div>
                 </div>
             </div>
 
             <!-- 3. POMODORO -->
             <div id="vista-pomodoro" class="vista-pestana">
                 <div class="card-glass" style="text-align:center; max-width:650px; margin:auto;">
-                    <h2>⏱️ Temporizador de Concentración</h2>
-                    <p style="color:var(--text-sub);">Completa 25 minutos sin distracciones para ganar +50 XP.</p>
-                    
+                    <h2>⏱️ Temporizador Pomodoro</h2>
                     <div id="relojPomodoro" style="font-size: 75px; font-weight:800; color:var(--primary); margin: 20px 0; text-shadow:0 0 20px var(--primary-glow);">25:00</div>
-                    
                     <div style="display:flex; gap:12px; justify-content:center;">
                         <button class="btn-glow" style="width:140px;" onclick="iniciarPomodoro()">Iniciar</button>
                         <button class="btn-glow" style="width:140px; background:var(--orange);" onclick="pausarPomodoro()">Pausar</button>
                         <button class="btn-glow" style="width:140px; background:#ef4444;" onclick="reiniciarPomodoro()">Reiniciar</button>
-                    </div>
-
-                    <div style="margin-top: 25px; padding-top:15px; border-top:1px solid var(--card-border);">
-                        <p style="font-size:14px; color:var(--text-sub);">🔊 Audio de Ambiente para Estudio:</p>
-                        <button class="btn-sub" onclick="toggleAudios('lluvia')">🌧️ Sonido de Lluvia</button>
                     </div>
                 </div>
             </div>
@@ -419,14 +464,12 @@
             <!-- 4. CALCULADORA DE NOTAS -->
             <div id="vista-notas" class="vista-pestana">
                 <div class="card-glass">
-                    <h2>📊 Calculadora de Promedio Académico</h2>
-                    <p style="color:var(--text-sub);">Calcula tu nota acumulada o la nota que necesitas para pasar el periodo.</p>
+                    <h2>📊 Promedio Académico</h2>
                     <div style="display:flex; gap:12px;">
                         <input class="campo" type="number" id="notaValor" placeholder="Nota (Ej: 4.5)" step="0.1" min="0" max="5">
-                        <input class="campo" type="number" id="notaPorcentaje" placeholder="Porcentaje % (Ej: 25)" min="1" max="100">
+                        <input class="campo" type="number" id="notaPorcentaje" placeholder="Porcentaje % (Ej: 30)" min="1" max="100">
                     </div>
                     <button class="btn-glow" onclick="agregarNotaCalc()">Añadir Nota</button>
-                    
                     <div id="listaNotasCalc" style="margin-top:20px;"></div>
                     <div style="margin-top:20px; font-size:20px; font-weight:800;" id="resultadoPromedio">Promedio Acumulado: 0.0</div>
                 </div>
@@ -436,26 +479,26 @@
             <div id="vista-flashcards" class="vista-pestana">
                 <div class="card-glass">
                     <h2>🎴 Flashcards Interactivas</h2>
-                    <input class="campo" type="text" id="fcPregunta" placeholder="Pregunta o concepto...">
-                    <input class="campo" type="text" id="fcRespuesta" placeholder="Respuesta clave...">
+                    <input class="campo" type="text" id="fcPregunta" placeholder="Pregunta...">
+                    <input class="campo" type="text" id="fcRespuesta" placeholder="Respuesta...">
                     <button class="btn-glow" onclick="agregarFlashcard()">Crear Carta</button>
-                    <div id="gridFlashcards" style="margin-top:25px;">Cargando cartas...</div>
+                    <div id="gridFlashcards" style="margin-top:25px;">Cargando...</div>
                 </div>
             </div>
 
             <!-- 6. APUNTES -->
             <div id="vista-apuntes" class="vista-pestana">
                 <div class="card-glass">
-                    <h2>📓 Bloc de Apuntes en la Nube</h2>
+                    <h2>📓 Apuntes en la Nube</h2>
                     <textarea id="txtNotasNube" class="campo" style="height:280px; resize:vertical; font-size:16px;"></textarea>
-                    <button class="btn-glow" onclick="guardarApuntesNube()">Guardar Cambios en Firebase 💾</button>
+                    <button class="btn-glow" onclick="guardarApuntesNube()">Guardar en Firebase 💾</button>
                 </div>
             </div>
 
             <!-- 7. CHAT GLOBAL -->
             <div id="vista-chat" class="vista-pestana">
                 <div class="card-glass">
-                    <h2>💬 Chat Global en Tiempo Real</h2>
+                    <h2>💬 Chat Global</h2>
                     <div class="chat-box" id="boxChat">Conectando...</div>
                     <div style="display:flex; gap:12px; margin-top:15px;">
                         <input class="campo" type="text" id="inputMsgChat" placeholder="Escribe un mensaje..." style="margin:0;" onkeypress="if(event.key==='Enter') enviarMsgChat()">
@@ -467,8 +510,8 @@
             <!-- 8. RANKING -->
             <div id="vista-ranking" class="vista-pestana">
                 <div class="card-glass">
-                    <h2>🏆 Tabla de Clasificación Escolar</h2>
-                    <div id="boxRanking">Cargando posiciones...</div>
+                    <h2>🏆 Clasificación de Estudiantes</h2>
+                    <div id="boxRanking">Cargando...</div>
                 </div>
             </div>
 
@@ -502,9 +545,30 @@
         let unsubsChat = null;
         let listaNotasArray = [];
 
-        const coloresAsignaturas = {
-            "Matemáticas": "#ef4444", "Español": "#f59e0b", "Ciencias": "#10b981",
-            "Inglés": "#3b82f6", "Sociales": "#8b5cf6", "General": "#6b7280"
+        let mascotaIconoActual = '🐱';
+        const frasesMascota = {
+            '🐱': ["¡Miau! Recuerda tomar descansos mientras estudias.", "¡Gran trabajo! Estás acumulando mucho XP.", "¡Miau! ¿Ya completaste tus tareas de hoy?"],
+            '🐶': ["¡Guau! ¡Sigue así, lo estás haciendo genial!", "¡Guau! Vamos por el primer lugar en el Ranking.", "¡Aprender es divertido si lo haces con constancia!"],
+            '👽': ["¡Saludos terrícola! Tu cerebro se está expandiendo.", "Procesando conocimientos... ¡Excelente ritmo de estudio!", "Tu nivel de energía intelectual es óptimo."],
+            '🚗': ["¡Vroom Vroom! Ford Fusion 2017 a toda velocidad hacia la meta.", "¡Motor encendido! No te detengas hasta completar tus tareas.", "Ford Fusion en modo turbo para ganar +50 XP."]
+        };
+
+        window.seleccionarMascota = function(emoji, nombre, mensajeInicial) {
+            mascotaIconoActual = emoji;
+            document.getElementById("aiPetIcon").textContent = emoji;
+            document.getElementById("aiDialogText").textContent = mensajeInicial;
+
+            document.querySelectorAll('.pet-option-btn').forEach(b => b.classList.remove('selected'));
+            if(emoji === '🐱') document.getElementById('pet-gato').classList.add('selected');
+            if(emoji === '🐶') document.getElementById('pet-perro').classList.add('selected');
+            if(emoji === '👽') document.getElementById('pet-alien').classList.add('selected');
+            if(emoji === '🚗') document.getElementById('pet-auto').classList.add('selected');
+        };
+
+        window.hablarConMascota = function() {
+            const lista = frasesMascota[mascotaIconoActual] || frasesMascota['🐱'];
+            const aleatoria = lista[Math.floor(Math.random() * lista.length)];
+            document.getElementById("aiDialogText").textContent = aleatoria;
         };
 
         window.toggleTema = function() {
@@ -540,7 +604,7 @@
             if(!nom || !mail || !pass) return alert("Completa todos los campos.");
             try {
                 const res = await createUserWithEmailAndPassword(auth, mail, pass);
-                await setDoc(doc(db, "estudiantes", res.user.uid), { nombre: nom, correo: mail, xp: 0, racha: 1, apuntes: "" });
+                await setDoc(doc(db, "estudiantes", res.user.uid), { nombre: nom, correo: mail, xp: 0, apuntes: "" });
                 alert("¡Cuenta creada con éxito!");
             } catch(e) { alert("Error al registrarse."); }
         };
@@ -564,11 +628,13 @@
                 await cargarDatosUsuario();
                 document.getElementById("pantallaLogin").style.display = "none";
                 document.getElementById("paginaPrincipal").style.display = "block";
+                document.getElementById("aiPetFloating").style.display = "flex";
             } else {
                 usuarioActual = null;
                 datosUsuario = null;
                 document.getElementById("paginaPrincipal").style.display = "none";
                 document.getElementById("pantallaLogin").style.display = "flex";
+                document.getElementById("aiPetFloating").style.display = "none";
             }
         });
 
@@ -583,30 +649,30 @@
         function actualizarUI() {
             const nom = datosUsuario.nombre || "Estudiante";
             const xp = datosUsuario.xp || 0;
-            const racha = datosUsuario.racha || 1;
 
             document.getElementById("lblUsuario").textContent = "👤 " + nom;
-            document.getElementById("saludoUsuario").textContent = "¡Hola de nuevo, " + nom + "! 👋";
-            document.getElementById("valRacha").textContent = racha;
+            document.getElementById("saludoUsuario").textContent = "¡Hola, " + nom + "! 👋";
 
             const nivel = Math.floor(xp / 100) + 1;
             const xpActual = xp % 100;
 
             document.getElementById("txtNivel").textContent = `Nivel ${nivel} (${xp} XP)`;
-            document.getElementById("txtFaltanteXP").textContent = `Siguiente nivel: ${100 - xpActual} XP`;
+            document.getElementById("txtFaltanteXP").textContent = `Faltan ${100 - xpActual} XP para nivel ${nivel+1}`;
             document.getElementById("fillXP").style.width = `${xpActual}%`;
+            document.getElementById("statNivelVal").textContent = nivel;
         }
 
         async function sumarXP(cant) {
             await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { xp: increment(cant) });
             await cargarDatosUsuario();
+            document.getElementById("aiDialogText").textContent = `🎉 ¡Genial! Ganaste +${cant} XP.`;
         }
 
         /* TAREAS */
         window.agregarTarea = async function() {
             const t = document.getElementById("inputTarea").value.trim();
             const m = document.getElementById("selectMateria").value;
-            if(!t) return alert("Escribe el título de la tarea.");
+            if(!t) return alert("Escribe el nombre de la tarea.");
             await addDoc(collection(db, "estudiantes", usuarioActual.uid, "tareas"), { titulo: t, materia: m, completada: false });
             document.getElementById("inputTarea").value = "";
             cargarTareas();
@@ -621,13 +687,12 @@
             snap.forEach(d => {
                 const item = d.data();
                 if(item.completada) contCompletas++;
-                const color = coloresAsignaturas[item.materia] || "#6366f1";
                 box.innerHTML += `
                     <div class="item-row">
                         <div>
                             <input type="checkbox" ${item.completada ? "checked" : ""} onchange="marcarTarea('${d.id}', this.checked)">
                             <span class="${item.completada ? "completada" : ""}">${item.titulo}</span>
-                            <span class="tag" style="background:${color}">${item.materia}</span>
+                            <span class="tag" style="background:var(--primary);">${item.materia}</span>
                         </div>
                         <button class="btn-icon" onclick="borrarTarea('${d.id}')">🗑️</button>
                     </div>`;
@@ -657,7 +722,7 @@
                 if(segsPomodoro <= 0) {
                     clearInterval(timerPomodoro); timerPomodoro = null;
                     await sumarXP(50);
-                    alert("🎉 ¡Felicidades! +50 XP acumulados.");
+                    alert("🎉 ¡Pomodoro completado!");
                 }
             }, 1000);
         };
@@ -692,7 +757,7 @@
         window.agregarFlashcard = async function() {
             const p = document.getElementById("fcPregunta").value.trim();
             const r = document.getElementById("fcRespuesta").value.trim();
-            if(!p || !r) return alert("Completa la pregunta y respuesta.");
+            if(!p || !r) return alert("Completa ambos campos.");
             await addDoc(collection(db, "estudiantes", usuarioActual.uid, "flashcards"), { preg: p, resp: r });
             document.getElementById("fcPregunta").value = "";
             document.getElementById("fcRespuesta").value = "";
@@ -702,7 +767,7 @@
         async function cargarFlashcards() {
             const snap = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "flashcards"));
             const box = document.getElementById("gridFlashcards");
-            box.innerHTML = snap.empty ? "<p style='color:var(--text-sub);'>Sin cartas creadas.</p>" : "";
+            box.innerHTML = snap.empty ? "<p style='color:var(--text-sub);'>No hay cartas.</p>" : "";
             document.getElementById("statCartas").textContent = snap.size;
 
             snap.forEach(d => {
@@ -729,7 +794,7 @@
         window.guardarApuntesNube = async function() {
             const txt = document.getElementById("txtNotasNube").value;
             await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { apuntes: txt });
-            alert("¡Apuntes sincronizados en la nube!");
+            alert("¡Apuntes guardados!");
         };
 
         /* CHAT GLOBAL */
