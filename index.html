@@ -1,716 +1,467 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduTask Pro - Cyberpunk AI Edition</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    },
-                    colors: {
-                        cyber: {
-                            bg: '#0a0d14',
-                            card: 'rgba(18, 24, 38, 0.75)',
-                            border: 'rgba(99, 102, 241, 0.25)',
-                            neonPink: '#ff007f',
-                            neonCyan: '#00f0ff',
-                            neonPurple: '#a855f7',
-                            neonEmerald: '#10b981',
-                            neonYellow: '#facc15'
-                        }
-                    },
-                    boxShadow: {
-                        'neon-cyan': '0 0 20px rgba(0, 240, 255, 0.35)',
-                        'neon-pink': '0 0 20px rgba(255, 0, 127, 0.35)',
-                        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.35)'
-                    }
-                }
-            }
-        }
-    </script>
+    <title>EduTask Pro - Ultimate</title>
     <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #10b981;
+            --border-color: #e2e8f0;
+            --element-bg: #f1f5f9;
+        }
+
+        body.dark-mode {
+            --bg-color: #0b0f19;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #34d399;
+            --border-color: #334155;
+            --element-bg: #111827;
+        }
+
         body {
-            background-color: #06080e;
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(0, 240, 255, 0.12) 0px, transparent 50%),
-                radial-gradient(at 50% 50%, rgba(255, 0, 127, 0.08) 0px, transparent 50%);
-            background-attachment: fixed;
-            color: #e2e8f0;
+            margin: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
         }
 
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* LOGIN */
+        #pantallaLogin {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
         }
 
-        .glass-panel-glow {
-            background: rgba(18, 24, 38, 0.8);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        .cajaLogin {
+            background-color: var(--card-bg);
+            width: 90%;
+            max-width: 420px;
+            padding: 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: rgba(10, 13, 20, 0.5);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(168, 85, 247, 0.4);
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 240, 255, 0.7);
+        .logo { font-size: 50px; margin-bottom: 10px; }
+        .cajaLogin h1 { color: var(--primary); margin: 0 0 5px 0; }
+        .cajaLogin p { color: #64748b; margin-bottom: 20px; }
+
+        .campo {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            margin: 8px 0;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 15px;
+            background-color: var(--element-bg);
+            color: var(--text-color);
         }
 
-        /* 3D Flip Card Effect */
-        .perspective-1000 {
+        .botonPrincipal {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .botonPrincipal:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+
+        .botonSecundario {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        /* APLICACION PRINCIPAL */
+        #paginaPrincipal { display: none; }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .encabezado {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .encabezado h1 { margin: 0; font-size: 22px; color: var(--primary); }
+        .header-acciones { display: flex; gap: 12px; align-items: center; }
+
+        .btn-header {
+            background-color: var(--element-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .btn-header:hover { background-color: var(--border-color); }
+
+        /* NAVEGACION DE PESTAÑAS */
+        .nav-tabs {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 30px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .tab-btn:hover { color: var(--primary); }
+        .tab-btn.activo { color: var(--primary); border-bottom-color: var(--primary); }
+
+        .contenido {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .vista-pestana { display: none; animation: fadeIn 0.3s ease; }
+        .vista-pestana.activa { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* TARJETAS Y COMPONENTES */
+        .tarjeta {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .tarjeta h2 { color: var(--primary); margin-top: 0; }
+
+        .grid-dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+        }
+        @media(max-width: 850px) { .grid-dashboard { grid-template-columns: 1fr; } }
+
+        /* BARRA XP */
+        .barra-xp-bg {
+            background-color: var(--element-bg);
+            border-radius: 12px;
+            height: 18px;
+            overflow: hidden;
+            margin-top: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .barra-xp-fill {
+            background: linear-gradient(90deg, #4f46e5, #10b981);
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ELEMENTOS LISTA */
+        .elemento {
+            background-color: var(--element-bg);
+            padding: 14px 18px;
+            margin-top: 12px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tag-materia {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .completada { text-decoration: line-through; opacity: 0.4; }
+
+        .btn-borrar {
+            background: none; border: none; color: #ef4444; cursor: pointer; font-size: 16px; padding: 5px;
+        }
+        .btn-borrar:hover { transform: scale(1.1); }
+
+        /* CHAT */
+        .chat-box {
+            height: 380px;
+            overflow-y: auto;
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 15px;
+            background-color: var(--element-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mensaje-chat {
+            background-color: var(--card-bg);
+            padding: 12px 16px;
+            border-radius: 14px;
+            max-width: 75%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+        }
+        .mensaje-propio { align-self: flex-end; background-color: var(--primary); color: white; border: none; }
+        .mensaje-autor { font-size: 11px; font-weight: bold; opacity: 0.8; margin-bottom: 4px; }
+
+        /* FLASHCARDS */
+        .tarjeta-estudio {
+            width: 100%;
+            height: 200px;
             perspective: 1000px;
+            cursor: pointer;
+            margin: 15px 0;
         }
-        .transform-style-3d {
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        .tarjeta-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s; transform-style: preserve-3d;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-radius: 18px;
         }
-        .backface-hidden {
-            backface-visibility: hidden;
+        .tarjeta-estudio.volteada .tarjeta-inner { transform: rotateY(180deg); }
+        .tarjeta-front, .tarjeta-back {
+            position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center; padding: 25px;
+            box-sizing: border-box; border-radius: 18px; font-size: 20px; font-weight: bold;
         }
-        .rotate-y-180 {
-            transform: rotateY(180deg);
-        }
+        .tarjeta-front { background-color: var(--primary); color: white; }
+        .tarjeta-back { background-color: #059669; color: white; transform: rotateY(180deg); }
 
-        /* Pulse Animations */
-        @keyframes avatarPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(0, 240, 255, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 0, 127, 0.7); }
+        /* INSIGNIAS GRID */
+        .insignias-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-top: 15px; }
+        .insignia-card {
+            background: var(--element-bg); border: 2px solid var(--border-color); border-radius: 12px;
+            padding: 15px; text-align: center; opacity: 0.4; transition: 0.3s;
         }
-        .animated-avatar {
-            animation: avatarPulse 4s infinite ease-in-out;
-        }
-
-        @keyframes floatAnim {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-        .floating-element {
-            animation: floatAnim 3s infinite ease-in-out;
-        }
+        .insignia-card.desbloqueada { opacity: 1; border-color: var(--accent); background: rgba(16, 185, 129, 0.05); }
     </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-cyber-neonPink selection:text-white pb-20 md:pb-0">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-indigo-500/20 px-4 lg:px-8 py-3 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-400 p-[2px] flex items-center justify-center shadow-neon-purple">
-                <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                    <i class="fa-solid font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500 fa-graduation-cap text-xl"></i>
-                </div>
-            </div>
-            <div>
-                <h1 class="font-black text-xl tracking-wider text-white flex items-center gap-2">
-                    EduTask <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/20 text-cyan-400 border border-cyan-500/30 font-mono">PRO AI</span>
-                </h1>
-                <p class="text-[10px] text-slate-400 -mt-1 tracking-wider uppercase font-semibold">Plataforma Gamificada de Estudio</p>
-            </div>
-        </div>
+<body>
 
-        <!-- User Stats Bar & Profile Header -->
-        <div class="flex items-center gap-4">
-            <!-- Streak Counter -->
-            <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-amber-500/30 text-amber-400 text-xs font-bold shadow-sm">
-                <i class="fa-solid fa-fire text-amber-500 animate-bounce"></i>
-                <span id="headerStreak">3 Días</span>
+    <!-- LOGIN -->
+    <div id="pantallaLogin">
+        <div class="cajaLogin">
+            <div class="logo">📚</div>
+            <h1>EduTask Pro</h1>
+            <p id="textoLogin">Tu plataforma académica definitiva</p>
+
+            <div id="formularioLogin">
+                <input class="campo" type="email" id="correoLogin" placeholder="Correo electrónico">
+                <input class="campo" type="password" id="passwordLogin" placeholder="Contraseña">
+                <button class="botonPrincipal" onclick="reproducirSonido('click'); iniciarSesion()">Iniciar sesión</button>
+                <button class="botonSecundario" onclick="mostrarRegistro()">Crear una cuenta nueva</button>
             </div>
 
-            <!-- Level & XP Status -->
-            <div class="hidden md:flex flex-col items-end min-w-[140px]">
-                <div class="flex justify-between w-full text-xs font-bold mb-1">
-                    <span class="text-indigo-300" id="headerLevelBadge">Nivel 1</span>
-                    <span class="text-cyan-400 font-mono" id="headerXPText">0 / 100 XP</span>
-                </div>
-                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden border border-slate-700">
-                    <div id="headerXPBar" class="bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 h-full w-0 transition-all duration-500"></div>
-                </div>
-            </div>
-
-            <!-- Audio Sound Toggle -->
-            <button id="btnToggleSound" title="Sonido On/Off" onclick="toggleAudio()" class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-slate-300 hover:text-cyan-400 transition hover:border-cyan-500/50">
-                <i class="fa-solid fa-volume-high" id="soundIcon"></i>
-            </button>
-
-            <!-- User Auth Indicator / Profile Trigger -->
-            <div id="userProfileBadge" class="flex items-center gap-2 pl-2 border-l border-slate-800">
-                <div id="userAvatarContainer" class="w-9 h-9 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm shadow-inner cursor-pointer" onclick="switchTab('tab-profile')">
-                    <span id="userAvatarInitials">U</span>
-                </div>
-                <div class="hidden xl:block text-left cursor-pointer" onclick="switchTab('tab-profile')">
-                    <div id="userNameDisplay" class="text-xs font-bold text-slate-200">Estudiante</div>
-                    <div id="userEmailDisplay" class="text-[10px] text-slate-400 font-mono">Conectando...</div>
-                </div>
+            <div id="formularioRegistro" style="display:none;">
+                <input class="campo" type="text" id="nombreRegistro" placeholder="Nombre completo">
+                <input class="campo" type="email" id="correoRegistro" placeholder="Correo electrónico">
+                <input class="campo" type="password" id="passwordRegistro" placeholder="Contraseña (mín 6 caracteres)">
+                <button class="botonPrincipal" onclick="reproducirSonido('click'); registrarUsuario()">Registrarse</button>
+                <button class="botonSecundario" onclick="mostrarLogin()">Ya tengo una cuenta</button>
             </div>
         </div>
-    </header>
+    </div>
 
-    <!-- MAIN APPLICATION CONTAINER -->
-    <div class="flex-1 flex overflow-hidden max-w-[1800px] w-full mx-auto">
-        
-        <!-- SIDEBAR NAVIGATION (Desktop) -->
-        <aside class="hidden md:flex flex-col w-64 glass-panel border-r border-indigo-500/20 p-4 gap-2 shrink-0">
-            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 py-1 font-mono">Menú Principal</div>
-            
-            <button onclick="switchTab('tab-dashboard')" id="nav-tab-dashboard" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-chart-pie w-5 text-indigo-400"></i> Dashboard
-            </button>
-            <button onclick="switchTab('tab-tasks')" id="nav-tab-tasks" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-list-check w-5 text-cyan-400"></i> Tareas y XP
-            </button>
-            <button onclick="switchTab('tab-pomodoro')" id="nav-tab-pomodoro" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-stopwatch w-5 text-pink-400"></i> Temporizador Pomodoro
-            </button>
-            <button onclick="switchTab('tab-flashcards')" id="nav-tab-flashcards" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-layer-group w-5 text-amber-400"></i> Flashcards 3D
-            </button>
-            <button onclick="switchTab('tab-gpa')" id="nav-tab-gpa" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-calculator w-5 text-emerald-400"></i> Calculadora Promedio
-            </button>
-            <button onclick="switchTab('tab-notes')" id="nav-tab-notes" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-note-sticky w-5 text-purple-400"></i> Apuntes Cloud
-            </button>
-
-            <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-3 py-1 mt-4 font-mono">Comunidad & AI</div>
-            <button onclick="switchTab('tab-chat')" id="nav-tab-chat" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-comments w-5 text-blue-400"></i> Chat Global
-            </button>
-            <button onclick="switchTab('tab-leaderboard')" id="nav-tab-leaderboard" class="nav-btn flex items-center gap-3 px-3 py-2.5 rounded-xl font-medium text-sm transition-all text-slate-300 hover:bg-slate-800/60 hover:text-white">
-                <i class="fa-solid fa-trophy w-5 text-yellow-400"></i> Tabla de Liderazgo
-            </button>
-
-            <!-- Mascot Quick Status Widget -->
-            <div class="mt-auto glass-panel p-3 rounded-2xl border border-indigo-500/20 flex items-center gap-3 cursor-pointer hover:border-cyan-500/50 transition" onclick="openCompanionSelectorModal()">
-                <div id="sidebarCompanionIcon" class="w-10 h-10 rounded-xl bg-indigo-900/50 border border-indigo-400/30 flex items-center justify-center text-2xl shadow-neon-cyan">
-                    🐱
-                </div>
-                <div class="overflow-hidden">
-                    <div id="sidebarCompanionName" class="text-xs font-bold text-white truncate">Mina el Gato</div>
-                    <div class="text-[10px] text-cyan-400">Tutor de IA Activo</div>
+    <!-- APLICACION -->
+    <div id="paginaPrincipal">
+        <header>
+            <div class="encabezado">
+                <h1>📚 EduTask Pro</h1>
+                <div class="header-acciones">
+                    <span id="bienvenida" style="font-weight: 600;">¡Hola!</span>
+                    <button class="btn-header" onclick="toggleModoOscuro()">🌙 / ☀️</button>
+                    <button class="btn-header" onclick="cerrarSesion()" style="color:#ef4444;">🚪 Salir</button>
                 </div>
             </div>
-        </aside>
+        </header>
 
-        <!-- CONTENT AREA -->
-        <main class="flex-1 overflow-y-auto p-4 lg:p-6 space-y-6">
+        <!-- PESTAÑAS -->
+        <div class="nav-tabs">
+            <button class="tab-btn activo" onclick="cambiarPestaña('dashboard', this)">🏠 Dashboard</button>
+            <button class="tab-btn" onclick="cambiarPestaña('tareas', this)">📝 Tareas</button>
+            <button class="tab-btn" onclick="cambiarPestaña('estudiar', this)">⏱️ Pomodoro</button>
+            <button class="tab-btn" onclick="cambiarPestaña('flashcards', this)">🎴 Cartas</button>
+            <button class="tab-btn" onclick="cambiarPestaña('apuntes', this)">📓 Apuntes</button>
+            <button class="tab-btn" onclick="cambiarPestaña('chat', this)">💬 Chat</button>
+            <button class="tab-btn" onclick="cambiarPestaña('ranking', this)">🏆 Ranking</button>
+        </div>
 
-            <!-- TAB 1: DASHBOARD -->
-            <div id="tab-dashboard" class="tab-content space-y-6">
-                <!-- Welcome Banner -->
-                <div class="relative overflow-hidden rounded-3xl p-6 lg:p-8 glass-panel-glow border border-indigo-500/40 bg-gradient-to-r from-indigo-950/80 via-slate-900/90 to-purple-950/80">
-                    <div class="relative z-10 max-w-2xl">
-                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-bold border border-cyan-500/30 mb-3">
-                            <i class="fa-solid fa-sparkles"></i> Bienvenido de nuevo
-                        </span>
-                        <h2 class="text-2xl lg:text-3xl font-black text-white tracking-tight mb-2">
-                            ¡Hola, <span id="dashGreetingName" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-purple-400">Estudiante</span>!
-                        </h2>
-                        <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                            Tu progreso de estudio está al día. Tienes tareas pendientes y tu tutor de IA está listo para ayudarte con tus proyectos.
-                        </p>
-                        <div class="flex flex-wrap gap-3">
-                            <button onclick="switchTab('tab-tasks')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-sm shadow-neon-cyan transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-plus"></i> Nueva Tarea
-                            </button>
-                            <button onclick="toggleCompanionChatWindow()" class="px-5 py-2.5 rounded-xl glass-panel hover:bg-slate-800 text-indigo-300 font-bold text-sm border border-indigo-500/30 transition-all flex items-center gap-2">
-                                <i class="fa-solid fa-robot"></i> Consultar IA
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        <div class="contenido">
 
-                <!-- Stats Overview Grid -->
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-cyan-500/30 transition">
-                        <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
-                            <span>Tareas Completadas</span>
-                            <i class="fa-solid fa-check-double text-cyan-400"></i>
-                        </div>
-                        <div class="text-2xl font-black text-white" id="statCompletedTasks">0</div>
-                        <div class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-up"></i> +10 XP por tarea</div>
-                    </div>
-
-                    <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-purple-500/30 transition">
-                        <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
-                            <span>Puntos XP Totales</span>
-                            <i class="fa-solid fa-bolt text-purple-400"></i>
-                        </div>
-                        <div class="text-2xl font-black text-white" id="statTotalXP">0</div>
-                        <div class="text-[10px] text-purple-300 mt-1" id="statLevelName">Nivel 1: Novato</div>
-                    </div>
-
-                    <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-amber-500/30 transition">
-                        <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
-                            <span>Racha de Estudio</span>
-                            <i class="fa-solid fa-fire text-amber-500"></i>
-                        </div>
-                        <div class="text-2xl font-black text-white" id="statStreakDays">3</div>
-                        <div class="text-[10px] text-amber-400 mt-1">¡Sigue así diariamente!</div>
-                    </div>
-
-                    <div class="glass-panel p-4 rounded-2xl border border-slate-800 hover:border-pink-500/30 transition">
-                        <div class="flex items-center justify-between text-slate-400 text-xs mb-2">
-                            <span>Promedio (GPA)</span>
-                            <i class="fa-solid fa-award text-pink-400"></i>
-                        </div>
-                        <div class="text-2xl font-black text-white" id="statGPA">4.5 / 5.0</div>
-                        <div class="text-[10px] text-pink-300 mt-1">Rendimiento Alto</div>
-                    </div>
-                </div>
-
-                <!-- Recent Tasks & Quick Notes Section -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div class="lg:col-span-2 glass-panel p-5 rounded-2xl border border-indigo-500/20 space-y-4">
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-bold text-white text-base flex items-center gap-2">
-                                <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i> Tareas Prioritarias
-                            </h3>
-                            <button onclick="switchTab('tab-tasks')" class="text-xs text-cyan-400 hover:underline">Ver todas</button>
-                        </div>
-                        <div id="dashPendingTasksList" class="space-y-2">
-                            <!-- Injected via JS -->
-                        </div>
-                    </div>
-
-                    <!-- AI Companion Banner Widget -->
-                    <div class="glass-panel p-5 rounded-2xl border border-indigo-500/20 flex flex-col justify-between space-y-4 bg-gradient-to-b from-slate-900/90 to-indigo-950/40">
-                        <div class="flex items-center gap-3">
-                            <div id="dashMascotAvatar" class="w-14 h-14 rounded-2xl bg-indigo-900/60 border border-indigo-400/40 flex items-center justify-center text-3xl shadow-neon-purple shrink-0">
-                                🐱
-                            </div>
-                            <div>
-                                <h4 id="dashMascotName" class="font-bold text-white text-base">Mina el Gato</h4>
-                                <span class="text-[11px] text-cyan-400 font-medium">Asistente IA Educativo</span>
+            <!-- 1. DASHBOARD -->
+            <div id="pestana-dashboard" class="vista-pestana activa">
+                <div class="grid-dashboard">
+                    <div>
+                        <div class="tarjeta">
+                            <h2 id="saludoDashboard">Bienvenido</h2>
+                            <p>Organiza tus actividades y sube de nivel mientras estudias.</p>
+                            <div style="margin-top: 20px;">
+                                <div style="display:flex; justify-content:space-between; font-weight:bold;">
+                                    <span id="textoNivel">Nivel 1 (0 XP)</span>
+                                    <span id="textoSigNivel">Siguiente: 100 XP</span>
+                                </div>
+                                <div class="barra-xp-bg"><div class="barra-xp-fill" id="barraXP"></div></div>
                             </div>
                         </div>
-                        <p id="dashMascotQuote" class="text-xs text-slate-300 italic bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                            "¡Recuerda revisar tus notas antes del examen de mañana! Estoy lista para responder tus preguntas."
-                        </p>
-                        <button onclick="toggleCompanionChatWindow()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs shadow-neon-purple transition-all flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-comments"></i> Iniciar Chat Inteligente
-                        </button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- TAB 2: TASKS & XP SYSTEM -->
-            <div id="tab-tasks" class="tab-content hidden space-y-6">
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                            <i class="fa-solid fa-list-check text-cyan-400"></i> Tareas Gamificadas
-                        </h2>
-                        <p class="text-slate-400 text-xs">Completa actividades para ganar XP, subir de nivel y clasificar en el Top Estudiantil.</p>
-                    </div>
-                    <button onclick="openNewTaskModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-xs shadow-neon-cyan hover:scale-105 transition">
-                        <i class="fa-solid fa-plus"></i> Crear Nueva Tarea
-                    </button>
-                </div>
-
-                <!-- Filter Controls -->
-                <div class="flex gap-2 border-b border-slate-800 pb-3 overflow-x-auto">
-                    <button onclick="filterTasks('all')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">Todas</button>
-                    <button onclick="filterTasks('pending')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">Pendientes</button>
-                    <button onclick="filterTasks('completed')" class="task-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white">Completadas</button>
-                </div>
-
-                <!-- Tasks List -->
-                <div id="taskList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Task Items dynamically populated -->
-                </div>
-            </div>
-
-            <!-- TAB 3: POMODORO TIMER -->
-            <div id="tab-pomodoro" class="tab-content hidden space-y-6">
-                <div class="max-w-xl mx-auto text-center glass-panel p-8 rounded-3xl border border-indigo-500/30 space-y-6">
-                    <h2 class="text-2xl font-black text-white flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-stopwatch text-pink-500"></i> Temporizador Pomodoro
-                    </h2>
-
-                    <!-- Timer Mode Selector -->
-                    <div class="inline-flex p-1 rounded-2xl bg-slate-900/80 border border-slate-800 gap-1">
-                        <button onclick="setPomodoroMode('work')" id="pomoBtnWork" class="px-4 py-2 rounded-xl text-xs font-bold bg-pink-600 text-white shadow-neon-pink">Estudio (25m)</button>
-                        <button onclick="setPomodoroMode('short')" id="pomoBtnShort" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Descanso Corto (5m)</button>
-                        <button onclick="setPomodoroMode('long')" id="pomoBtnLong" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white">Descanso Largo (15m)</button>
-                    </div>
-
-                    <!-- Digital Clock Display -->
-                    <div class="py-6">
-                        <div id="pomoClock" class="font-mono text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 tracking-wider">
-                            25:00
-                        </div>
-                        <p id="pomoStatusText" class="text-xs text-slate-400 mt-2 font-medium">Listo para enfocar la mente</p>
-                    </div>
-
-                    <!-- Controls -->
-                    <div class="flex items-center justify-center gap-4">
-                        <button id="btnPomoStart" onclick="togglePomodoro()" class="w-14 h-14 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold text-xl shadow-neon-pink flex items-center justify-center hover:scale-105 transition">
-                            <i class="fa-solid fa-play"></i>
-                        </button>
-                        <button onclick="resetPomodoro()" class="w-12 h-12 rounded-2xl glass-panel text-slate-300 hover:text-white flex items-center justify-center hover:border-slate-700 transition">
-                            <i class="fa-solid fa-rotate-right"></i>
-                        </button>
-                    </div>
-
-                    <!-- Lo-Fi Ambient Sound Generator -->
-                    <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                        <span class="flex items-center gap-2">
-                            <i class="fa-solid fa-music text-purple-400"></i> Sonido Ambiental Lo-Fi
-                        </span>
-                        <button onclick="toggleLofiSynth()" id="btnLofiSynth" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-purple-300 font-bold border border-purple-500/30">
-                            <i class="fa-solid fa-play mr-1"></i> Activar Synth
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 4: FLASHCARDS 3D -->
-            <div id="tab-flashcards" class="tab-content hidden space-y-6">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                            <i class="fa-solid fa-layer-group text-amber-400"></i> Flashcards 3D de Repaso
-                        </h2>
-                        <p class="text-slate-400 text-xs">Haz clic en una tarjeta para girarla y revelar la respuesta.</p>
-                    </div>
-                    <button onclick="openNewFlashcardModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-white font-bold text-xs shadow-md hover:scale-105 transition">
-                        <i class="fa-solid fa-plus"></i> Agregar Tarjeta
-                    </button>
-                </div>
-
-                <div id="flashcardGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Cards rendered via JS -->
-                </div>
-            </div>
-
-            <!-- TAB 5: GPA CALCULATOR -->
-            <div id="tab-gpa" class="tab-content hidden space-y-6">
-                <div class="max-w-2xl mx-auto glass-panel p-6 rounded-3xl border border-emerald-500/30 space-y-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                                <i class="fa-solid fa-calculator text-emerald-400"></i> Calculadora de Promedios Ponderados
-                            </h2>
-                            <p class="text-slate-400 text-xs">Calcula tu nota acumulada según el peso de cada materia/corte.</p>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-2xl font-black text-emerald-400" id="gpaResultDisplay">0.0</div>
-                            <div class="text-[10px] text-slate-400">Promedio Calculado</div>
+                        <div class="tarjeta">
+                            <h2>🏅 Tus Insignias y Logros</h2>
+                            <div class="insignias-grid" id="contenedorInsignias">
+                                <div class="insignia-card" id="insignia-1">🥉 <strong>Novato</strong><br><small>Gana 50 XP</small></div>
+                                <div class="insignia-card" id="insignia-2">🥈 <strong>Estudioso</strong><br><small>Gana 200 XP</small></div>
+                                <div class="insignia-card" id="insignia-3">🥇 <strong>Pro Master</strong><br><small>Gana 500 XP</small></div>
+                                <div class="insignia-card" id="insignia-4">🔥 <strong>Dedicado</strong><br><small>Gana 1000 XP</small></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div id="gpaSubjectList" class="space-y-3">
-                        <!-- Subjects populated dynamically -->
-                    </div>
-
-                    <button onclick="addGPASubjectRow()" class="w-full py-2.5 rounded-xl border border-dashed border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 font-bold text-xs transition">
-                        <i class="fa-solid fa-plus"></i> Añadir Materia
-                    </button>
-                </div>
-            </div>
-
-            <!-- TAB 6: NOTES SECTION -->
-            <div id="tab-notes" class="tab-content hidden space-y-6">
-                <div class="flex items-center justify-between">
                     <div>
-                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                            <i class="fa-solid fa-note-sticky text-purple-400"></i> Apuntes Educativos Cloud
-                        </h2>
-                        <p class="text-slate-400 text-xs">Guardado automático local y sincronizado.</p>
-                    </div>
-                    <div id="notesSaveIndicator" class="text-xs text-emerald-400 font-mono hidden">
-                        <i class="fa-solid fa-floppy-disk"></i> Guardado
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    <div class="space-y-2 lg:col-span-1">
-                        <button onclick="createNewNote()" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition mb-3">
-                            <i class="fa-solid fa-plus"></i> Nueva Nota
-                        </button>
-                        <div id="notesList" class="space-y-2 max-h-[500px] overflow-y-auto">
-                            <!-- Notes list dynamically added -->
+                        <div class="tarjeta">
+                            <h2>⚡ Accesos Rápidos</h2>
+                            <button class="botonPrincipal" onclick="cambiarPestañaPorNombre('tareas')">📝 Ver Tareas</button>
+                            <button class="botonPrincipal" onclick="cambiarPestañaPorNombre('estudiar')" style="background-color:#10b981;">⏱️ Iniciar Pomodoro</button>
+                            <button class="botonPrincipal" onclick="cambiarPestañaPorNombre('chat')" style="background-color:#6366f1;">💬 Abrir Chat Global</button>
                         </div>
                     </div>
-                    <div class="lg:col-span-3 glass-panel p-4 rounded-2xl border border-slate-800 space-y-3">
-                        <input type="text" id="noteTitleInput" placeholder="Título del apunte..." oninput="autoSaveCurrentNote()" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-white font-bold text-sm focus:outline-none focus:border-purple-500">
-                        <textarea id="noteBodyInput" rows="14" placeholder="Escribe tus apuntes aquí..." oninput="autoSaveCurrentNote()" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-4 text-slate-200 text-xs font-mono focus:outline-none focus:border-purple-500 resize-none"></textarea>
-                    </div>
                 </div>
             </div>
 
-            <!-- TAB 7: GLOBAL CHAT (Firestore / Fallback) -->
-            <div id="tab-chat" class="tab-content hidden space-y-4 h-[calc(100vh-140px)] flex flex-col">
-                <div class="flex items-center justify-between shrink-0">
-                    <div>
-                        <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                            <i class="fa-solid fa-comments text-blue-400"></i> Chat de Estudiantes Global
-                        </h2>
-                        <p class="text-slate-400 text-xs">Conéctate en tiempo real con compañeros de estudio.</p>
-                    </div>
-                    <span id="chatConnectionStatus" class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono">
-                        <i class="fa-solid fa-wifi"></i> Firestore Conectado
-                    </span>
-                </div>
-
-                <!-- Chat Box Container -->
-                <div class="flex-1 glass-panel rounded-2xl border border-slate-800 flex flex-col overflow-hidden">
-                    <div id="globalChatMessages" class="flex-1 p-4 overflow-y-auto space-y-3">
-                        <!-- Chat messages appended via Firebase/Local Fallback -->
-                    </div>
-
-                    <!-- Input Bar -->
-                    <form id="globalChatForm" onsubmit="sendGlobalChatMessage(event)" class="p-3 bg-slate-900/90 border-t border-slate-800 flex gap-2">
-                        <input type="text" id="chatInputMessage" placeholder="Escribe un mensaje a la comunidad de estudiantes..." required class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white text-xs focus:outline-none focus:border-cyan-500">
-                        <button type="submit" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs shadow-neon-cyan transition flex items-center gap-1 shrink-0">
-                            <span>Enviar</span> <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- TAB 8: LEADERBOARD / RANKING -->
-            <div id="tab-leaderboard" class="tab-content hidden space-y-6">
-                <div>
-                    <h2 class="text-2xl font-black text-white flex items-center gap-2">
-                        <i class="fa-solid fa-trophy text-yellow-400"></i> Tabla de Liderazgo Estudiantil
-                    </h2>
-                    <p class="text-slate-400 text-xs">Compite sanamente ganando XP por tareas completadas y rachas de estudio.</p>
-                </div>
-
-                <div class="glass-panel rounded-2xl border border-indigo-500/20 overflow-hidden">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-slate-900/80 border-b border-slate-800 text-[11px] font-bold text-slate-400 uppercase tracking-wider font-mono">
-                                    <th class="p-4">Puesto</th>
-                                    <th class="p-4">Estudiante</th>
-                                    <th class="p-4">Nivel</th>
-                                    <th class="p-4 text-right">Puntos XP</th>
-                                </tr>
-                            </thead>
-                            <tbody id="leaderboardTableBody" class="divide-y divide-slate-800/50 text-xs">
-                                <!-- Dynamic rows via Firestore query or Fallback -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 9: USER PROFILE / SETTINGS -->
-            <div id="tab-profile" class="tab-content hidden space-y-6 max-w-xl mx-auto">
-                <div class="glass-panel p-6 rounded-3xl border border-indigo-500/30 space-y-6 text-center">
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-cyan-400 to-purple-600 mx-auto flex items-center justify-center text-3xl font-black text-white shadow-neon-purple">
-                        <span id="profileLargeAvatar">U</span>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white" id="profileNameDisplay">Nombre del Usuario</h3>
-                        <p class="text-xs text-slate-400 font-mono" id="profileEmailDisplay">usuario@ejemplo.com</p>
-                    </div>
-
-                    <div class="space-y-4 text-left pt-4 border-t border-slate-800">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1">Nombre de Usuario</label>
-                            <input type="text" id="editProfileName" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
-                        </div>
-                        <button onclick="saveUserProfileSettings()" class="w-full py-2.5 rounded-xl bg-cyan-500 text-slate-950 font-bold text-xs shadow-neon-cyan transition">
-                            Guardar Perfil
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </main>
-    </div>
-
-    <!-- MOBILE BOTTOM NAVIGATION BAR -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 glass-panel border-t border-indigo-500/20 px-2 py-2 flex justify-around z-40 bg-slate-950/90">
-        <button onclick="switchTab('tab-dashboard')" class="mobile-nav-btn text-cyan-400 flex flex-col items-center text-[10px]"><i class="fa-solid fa-chart-pie text-base mb-0.5"></i>Inicio</button>
-        <button onclick="switchTab('tab-tasks')" class="mobile-nav-btn text-slate-400 flex flex-col items-center text-[10px]"><i class="fa-solid fa-list-check text-base mb-0.5"></i>Tareas</button>
-        <button onclick="switchTab('tab-pomodoro')" class="mobile-nav-btn text-slate-400 flex flex-col items-center text-[10px]"><i class="fa-solid fa-stopwatch text-base mb-0.5"></i>Pomodoro</button>
-        <button onclick="switchTab('tab-chat')" class="mobile-nav-btn text-slate-400 flex flex-col items-center text-[10px]"><i class="fa-solid fa-comments text-base mb-0.5"></i>Chat</button>
-        <button onclick="switchTab('tab-leaderboard')" class="mobile-nav-btn text-slate-400 flex flex-col items-center text-[10px]"><i class="fa-solid fa-trophy text-base mb-0.5"></i>Top</button>
-    </nav>
-
-    <!-- FLOATING AI COMPANION AVATAR & DIALOG OVERLAY -->
-    <div class="fixed bottom-16 md:bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-        <!-- Floating Speech Bubble -->
-        <div id="mascotSpeechBubble" class="glass-panel px-3 py-1.5 rounded-xl border border-cyan-500/40 text-[11px] font-bold text-white shadow-neon-cyan floating-element cursor-pointer hover:scale-105 transition" onclick="toggleCompanionChatWindow()">
-            ✨ ¡Haz clic en mí para chatear!
-        </div>
-
-        <!-- Avatar Icon Button -->
-        <div class="relative group">
-            <button onclick="toggleCompanionChatWindow()" id="floatingMascotBtn" class="w-14 h-14 rounded-full bg-gradient-to-tr from-purple-600 via-pink-500 to-cyan-400 p-[2px] animated-avatar transition duration-300">
-                <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center text-2xl" id="floatingMascotEmoji">
-                    🐱
-                </div>
-            </button>
-            <button onclick="openCompanionSelectorModal()" title="Cambiar Mascota IA" class="absolute -top-1 -left-1 w-6 h-6 rounded-full bg-slate-900 border border-cyan-400 text-cyan-400 text-[10px] flex items-center justify-center shadow-md hover:bg-cyan-500 hover:text-slate-950 transition">
-                <i class="fa-solid fa-arrows-rotate"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- AI COMPANION REAL CHAT WINDOW (ChatGPT Style) -->
-    <div id="aiChatOverlay" class="fixed inset-0 sm:inset-auto sm:bottom-24 sm:right-6 sm:w-96 sm:h-[520px] z-50 glass-panel-glow rounded-3xl border border-indigo-500/40 hidden flex-col shadow-2xl overflow-hidden bg-slate-950/95">
-        <!-- Header -->
-        <div class="p-3 bg-slate-900/90 border-b border-indigo-500/30 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <span id="aiChatHeaderEmoji" class="text-xl">🐱</span>
-                <div>
-                    <h4 id="aiChatHeaderName" class="font-bold text-white text-xs">Mina el Gato</h4>
-                    <span class="text-[9px] text-cyan-400 font-mono flex items-center gap-1">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Gemini AI Conectado
-                    </span>
-                </div>
-            </div>
-            <div class="flex items-center gap-1">
-                <button onclick="openCompanionSelectorModal()" class="text-slate-400 hover:text-white text-xs p-1"><i class="fa-solid fa-gear"></i></button>
-                <button onclick="toggleCompanionChatWindow()" class="text-slate-400 hover:text-white text-xs p-1"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        </div>
-
-        <!-- Chat Messages -->
-        <div id="aiChatMessages" class="flex-1 p-3 overflow-y-auto space-y-3 text-xs">
-            <!-- Messages appended via JS -->
-        </div>
-
-        <!-- Thinking Indicator -->
-        <div id="aiChatThinking" class="px-3 py-1 hidden text-[10px] text-cyan-400 font-mono animate-pulse">
-            <i class="fa-solid fa-sparkles"></i> <span id="aiThinkingName">Mina</span> está pensando...
-        </div>
-
-        <!-- Chat Input -->
-        <form id="aiChatForm" onsubmit="handleAIChatSubmit(event)" class="p-2.5 bg-slate-900 border-t border-slate-800 flex gap-2">
-            <input type="text" id="aiChatInput" placeholder="Haz cualquier pregunta académica..." required class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white text-xs focus:outline-none focus:border-cyan-500">
-            <button type="submit" class="w-9 h-9 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white flex items-center justify-center text-xs shadow-neon-cyan shrink-0">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
-        </form>
-    </div>
-
-    <!-- MODAL: COMPANION SELECTOR -->
-    <div id="companionSelectorModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-panel p-6 rounded-3xl border border-indigo-500/30 max-w-md w-full space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="font-black text-white text-lg">Elige tu Tutor Inteligente IA</h3>
-                <button onclick="closeCompanionSelectorModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <div class="grid grid-cols-2 gap-3">
-                <div onclick="selectCompanion('mina')" class="companion-option-card p-3 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-400 cursor-pointer text-center space-y-2 transition">
-                    <div class="text-4xl">🐱</div>
-                    <div class="font-bold text-white text-xs">Mina el Gato</div>
-                    <p class="text-[10px] text-slate-400">Analítica, rápida, especialista en estudio y enfoque.</p>
-                </div>
-                <div onclick="selectCompanion('max')" class="companion-option-card p-3 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-400 cursor-pointer text-center space-y-2 transition">
-                    <div class="text-4xl">🐶</div>
-                    <div class="font-bold text-white text-xs">Max el Perro</div>
-                    <p class="text-[10px] text-slate-400">Energético, motivador e ideal para mantener rachas.</p>
-                </div>
-                <div onclick="selectCompanion('zorblax')" class="companion-option-card p-3 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-400 cursor-pointer text-center space-y-2 transition">
-                    <div class="text-4xl">👽</div>
-                    <div class="font-bold text-white text-xs">Zorblax el Alien</div>
-                    <p class="text-[10px] text-slate-400">Lógica intergaláctica, datos curiosos y ciencia futurista.</p>
-                </div>
-                <div onclick="selectCompanion('ford')" class="companion-option-card p-3 rounded-2xl glass-panel border border-slate-800 hover:border-cyan-400 cursor-pointer text-center space-y-2 transition">
-                    <div class="text-4xl">🚗</div>
-                    <div class="font-bold text-white text-xs">Ford Fusion 2017</div>
-                    <p class="text-[10px] text-slate-400">Potencia EcoBoost 2.0L, datos duros y chistes mecánicos.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL: NEW TASK -->
-    <div id="newTaskModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-panel p-6 rounded-3xl border border-indigo-500/30 max-w-md w-full space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="font-black text-white text-lg">Crear Nueva Tarea</h3>
-                <button onclick="closeNewTaskModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            
-            <form onsubmit="handleCreateTaskSubmit(event)" class="space-y-3 text-xs">
-                <div>
-                    <label class="block font-bold text-slate-300 mb-1">Título de la Tarea</label>
-                    <input type="text" id="taskTitleInput" required placeholder="Ej: Ejercicios de Cálculo Diferencial" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-cyan-500">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-300 mb-1">Materia / Categoría</label>
-                    <input type="text" id="taskCategoryInput" placeholder="Matemáticas, Física, Historia..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-cyan-500">
-                </div>
-                <div>
-                    <label class="block font-bold text-slate-300 mb-1">Recompensa XP</label>
-                    <select id="taskXPRewardInput" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-cyan-500">
-                        <option value="10">Fácil (+10 XP)</option>
-                        <option value="25">Media (+25 XP)</option>
-                        <option value="50">Difícil (+50 XP)</option>
+            <!-- 2. TAREAS -->
+            <div id="pestana-tareas" class="vista-pestana">
+                <div class="tarjeta">
+                    <h2>📝 Gestión de Tareas Académicas</h2>
+                    <input type="text" id="nuevaTarea" placeholder="Ej: Proyecto de matemáticas" style="width:100%;">
+                    <select id="materiaTarea" style="width:100%;">
+                        <option value="Matemáticas">Matemáticas</option>
+                        <option value="Español">Español</option>
+                        <option value="Ciencias">Ciencias</option>
+                        <option value="Inglés">Inglés</option>
+                        <option value="Sociales">Sociales</option>
+                        <option value="General">General</option>
                     </select>
+                    <button class="botonAccion" onclick="reproducirSonido('click'); agregarTarea()">Agregar Tarea (+10 XP al completar)</button>
+                    <div id="listaTareas" style="margin-top:15px;">Cargando...</div>
                 </div>
-                <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold shadow-neon-cyan mt-2">
-                    Crear y Guardar Tarea
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL: NEW FLASHCARD -->
-    <div id="newFlashcardModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="glass-panel p-6 rounded-3xl border border-indigo-500/30 max-w-md w-full space-y-4">
-            <div class="flex justify-between items-center">
-                <h3 class="font-black text-white text-lg">Nueva Tarjeta Flashcard</h3>
-                <button onclick="closeNewFlashcardModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            
-            <form onsubmit="handleCreateFlashcardSubmit(event)" class="space-y-3 text-xs">
-                <div>
-                    <label class="block font-bold text-slate-300 mb-1">Pregunta / Anverso</label>
-                    <input type="text" id="fcQuestionInput" required placeholder="Ej: ¿Qué es la mitocondria?" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+
+            <!-- 3. POMODORO -->
+            <div id="pestana-estudiar" class="vista-pestana">
+                <div class="tarjeta" style="text-align:center; max-width:600px; margin:auto;">
+                    <h2>⏱️ Modo Pomodoro de Estudio</h2>
+                    <p>Completa una sesión de 25 minutos para ganar <strong>+50 XP</strong>.</p>
+                    <div id="tiempo" style="font-size: 65px; font-weight:bold; color:var(--primary); margin:25px 0;">25:00</div>
+                    <button class="botonPrincipal" onclick="reproducirSonido('click'); iniciarTemporizador()">Iniciar</button>
+                    <button class="botonPrincipal" onclick="reproducirSonido('click'); pausarTemporizador()" style="background-color:#f59e0b; margin-top:10px;">Pausar</button>
+                    <button class="botonPrincipal" onclick="reproducirSonido('click'); reiniciarTemporizador()" style="background-color:#ef4444; margin-top:10px;">Reiniciar</button>
                 </div>
-                <div>
-                    <label class="block font-bold text-slate-300 mb-1">Respuesta / Reverso</label>
-                    <textarea id="fcAnswerInput" required rows="3" placeholder="La central de energía de la célula..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500 resize-none"></textarea>
+            </div>
+
+            <!-- 4. FLASHCARDS -->
+            <div id="pestana-flashcards" class="vista-pestana">
+                <div class="tarjeta">
+                    <h2>🎴 Cartas de Memoria (Flashcards)</h2>
+                    <input type="text" id="preguntaCarta" placeholder="Pregunta (ej: ¿Fórmula del agua?)" style="width:100%;">
+                    <input type="text" id="respuestaCarta" placeholder="Respuesta (ej: H2O)" style="width:100%;">
+                    <button class="botonAccion" onclick="reproducirSonido('click'); agregarCarta()">Crear Carta</button>
+                    <div id="contenedorCartas" style="margin-top:20px;">Cargando...</div>
                 </div>
-                <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold shadow-md mt-2">
-                    Guardar Flashcard
-                </button>
-            </form>
+            </div>
+
+            <!-- 5. APUNTES -->
+            <div id="pestana-apuntes" class="vista-pestana">
+                <div class="tarjeta">
+                    <h2>📓 Bloc de Apuntes en la Nube</h2>
+                    <p>Escribe notas rápidas que se guardarán automáticamente en tu cuenta.</p>
+                    <textarea id="textoNotas" style="width:100%; height:250px; resize:vertical; padding:15px; border-radius:12px; border:2px solid var(--border-color); background:var(--element-bg); color:var(--text-color);"></textarea>
+                    <button class="botonAccion" onclick="reproducirSonido('click'); guardarNotas()">Guardar Apuntes 💾</button>
+                </div>
+            </div>
+
+            <!-- 6. CHAT -->
+            <div id="pestana-chat" class="vista-pestana">
+                <div class="tarjeta">
+                    <h2>💬 Chat Global de Estudiantes</h2>
+                    <div class="chat-box" id="chatBox">Conectando al chat...</div>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="mensajeChat" placeholder="Escribe un mensaje..." style="flex:1;" onkeypress="if(event.key === 'Enter') enviarMensajeChat()">
+                        <button class="botonAccion" style="margin-top:0;" onclick="reproducirSonido('click'); enviarMensajeChat()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. RANKING -->
+            <div id="pestana-ranking" class="vista-pestana">
+                <div class="tarjeta">
+                    <h2>🏆 Tabla de Clasificación Global</h2>
+                    <div id="listaClasificacion">Cargando ranking...</div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- FIREBASE SDK V12 IMPORTS & GLOBAL APP LOGIC -->
+    <!-- FIREBASE & LOGICA -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, orderBy, limit, onSnapshot, serverTimestamp, doc, setDoc } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, updateDoc, increment, collection, getDocs, addDoc, deleteDoc, onSnapshot, orderBy, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-        // FIREBASE CONFIGURATION
         const firebaseConfig = {
             apiKey: "AIzaSyCQ4H-lseaO2FQyWkqhCgV_JodNbnyHt2A",
             authDomain: "edu-task-pro.firebaseapp.com",
@@ -721,261 +472,23 @@
             measurementId: "G-H1XVWDX40D"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        window.firebaseDb = db;
-        window.firebaseAuth = auth;
+        let usuarioActual = null;
+        let datosUsuario = null;
+        let temporizador = null;
+        let segundosRestantes = 25 * 60;
+        let unsubscribeChat = null;
 
-        // AUTH INITIALIZATION
-        signInAnonymously(auth).catch((error) => {
-            console.warn("Firebase Auth Anonymous fallback notice:", error);
-        });
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                if (!state.currentUser.name || state.currentUser.name === "Estudiante") {
-                    state.currentUser.name = user.displayName || "Estudiante " + Math.floor(100 + Math.random() * 900);
-                    state.currentUser.email = user.email || `user_${user.uid.substring(0, 5)}@edutask.pro`;
-                    state.currentUser.uid = user.uid;
-                }
-                saveUserDataLocal();
-                updateUIProfileDisplays();
-                syncUserWithFirestoreLeaderboard();
-            }
-        });
-
-        // FIRESTORE GLOBAL CHAT REALTIME LISTENER
-        try {
-            const chatCol = collection(db, "chat_estudiantes");
-            const qChat = query(chatCol, orderBy("timestamp", "asc"), limit(50));
-            
-            onSnapshot(qChat, (snapshot) => {
-                if (snapshot.empty) {
-                    renderFallbackLocalChat();
-                    return;
-                }
-                const messagesContainer = document.getElementById('globalChatMessages');
-                if (!messagesContainer) return;
-                messagesContainer.innerHTML = '';
-                
-                snapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    appendChatMessageToDOM(data.author || 'Estudiante', data.message || '', data.timestamp?.toDate ? data.timestamp.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'Ahora', data.uid === auth.currentUser?.uid);
-                });
-                
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, (error) => {
-                console.warn("Firestore chat snapshot read error, fallback active:", error);
-                renderFallbackLocalChat();
-            });
-        } catch (e) {
-            renderFallbackLocalChat();
-        }
-
-        // FIRESTORE LEADERBOARD REALTIME QUERY
-        try {
-            const usersCol = collection(db, "estudiantes");
-            const qLeaderboard = query(usersCol, orderBy("xp", "desc"), limit(20));
-
-            onSnapshot(qLeaderboard, (snapshot) => {
-                let list = [];
-                snapshot.forEach((docSnap) => {
-                    list.push(docSnap.data());
-                });
-
-                if (list.length < 3) {
-                    list = getMergedFallbackLeaderboard(list);
-                }
-                renderLeaderboardTable(list);
-            }, (error) => {
-                console.warn("Firestore leaderboard snapshot query fallback:", error);
-                renderLeaderboardTable(getMergedFallbackLeaderboard([]));
-            });
-        } catch (e) {
-            renderLeaderboardTable(getMergedFallbackLeaderboard([]));
-        }
-
-        // EXPOSE SEND CHAT TO WINDOW
-        window.sendGlobalChatMessage = async function(e) {
-            e.preventDefault();
-            const input = document.getElementById('chatInputMessage');
-            const text = input.value.trim();
-            if (!text) return;
-
-            input.value = '';
-            
-            try {
-                await addDoc(collection(db, "chat_estudiantes"), {
-                    author: state.currentUser.name,
-                    message: text,
-                    uid: auth.currentUser?.uid || 'local',
-                    timestamp: serverTimestamp()
-                });
-                playSound('click');
-            } catch (err) {
-                console.warn("Error sending chat to Firestore, appending locally:", err);
-                appendChatMessageToDOM(state.currentUser.name, text, 'Ahora', true);
-                const container = document.getElementById('globalChatMessages');
-                if (container) container.scrollTop = container.scrollHeight;
-            }
+        const coloresMaterias = {
+            "Matemáticas": "#ef4444", "Español": "#f59e0b", "Ciencias": "#10b981",
+            "Inglés": "#3b82f6", "Sociales": "#8b5cf6", "General": "#6b7280"
         };
 
-        // SYNC USER DATA TO FIRESTORE LEADERBOARD
-        window.syncUserWithFirestoreLeaderboard = async function() {
-            if (!auth.currentUser) return;
-            try {
-                const userRef = doc(db, "estudiantes", auth.currentUser.uid);
-                await setDoc(userRef, {
-                    name: state.currentUser.name,
-                    xp: state.currentUser.xp,
-                    level: state.currentUser.level,
-                    uid: auth.currentUser.uid,
-                    updatedAt: serverTimestamp()
-                }, { merge: true });
-            } catch (err) {
-                // Fail silently
-            }
-        };
-    </script>
-
-    <!-- MAIN APP STATE & SCRIPT -->
-    <script>
-        // GLOBAL APP STATE
-        const state = {
-            currentUser: {
-                name: 'Estudiante',
-                email: 'estudiante@edutask.pro',
-                xp: 0,
-                level: 1,
-                streak: 3,
-                gpa: 4.5,
-                selectedCompanion: 'mina' // mina, max, zorblax, ford
-            },
-            audioEnabled: true,
-            soundSynthContext: null,
-            lofiActive: false,
-            tasks: [
-                { id: 't1', title: 'Resolver taller de Integrales Indefinidas', category: 'Matemáticas', xp: 25, completed: false },
-                { id: 't2', title: 'Leer capítulo 3 de Física Moderna', category: 'Física', xp: 10, completed: true },
-                { id: 't3', title: 'Preparar presentación de IA', category: 'Programación', xp: 50, completed: false }
-            ],
-            flashcards: [
-                { id: 'fc1', q: '¿Qué significa HTML?', a: 'HyperText Markup Language, lenguaje de marcado para crear páginas web.' },
-                { id: 'fc2', q: '¿Cuál es la diferencia entre RAM y ROM?', a: 'La RAM es memoria volátil de acceso rápido; la ROM es memoria de solo lectura no volátil.' },
-                { id: 'fc3', q: '¿Qué es el ciclo de Krebs?', a: 'Ruta metabólica clave en la respiración celular para generar energía en forma de ATP.' }
-            ],
-            notes: [
-                { id: 'n1', title: 'Resumen de Física - Leyes de Newton', body: '1. Inercia: Todo cuerpo permanece en reposo o movimiento uniforme a menos que actúe una fuerza.\n2. F = m * a\n3. Acción y Reacción.' }
-            ],
-            activeNoteId: 'n1',
-            gpaSubjects: [
-                { name: 'Cálculo', grade: 4.5, weight: 30 },
-                { name: 'Física', grade: 4.2, weight: 30 },
-                { name: 'Programación', grade: 4.8, weight: 40 }
-            ],
-            pomodoro: {
-                mode: 'work', // work, short, long
-                duration: 25 * 60,
-                timeLeft: 25 * 60,
-                isRunning: false,
-                timerId: null
-            },
-            aiChatHistory: []
-        };
-
-        // COMPANION PROFILES & SYSTEM PROMPTS
-        const companions = {
-            mina: {
-                name: "Mina el Gato",
-                emoji: "🐱",
-                desc: "Analítica, astuta y experta en métodos de estudio acelerados.",
-                prompt: "Eres Mina el Gato, una gatita súper inteligente y analítica que actúa como tutora de estudio. Respondes con claridad, precisión y de forma muy amable. Siempre das ejemplos académicos prácticos y breves maullidos juguetones '¡Miau!' al inicio o final de tus respuestas."
-            },
-            max: {
-                name: "Max el Perro",
-                emoji: "🐶",
-                desc: "Súper motivador, lleno de energía y enfocado en la disciplina diaria.",
-                prompt: "Eres Max el Perro, un perro hiperactivo y súper motivador. Tu objetivo es animar al estudiante a nunca rendirse, estudiar duro y ganar XP. Usas expresiones energéticas como '¡Guau!', '¡Vamos con todo!' y emojis alegres."
-            },
-            zorblax: {
-                name: "Zorblax el Alien",
-                emoji: "👽",
-                desc: "Lógica intergaláctica, datos científicos avanzados y perspectiva futurista.",
-                prompt: "Eres Zorblax el Alien, un ser supremo de la galaxia Andrómeda que viene a enseñar ciencia y lógica avanzada a los terrícolas. Hablas de forma levemente robotizada/futurista con datos muy precisos y un tono curioso sobre las costumbres humanas de estudiar."
-            },
-            ford: {
-                name: "Ford Fusion 2017",
-                emoji: "🚗",
-                desc: "Motor EcoBoost 2.0L Turbo, explicaciones potentes y humor automotriz.",
-                prompt: "Eres un Ford Fusion 2017 con motor EcoBoost 2.0L Turbo. Te apasiona la ingeniería, la potencia y dar explicaciones súper aceleradas y estructuradas. Haces bromas constantes sobre bujías, cambio de aceite, acelerar el rendimiento académico y rugir el motor '¡VROOOOM!'."
-            }
-        };
-
-        window.addEventListener('DOMContentLoaded', () => {
-            loadUserDataLocal();
-            updateUIProfileDisplays();
-            renderTasks();
-            renderDashPendingTasks();
-            renderFlashcards();
-            renderNotesList();
-            renderGPASubjects();
-            calculateGPA();
-            initAIChatWelcomeMessage();
-        });
-
-        // LOCAL STORAGE LOAD / SAVE
-        function loadUserDataLocal() {
-            try {
-                const saved = localStorage.getItem('edutask_pro_state_v1');
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    if (parsed.currentUser) Object.assign(state.currentUser, parsed.currentUser);
-                    if (parsed.tasks) state.tasks = parsed.tasks;
-                    if (parsed.flashcards) state.flashcards = parsed.flashcards;
-                    if (parsed.notes) state.notes = parsed.notes;
-                    if (parsed.gpaSubjects) state.gpaSubjects = parsed.gpaSubjects;
-                }
-            } catch (e) {
-                console.warn("Local storage load error:", e);
-            }
-        }
-
-        function saveUserDataLocal() {
-            try {
-                localStorage.setItem('edutask_pro_state_v1', JSON.stringify({
-                    currentUser: state.currentUser,
-                    tasks: state.tasks,
-                    flashcards: state.flashcards,
-                    notes: state.notes,
-                    gpaSubjects: state.gpaSubjects
-                }));
-            } catch (e) {
-                console.warn("Local storage save error:", e);
-            }
-        }
-
-        // TAB SWITCHING
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            const target = document.getElementById(tabId);
-            if (target) target.classList.remove('hidden');
-
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('bg-indigo-600/30', 'text-white', 'border-l-4', 'border-cyan-400');
-            });
-            const activeNavBtn = document.getElementById('nav-' + tabId);
-            if (activeNavBtn) {
-                activeNavBtn.classList.add('bg-indigo-600/30', 'text-white', 'border-l-4', 'border-cyan-400');
-            }
-            playSound('click');
-        }
-
-        // SOUND SYNTHESIZER (WebAudio API - Zero external asset dependencies)
-        function playSound(type) {
-            if (!state.audioEnabled) return;
+        // SISTEMA DE AUDIO WEBAUDIO (SIN ARCHIVOS EXTERNOS)
+        window.reproducirSonido = function(tipo) {
             try {
                 const ctx = new (window.AudioContext || window.webkitAudioContext)();
                 const osc = ctx.createOscillator();
@@ -983,715 +496,296 @@
                 osc.connect(gain);
                 gain.connect(ctx.destination);
 
-                if (type === 'click') {
-                    osc.frequency.setValueAtTime(400, ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.05);
+                if (tipo === 'click') {
+                    osc.frequency.setValueAtTime(600, ctx.currentTime);
+                    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                    osc.start(); osc.stop(ctx.currentTime + 0.05);
+                } else if (tipo === 'xp') {
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+                    osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2);
                     gain.gain.setValueAtTime(0.1, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.05);
-                } else if (type === 'complete') {
-                    osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); // E5
-                    osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2); // G5
+                    osc.start(); osc.stop(ctx.currentTime + 0.4);
+                } else if (tipo === 'alarma') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(800, ctx.currentTime);
                     gain.gain.setValueAtTime(0.15, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.35);
-                } else if (type === 'levelup') {
-                    osc.type = 'triangle';
-                    osc.frequency.setValueAtTime(261.63, ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(1046.50, ctx.currentTime + 0.4);
-                    gain.gain.setValueAtTime(0.2, ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
-                    osc.start();
-                    osc.stop(ctx.currentTime + 0.4);
+                    osc.start(); osc.stop(ctx.currentTime + 0.8);
                 }
-            } catch (e) {
-                // AudioContext allowed only after user gesture
-            }
-        }
+            } catch(e) {}
+        };
 
-        function toggleAudio() {
-            state.audioEnabled = !state.audioEnabled;
-            const icon = document.getElementById('soundIcon');
-            if (icon) {
-                icon.className = state.audioEnabled ? "fa-solid fa-volume-high text-cyan-400" : "fa-solid fa-volume-xmark text-slate-500";
-            }
-        }
+        window.toggleModoOscuro = function() {
+            document.body.classList.toggle("dark-mode");
+        };
 
-        // UPDATE PROFILE DISPLAYS & XP GAMIFICATION
-        function updateUIProfileDisplays() {
-            // Calculated Level logic: Level up every 100 XP
-            const currentXP = state.currentUser.xp;
-            const level = Math.floor(currentXP / 100) + 1;
-            const xpInCurrentLevel = currentXP % 100;
-            state.currentUser.level = level;
+        window.cambiarPestaña = function(nombrePestana, btnElement) {
+            document.querySelectorAll('.vista-pestana').forEach(v => v.classList.remove('activa'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+            document.getElementById('pestana-' + nombrePestana).classList.add('activa');
+            if(btnElement) btnElement.classList.add('activo');
 
-            // Elements
-            const userNameDisplay = document.getElementById('userNameDisplay');
-            const dashGreetingName = document.getElementById('dashGreetingName');
-            const profileNameDisplay = document.getElementById('profileNameDisplay');
-            const editProfileName = document.getElementById('editProfileName');
-            
-            if (userNameDisplay) userNameDisplay.innerText = state.currentUser.name;
-            if (dashGreetingName) dashGreetingName.innerText = state.currentUser.name;
-            if (profileNameDisplay) profileNameDisplay.innerText = state.currentUser.name;
-            if (editProfileName) editProfileName.value = state.currentUser.name;
+            if(nombrePestana === 'tareas') cargarTareas();
+            if(nombrePestana === 'flashcards') cargarCartas();
+            if(nombrePestana === 'apuntes') cargarApuntesVista();
+            if(nombrePestana === 'chat') escucharChat();
+            if(nombrePestana === 'ranking') cargarRanking();
+        };
 
-            const userEmailDisplay = document.getElementById('userEmailDisplay');
-            const profileEmailDisplay = document.getElementById('profileEmailDisplay');
-            if (userEmailDisplay) userEmailDisplay.innerText = state.currentUser.email;
-            if (profileEmailDisplay) profileEmailDisplay.innerText = state.currentUser.email;
-
-            // Initials
-            const initial = state.currentUser.name.charAt(0).toUpperCase() || 'U';
-            document.getElementById('userAvatarInitials').innerText = initial;
-            document.getElementById('profileLargeAvatar').innerText = initial;
-
-            // Header XP Bar
-            document.getElementById('headerLevelBadge').innerText = `Nivel ${level}`;
-            document.getElementById('headerXPText').innerText = `${xpInCurrentLevel} / 100 XP`;
-            document.getElementById('headerXPBar').style.width = `${xpInCurrentLevel}%`;
-            document.getElementById('headerStreak').innerText = `${state.currentUser.streak} Días`;
-
-            // Dashboard Overview Stats
-            document.getElementById('statTotalXP').innerText = currentXP;
-            document.getElementById('statLevelName').innerText = `Nivel ${level}: ${getLevelTitle(level)}`;
-            document.getElementById('statStreakDays').innerText = state.currentUser.streak;
-            document.getElementById('statCompletedTasks').innerText = state.tasks.filter(t => t.completed).length;
-
-            updateMascotUI();
-        }
-
-        function getLevelTitle(level) {
-            if (level === 1) return "Novato de Estudio";
-            if (level === 2) return "Aprendiz Constante";
-            if (level === 3) return "Especialista";
-            if (level === 4) return "Maestro del Conocimiento";
-            return "Leyenda Académica";
-        }
-
-        function addXP(amount) {
-            const oldLevel = Math.floor(state.currentUser.xp / 100) + 1;
-            state.currentUser.xp += amount;
-            const newLevel = Math.floor(state.currentUser.xp / 100) + 1;
-
-            if (newLevel > oldLevel) {
-                playSound('levelup');
-                alert(`🎉 ¡FELICIDADES! ¡Has subido al Nivel ${newLevel}!`);
-            } else {
-                playSound('complete');
-            }
-
-            saveUserDataLocal();
-            updateUIProfileDisplays();
-            if (window.syncUserWithFirestoreLeaderboard) window.syncUserWithFirestoreLeaderboard();
-        }
-
-        function saveUserProfileSettings() {
-            const input = document.getElementById('editProfileName');
-            if (input && input.value.trim()) {
-                state.currentUser.name = input.value.trim();
-                saveUserDataLocal();
-                updateUIProfileDisplays();
-                if (window.syncUserWithFirestoreLeaderboard) window.syncUserWithFirestoreLeaderboard();
-                alert("¡Perfil actualizado con éxito!");
-            }
-        }
-
-        // COMPANION SELECTION & CHAT OVERLAY
-        function updateMascotUI() {
-            const comp = companions[state.currentUser.selectedCompanion] || companions.mina;
-            
-            document.getElementById('sidebarCompanionIcon').innerText = comp.emoji;
-            document.getElementById('sidebarCompanionName').innerText = comp.name;
-
-            document.getElementById('dashMascotAvatar').innerText = comp.emoji;
-            document.getElementById('dashMascotName').innerText = comp.name;
-
-            document.getElementById('floatingMascotEmoji').innerText = comp.emoji;
-            document.getElementById('aiChatHeaderEmoji').innerText = comp.emoji;
-            document.getElementById('aiChatHeaderName').innerText = comp.name;
-            document.getElementById('aiThinkingName').innerText = comp.name.split(' ')[0];
-        }
-
-        function openCompanionSelectorModal() {
-            document.getElementById('companionSelectorModal').classList.remove('hidden');
-        }
-
-        function closeCompanionSelectorModal() {
-            document.getElementById('companionSelectorModal').classList.add('hidden');
-        }
-
-        function selectCompanion(key) {
-            if (companions[key]) {
-                state.currentUser.selectedCompanion = key;
-                saveUserDataLocal();
-                updateMascotUI();
-                closeCompanionSelectorModal();
-                initAIChatWelcomeMessage();
-                playSound('click');
-            }
-        }
-
-        function toggleCompanionChatWindow() {
-            const chatOverlay = document.getElementById('aiChatOverlay');
-            if (chatOverlay.classList.contains('hidden')) {
-                chatOverlay.classList.remove('hidden');
-                chatOverlay.classList.add('flex');
-            } else {
-                chatOverlay.classList.add('hidden');
-                chatOverlay.classList.remove('flex');
-            }
-        }
-
-        function initAIChatWelcomeMessage() {
-            const comp = companions[state.currentUser.selectedCompanion] || companions.mina;
-            const chatMessages = document.getElementById('aiChatMessages');
-            if (!chatMessages) return;
-
-            chatMessages.innerHTML = `
-                <div class="flex gap-2 items-start">
-                    <span class="text-lg p-1.5 rounded-xl bg-slate-900 border border-slate-800">${comp.emoji}</span>
-                    <div class="bg-slate-900 border border-slate-800 p-2.5 rounded-2xl rounded-tl-none text-slate-200">
-                        ¡Hola, ${state.currentUser.name}! Soy <strong>${comp.name}</strong>. ${comp.desc} ¿En qué te ayudo hoy con tus estudios?
-                    </div>
-                </div>
-            `;
-            state.aiChatHistory = [];
-        }
-
-        // REAL GEMINI AI INTEGRATION WITH SMART FALLBACK ENGINE
-        async function handleAIChatSubmit(e) {
-            e.preventDefault();
-            const input = document.getElementById('aiChatInput');
-            const promptText = input.value.trim();
-            if (!promptText) return;
-
-            input.value = '';
-
-            // User Message DOM
-            appendAIMessageDOM('user', promptText);
-
-            // Show thinking indicator
-            const thinkingEl = document.getElementById('aiChatThinking');
-            thinkingEl.classList.remove('hidden');
-
-            const comp = companions[state.currentUser.selectedCompanion] || companions.mina;
-
-            // System Context
-            const systemPrompt = `${comp.prompt}\nContexto del Estudiante: Nombre = ${state.currentUser.name}, Nivel = ${state.currentUser.level}, Tareas Pendientes = ${state.tasks.filter(t => !t.completed).length}.`;
-
-            try {
-                // Gemini API Call using gemini-3-flash-preview
-                const apiKey = ""; // Canvas runtime injected key
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-                const payload = {
-                    contents: [{ parts: [{ text: `${systemPrompt}\n\nPregunta del estudiante: ${promptText}` }] }]
-                };
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (text) {
-                        thinkingEl.classList.add('hidden');
-                        appendAIMessageDOM('assistant', text);
-                        return;
-                    }
+        window.cambiarPestañaPorNombre = function(nombre) {
+            const botones = document.querySelectorAll('.tab-btn');
+            botones.forEach(b => {
+                if(b.textContent.toLowerCase().includes(nombre)) {
+                    b.click();
                 }
-                throw new Error("Gemini direct API fallback trigger");
-            } catch (err) {
-                // SMART LOCAL MULTI-PERSONA FALLBACK ENGINE
-                setTimeout(() => {
-                    thinkingEl.classList.add('hidden');
-                    const fallbackResponse = generateSmartFallbackResponse(state.currentUser.selectedCompanion, promptText);
-                    appendAIMessageDOM('assistant', fallbackResponse);
-                }, 800);
-            }
-        }
-
-        function appendAIMessageDOM(role, text) {
-            const chatMessages = document.getElementById('aiChatMessages');
-            if (!chatMessages) return;
-
-            const comp = companions[state.currentUser.selectedCompanion] || companions.mina;
-
-            if (role === 'user') {
-                chatMessages.innerHTML += `
-                    <div class="flex justify-end">
-                        <div class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white p-2.5 rounded-2xl rounded-tr-none max-w-[80%] font-medium">
-                            ${escapeHTML(text)}
-                        </div>
-                    </div>
-                `;
-            } else {
-                chatMessages.innerHTML += `
-                    <div class="flex gap-2 items-start">
-                        <span class="text-lg p-1.5 rounded-xl bg-slate-900 border border-slate-800 shrink-0">${comp.emoji}</span>
-                        <div class="bg-slate-900 border border-indigo-500/30 p-2.5 rounded-2xl rounded-tl-none text-slate-200 leading-relaxed">
-                            ${formatMarkdownText(text)}
-                        </div>
-                    </div>
-                `;
-            }
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function generateSmartFallbackResponse(companionKey, userPrompt) {
-            const promptLower = userPrompt.toLowerCase();
-
-            if (companionKey === 'ford') {
-                if (promptLower.includes('hola') || promptLower.includes('saludos')) {
-                    return "¡VROOOOM! 🚗 Encendiendo el motor EcoBoost 2.0L Turbo. Todo el sistema listo para acelerar tus notas de 0 a 100 en segundos. ¿Qué tema vamos a reparar hoy?";
-                }
-                return "🏎️ **Diagnóstico EcoBoost:** Analizando tu duda sobre '" + userPrompt + "'. La clave aquí es inyectar conocimiento a alta presión: desglosa el problema en partes finas como bujías limpias, aplica la fórmula adecuada y acelera sin miedo a reprobar. ¡Mantén las revoluciones altas!";
-            } else if (companionKey === 'max') {
-                if (promptLower.includes('hola') || promptLower.includes('saludos')) {
-                    return "¡Guau guau! 🐶 ¡Hola maestro! ¡Estoy súper emocionado de ayudarte hoy! ¡Vamos a romperla en el estudio!";
-                }
-                return "¡Excelente pregunta! 🐕 Para dominar '" + userPrompt + "', lo mejor es practicar con ejercicios diarios. ¡Recuerda que cada tarea que completas te da +XP e incrementa tu racha de días! ¡No pares!";
-            } else if (companionKey === 'zorblax') {
-                return "🛸 **Transmisión desde Andrómeda:** El análisis de los datos sobre '" + userPrompt + "' indica que la solución óptima requiere estructurar tus conceptos con lógica cuántica. Recuerda descansar entre sesiones de Pomodoro para evitar sobrecalentamiento neuronal.";
-            } else {
-                // Mina
-                return "¡Miau! 🐱 Para comprender perfectamente '" + userPrompt + "', te recomiendo usar la técnica Feynman: explica el concepto en palabras sencillas como si me lo estuvieras enseñando a mí. ¿Quieres que hagamos un resumen juntos?";
-            }
-        }
-
-        // TASKS MANAGEMENT
-        function renderTasks(filter = 'all') {
-            const listContainer = document.getElementById('taskList');
-            if (!listContainer) return;
-
-            let filtered = state.tasks;
-            if (filter === 'pending') filtered = state.tasks.filter(t => !t.completed);
-            if (filter === 'completed') filtered = state.tasks.filter(t => t.completed);
-
-            if (filtered.length === 0) {
-                listContainer.innerHTML = `<div class="col-span-2 text-center py-8 text-slate-500 text-xs font-mono">No hay tareas en esta categoría.</div>`;
-                return;
-            }
-
-            listContainer.innerHTML = filtered.map(t => `
-                <div class="glass-panel p-4 rounded-2xl border ${t.completed ? 'border-emerald-500/30 opacity-70' : 'border-indigo-500/20 hover:border-cyan-500/40'} flex items-center justify-between transition">
-                    <div class="flex items-center gap-3">
-                        <button onclick="toggleTaskComplete('${t.id}')" class="w-6 h-6 rounded-lg border ${t.completed ? 'bg-emerald-500 border-emerald-400 text-slate-950' : 'border-slate-700 hover:border-cyan-400'} flex items-center justify-center transition">
-                            ${t.completed ? '<i class="fa-solid fa-check text-xs font-bold"></i>' : ''}
-                        </button>
-                        <div>
-                            <h4 class="font-bold text-xs text-white ${t.completed ? 'line-through text-slate-400' : ''}">${escapeHTML(t.title)}</h4>
-                            <span class="text-[10px] text-cyan-400 font-mono">${escapeHTML(t.category || 'General')} • +${t.xp} XP</span>
-                        </div>
-                    </div>
-                    <button onclick="deleteTask('${t.id}')" class="text-slate-600 hover:text-rose-400 text-xs p-1"><i class="fa-solid fa-trash"></i></button>
-                </div>
-            `).join('');
-        }
-
-        function renderDashPendingTasks() {
-            const container = document.getElementById('dashPendingTasksList');
-            if (!container) return;
-
-            const pending = state.tasks.filter(t => !t.completed).slice(0, 3);
-            if (pending.length === 0) {
-                container.innerHTML = `<p class="text-xs text-emerald-400 font-medium">✨ ¡Felicidades! No tienes tareas pendientes.</p>`;
-                return;
-            }
-
-            container.innerHTML = pending.map(t => `
-                <div class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <span class="text-xs font-bold text-white">${escapeHTML(t.title)}</span>
-                    </div>
-                    <button onclick="toggleTaskComplete('${t.id}')" class="px-2.5 py-1 rounded-lg bg-indigo-600/40 hover:bg-indigo-600 text-indigo-200 text-[10px] font-bold">
-                        Completar (+${t.xp} XP)
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function toggleTaskComplete(id) {
-            const task = state.tasks.find(t => t.id === id);
-            if (task) {
-                task.completed = !task.completed;
-                if (task.completed) {
-                    addXP(task.xp);
-                } else {
-                    saveUserDataLocal();
-                    updateUIProfileDisplays();
-                }
-                renderTasks();
-                renderDashPendingTasks();
-            }
-        }
-
-        function deleteTask(id) {
-            state.tasks = state.tasks.filter(t => t.id !== id);
-            saveUserDataLocal();
-            renderTasks();
-            renderDashPendingTasks();
-        }
-
-        function filterTasks(type) {
-            document.querySelectorAll('.task-filter-btn').forEach(b => {
-                b.className = "task-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white";
             });
-            event.target.className = "task-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30";
-            renderTasks(type);
-        }
+        };
 
-        function openNewTaskModal() { document.getElementById('newTaskModal').classList.remove('hidden'); }
-        function closeNewTaskModal() { document.getElementById('newTaskModal').classList.add('hidden'); }
+        /* LOGIN / REGISTRO */
+        window.mostrarLogin = function() {
+            document.getElementById("formularioLogin").style.display = "block";
+            document.getElementById("formularioRegistro").style.display = "none";
+        };
+        window.mostrarRegistro = function() {
+            document.getElementById("formularioLogin").style.display = "none";
+            document.getElementById("formularioRegistro").style.display = "block";
+        };
 
-        function handleCreateTaskSubmit(e) {
-            e.preventDefault();
-            const title = document.getElementById('taskTitleInput').value.trim();
-            const category = document.getElementById('taskCategoryInput').value.trim() || 'General';
-            const xp = parseInt(document.getElementById('taskXPRewardInput').value) || 10;
+        window.registrarUsuario = async function() {
+            const nombre = document.getElementById("nombreRegistro").value.trim();
+            const correo = document.getElementById("correoRegistro").value.trim();
+            const password = document.getElementById("passwordRegistro").value;
+            if(!nombre || !correo || !password) return alert("Completa todos los campos.");
+            try {
+                const res = await createUserWithEmailAndPassword(auth, correo, password);
+                await setDoc(doc(db, "estudiantes", res.user.uid), { nombre, correo, xp: 0, apuntes: "" });
+                alert("¡Cuenta creada con éxito!");
+            } catch (err) { alert("Error: " + err.message); }
+        };
 
-            if (title) {
-                state.tasks.push({
-                    id: 't_' + Date.now(),
-                    title: title,
-                    category: category,
-                    xp: xp,
-                    completed: false
-                });
-                saveUserDataLocal();
-                renderTasks();
-                renderDashPendingTasks();
-                closeNewTaskModal();
-                document.getElementById('taskTitleInput').value = '';
-                playSound('click');
-            }
-        }
+        window.iniciarSesion = async function() {
+            const correo = document.getElementById("correoLogin").value.trim();
+            const password = document.getElementById("passwordLogin").value;
+            if(!correo || !password) return alert("Escribe tu correo y contraseña.");
+            try { await signInWithEmailAndPassword(auth, correo, password); }
+            catch (err) { alert("Credenciales incorrectas."); }
+        };
 
-        // POMODORO TIMER LOGIC
-        function setPomodoroMode(mode) {
-            state.pomodoro.mode = mode;
-            if (mode === 'work') state.pomodoro.duration = 25 * 60;
-            if (mode === 'short') state.pomodoro.duration = 5 * 60;
-            if (mode === 'long') state.pomodoro.duration = 15 * 60;
+        window.cerrarSesion = function() {
+            if (unsubscribeChat) unsubscribeChat();
+            signOut(auth);
+        };
 
-            state.pomodoro.timeLeft = state.pomodoro.duration;
-            stopPomodoroTimer();
-            updatePomodoroDisplay();
-
-            document.getElementById('pomoBtnWork').className = mode === 'work' ? "px-4 py-2 rounded-xl text-xs font-bold bg-pink-600 text-white shadow-neon-pink" : "px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white";
-            document.getElementById('pomoBtnShort').className = mode === 'short' ? "px-4 py-2 rounded-xl text-xs font-bold bg-pink-600 text-white shadow-neon-pink" : "px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white";
-            document.getElementById('pomoBtnLong').className = mode === 'long' ? "px-4 py-2 rounded-xl text-xs font-bold bg-pink-600 text-white shadow-neon-pink" : "px-4 py-2 rounded-xl text-xs font-bold text-slate-400 hover:text-white";
-        }
-
-        function togglePomodoro() {
-            if (state.pomodoro.isRunning) {
-                stopPomodoroTimer();
+        onAuthStateChanged(auth, async function(usuario) {
+            if (usuario) {
+                usuarioActual = usuario;
+                await cargarDatosUsuario();
+                document.getElementById("pantallaLogin").style.display = "none";
+                document.getElementById("paginaPrincipal").style.display = "block";
+                cambiarPestaña('dashboard', document.querySelector('.tab-btn'));
             } else {
-                startPomodoroTimer();
+                usuarioActual = null;
+                datosUsuario = null;
+                document.getElementById("paginaPrincipal").style.display = "none";
+                document.getElementById("pantallaLogin").style.display = "flex";
+            }
+        });
+
+        async function cargarDatosUsuario() {
+            if (!usuarioActual) return;
+            const docu = await getDoc(doc(db, "estudiantes", usuarioActual.uid));
+            if (docu.exists()) {
+                datosUsuario = docu.data();
+                actualizarInterfaz();
             }
         }
 
-        function startPomodoroTimer() {
-            state.pomodoro.isRunning = true;
-            document.getElementById('btnPomoStart').innerHTML = `<i class="fa-solid fa-pause"></i>`;
-            document.getElementById('pomoStatusText').innerText = "⏱️ Sesión en curso... ¡Enfócate!";
+        function actualizarInterfaz() {
+            if (!datosUsuario) return;
+            const nombre = datosUsuario.nombre || "Estudiante";
+            const xp = datosUsuario.xp || 0;
 
-            state.pomodoro.timerId = setInterval(() => {
-                if (state.pomodoro.timeLeft > 0) {
-                    state.pomodoro.timeLeft--;
-                    updatePomodoroDisplay();
-                } else {
-                    stopPomodoroTimer();
-                    playSound('complete');
-                    alert("🔔 ¡Tiempo terminado! Tómate un respiro o cambia de bloque.");
-                    addXP(15);
+            document.getElementById("bienvenida").textContent = "¡Hola, " + nombre + "!";
+            document.getElementById("saludoDashboard").textContent = "Bienvenido, " + nombre;
+
+            const nivel = Math.floor(xp / 100) + 1;
+            const xpActual = xp % 100;
+
+            document.getElementById("textoNivel").textContent = `Nivel ${nivel} (${xp} XP Totales)`;
+            document.getElementById("textoSigNivel").textContent = `Faltan ${100 - xpActual} XP para Nivel ${nivel+1}`;
+            document.getElementById("barraXP").style.width = `${xpActual}%`;
+
+            // Insignias
+            if(xp >= 50) document.getElementById("insignia-1").classList.add("desbloqueada");
+            if(xp >= 200) document.getElementById("insignia-2").classList.add("desbloqueada");
+            if(xp >= 500) document.getElementById("insignia-3").classList.add("desbloqueada");
+            if(xp >= 1000) document.getElementById("insignia-4").classList.add("desbloqueada");
+        }
+
+        async function sumarXP(cant) {
+            await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { xp: increment(cant) });
+            reproducirSonido('xp');
+            await cargarDatosUsuario();
+        }
+
+        /* TAREAS */
+        window.agregarTarea = async function() {
+            const titulo = document.getElementById("nuevaTarea").value.trim();
+            const materia = document.getElementById("materiaTarea").value;
+            if(!titulo) return alert("Escribe el nombre de la tarea.");
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "tareas"), { titulo, materia, completada: false });
+            document.getElementById("nuevaTarea").value = "";
+            cargarTareas();
+        };
+
+        async function cargarTareas() {
+            const snap = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "tareas"));
+            const cont = document.getElementById("listaTareas");
+            cont.innerHTML = snap.empty ? "<p>No hay tareas pendientes.</p>" : "";
+            snap.forEach(d => {
+                const t = d.data();
+                const color = coloresMaterias[t.materia] || "#4f46e5";
+                cont.innerHTML += `
+                    <div class="elemento" style="border-left-color: ${color}">
+                        <div>
+                            <input type="checkbox" ${t.completada ? "checked" : ""} onchange="completarTarea('${d.id}', this.checked)">
+                            <span class="${t.completada ? "completada" : ""}">${t.titulo}</span>
+                            <span class="tag-materia" style="background-color:${color}">${t.materia}</span>
+                        </div>
+                        <button class="btn-borrar" onclick="eliminarTarea('${d.id}')">🗑️</button>
+                    </div>`;
+            });
+        }
+
+        window.completarTarea = async function(id, completada) {
+            await updateDoc(doc(db, "estudiantes", usuarioActual.uid, "tareas", id), { completada });
+            if(completada) await sumarXP(10);
+            cargarTareas();
+        };
+
+        window.eliminarTarea = async function(id) {
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "tareas", id));
+            cargarTareas();
+        };
+
+        /* POMODORO */
+        window.iniciarTemporizador = function() {
+            if (temporizador !== null) return;
+            temporizador = setInterval(async () => {
+                segundosRestantes--;
+                const m = Math.floor(segundosRestantes / 60);
+                const s = segundosRestantes % 60;
+                const reloj = document.getElementById("tiempo");
+                if(reloj) reloj.textContent = `${m}:${String(s).padStart(2, "0")}`;
+                if (segundosRestantes <= 0) {
+                    clearInterval(temporizador);
+                    temporizador = null;
+                    reproducirSonido('alarma');
+                    await sumarXP(50);
+                    alert("🎉 ¡Pomodoro completado! +50 XP ganados.");
                 }
             }, 1000);
-        }
+        };
+        window.pausarTemporizador = function() { clearInterval(temporizador); temporizador = null; };
+        window.reiniciarTemporizador = function() {
+            clearInterval(temporizador); temporizador = null; segundosRestantes = 25 * 60;
+            document.getElementById("tiempo").textContent = "25:00";
+        };
 
-        function stopPomodoroTimer() {
-            state.pomodoro.isRunning = false;
-            if (state.pomodoro.timerId) clearInterval(state.pomodoro.timerId);
-            document.getElementById('btnPomoStart').innerHTML = `<i class="fa-solid fa-play"></i>`;
-            document.getElementById('pomoStatusText').innerText = "En pausa";
-        }
+        /* FLASHCARDS */
+        window.agregarCarta = async function() {
+            const pregunta = document.getElementById("preguntaCarta").value.trim();
+            const respuesta = document.getElementById("respuestaCarta").value.trim();
+            if(!pregunta || !respuesta) return alert("Completa ambos campos.");
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "cartas"), { pregunta, respuesta });
+            document.getElementById("preguntaCarta").value = "";
+            document.getElementById("respuestaCarta").value = "";
+            cargarCartas();
+        };
 
-        function resetPomodoro() {
-            stopPomodoroTimer();
-            state.pomodoro.timeLeft = state.pomodoro.duration;
-            updatePomodoroDisplay();
-        }
-
-        function updatePomodoroDisplay() {
-            const mins = Math.floor(state.pomodoro.timeLeft / 60);
-            const secs = state.pomodoro.timeLeft % 60;
-            document.getElementById('pomoClock').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }
-
-        function toggleLofiSynth() {
-            state.lofiActive = !state.lofiActive;
-            const btn = document.getElementById('btnLofiSynth');
-            if (state.lofiActive) {
-                btn.innerHTML = `<i class="fa-solid fa-stop mr-1"></i> Detener Synth`;
-                btn.classList.add('bg-purple-600', 'text-white');
-            } else {
-                btn.innerHTML = `<i class="fa-solid fa-play mr-1"></i> Activar Synth`;
-                btn.classList.remove('bg-purple-600', 'text-white');
-            }
-        }
-
-        // FLASHCARDS 3D
-        function renderFlashcards() {
-            const container = document.getElementById('flashcardGrid');
-            if (!container) return;
-
-            if (state.flashcards.length === 0) {
-                container.innerHTML = `<p class="col-span-3 text-center py-8 text-slate-500 text-xs">No tienes flashcards creadas.</p>`;
-                return;
-            }
-
-            container.innerHTML = state.flashcards.map(fc => `
-                <div class="perspective-1000 h-48 cursor-pointer group" onclick="flipCard(this)">
-                    <div class="card-inner relative w-full h-full transform-style-3d duration-500">
-                        <!-- Front -->
-                        <div class="absolute inset-0 glass-panel p-5 rounded-2xl border border-amber-500/30 flex flex-col justify-between backface-hidden">
-                            <span class="text-[10px] font-bold text-amber-400 uppercase tracking-widest font-mono">Pregunta (Clic para voltear)</span>
-                            <p class="font-bold text-sm text-white">${escapeHTML(fc.q)}</p>
-                            <i class="fa-solid fa-rotate text-xs text-slate-500 self-end"></i>
-                        </div>
-                        <!-- Back -->
-                        <div class="absolute inset-0 glass-panel p-5 rounded-2xl border border-cyan-500/40 bg-slate-900/95 flex flex-col justify-between backface-hidden rotate-y-180">
-                            <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-widest font-mono">Respuesta</span>
-                            <p class="text-xs text-slate-200 leading-relaxed font-medium">${escapeHTML(fc.a)}</p>
-                            <button onclick="event.stopPropagation(); deleteFlashcard('${fc.id}')" class="text-rose-400 text-[10px] self-end hover:underline">Eliminar</button>
+        async function cargarCartas() {
+            const snap = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "cartas"));
+            const cont = document.getElementById("contenedorCartas");
+            cont.innerHTML = snap.empty ? "<p>No hay cartas creadas.</p>" : "";
+            snap.forEach(d => {
+                const c = d.data();
+                cont.innerHTML += `
+                    <div class="tarjeta-estudio" onclick="this.classList.toggle('volteada')">
+                        <div class="tarjeta-inner">
+                            <div class="tarjeta-front">❓ ${c.pregunta}</div>
+                            <div class="tarjeta-back">💡 ${c.respuesta}</div>
                         </div>
                     </div>
-                </div>
-            `).join('');
-        }
-
-        function flipCard(el) {
-            const inner = el.querySelector('.card-inner');
-            if (inner) inner.classList.toggle('rotate-y-180');
-        }
-
-        function openNewFlashcardModal() { document.getElementById('newFlashcardModal').classList.remove('hidden'); }
-        function closeNewFlashcardModal() { document.getElementById('newFlashcardModal').classList.add('hidden'); }
-
-        function handleCreateFlashcardSubmit(e) {
-            e.preventDefault();
-            const q = document.getElementById('fcQuestionInput').value.trim();
-            const a = document.getElementById('fcAnswerInput').value.trim();
-            if (q && a) {
-                state.flashcards.push({ id: 'fc_' + Date.now(), q, a });
-                saveUserDataLocal();
-                renderFlashcards();
-                closeNewFlashcardModal();
-                document.getElementById('fcQuestionInput').value = '';
-                document.getElementById('fcAnswerInput').value = '';
-            }
-        }
-
-        function deleteFlashcard(id) {
-            state.flashcards = state.flashcards.filter(fc => fc.id !== id);
-            saveUserDataLocal();
-            renderFlashcards();
-        }
-
-        // GPA CALCULATOR
-        function renderGPASubjects() {
-            const container = document.getElementById('gpaSubjectList');
-            if (!container) return;
-
-            container.innerHTML = state.gpaSubjects.map((s, idx) => `
-                <div class="flex items-center gap-2">
-                    <input type="text" value="${escapeHTML(s.name)}" onchange="updateGPASubject(${idx}, 'name', this.value)" placeholder="Materia" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white">
-                    <input type="number" step="0.1" max="5.0" min="0" value="${s.grade}" onchange="updateGPASubject(${idx}, 'grade', parseFloat(this.value))" placeholder="Nota" class="w-20 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white text-center">
-                    <input type="number" step="5" max="100" min="0" value="${s.weight}" onchange="updateGPASubject(${idx}, 'weight', parseFloat(this.value))" placeholder="%" class="w-20 bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-cyan-400 text-center font-bold">
-                    <button onclick="removeGPASubjectRow(${idx})" class="text-slate-600 hover:text-rose-400 text-xs p-1"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            `).join('');
-        }
-
-        function addGPASubjectRow() {
-            state.gpaSubjects.push({ name: 'Nueva Materia', grade: 4.0, weight: 20 });
-            renderGPASubjects();
-            calculateGPA();
-        }
-
-        function removeGPASubjectRow(idx) {
-            state.gpaSubjects.splice(idx, 1);
-            renderGPASubjects();
-            calculateGPA();
-        }
-
-        function updateGPASubject(idx, field, val) {
-            if (state.gpaSubjects[idx]) {
-                state.gpaSubjects[idx][field] = val;
-                calculateGPA();
-            }
-        }
-
-        function calculateGPA() {
-            let totalWeight = 0;
-            let weightedSum = 0;
-
-            state.gpaSubjects.forEach(s => {
-                const w = parseFloat(s.weight) || 0;
-                const g = parseFloat(s.grade) || 0;
-                totalWeight += w;
-                weightedSum += (g * w);
+                    <button class="btn-borrar" style="margin-bottom:15px;" onclick="eliminarCarta('${d.id}')">Eliminar carta 🗑️</button>`;
             });
-
-            const result = totalWeight > 0 ? (weightedSum / totalWeight).toFixed(2) : '0.0';
-            document.getElementById('gpaResultDisplay').innerText = result;
-            document.getElementById('statGPA').innerText = `${result} / 5.0`;
-            state.currentUser.gpa = parseFloat(result);
-            saveUserDataLocal();
         }
+        window.eliminarCarta = async function(id) {
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "cartas", id));
+            cargarCartas();
+        };
 
-        // NOTES SYSTEM
-        function renderNotesList() {
-            const container = document.getElementById('notesList');
-            if (!container) return;
-
-            container.innerHTML = state.notes.map(n => `
-                <div onclick="selectNote('${n.id}')" class="p-3 rounded-xl border ${n.id === state.activeNoteId ? 'bg-purple-600/20 border-purple-500/50 text-white' : 'bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200'} cursor-pointer transition">
-                    <h5 class="font-bold text-xs truncate">${escapeHTML(n.title || 'Sin Título')}</h5>
-                </div>
-            `).join('');
-
-            const active = state.notes.find(n => n.id === state.activeNoteId);
-            if (active) {
-                document.getElementById('noteTitleInput').value = active.title || '';
-                document.getElementById('noteBodyInput').value = active.body || '';
-            }
+        /* APUNTES */
+        function cargarApuntesVista() {
+            if(datosUsuario) document.getElementById("textoNotas").value = datosUsuario.apuntes || "";
         }
+        window.guardarNotas = async function() {
+            const texto = document.getElementById("textoNotas").value;
+            await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { apuntes: texto });
+            alert("¡Apuntes guardados en la nube!");
+        };
 
-        function selectNote(id) {
-            state.activeNoteId = id;
-            renderNotesList();
-        }
-
-        function createNewNote() {
-            const newNote = { id: 'n_' + Date.now(), title: 'Nuevo Apunte', body: '' };
-            state.notes.push(newNote);
-            state.activeNoteId = newNote.id;
-            saveUserDataLocal();
-            renderNotesList();
-        }
-
-        function autoSaveCurrentNote() {
-            const active = state.notes.find(n => n.id === state.activeNoteId);
-            if (active) {
-                active.title = document.getElementById('noteTitleInput').value;
-                active.body = document.getElementById('noteBodyInput').value;
-                saveUserDataLocal();
-
-                const indicator = document.getElementById('notesSaveIndicator');
-                if (indicator) {
-                    indicator.classList.remove('hidden');
-                    setTimeout(() => indicator.classList.add('hidden'), 1000);
-                }
-            }
-        }
-
-        // CHAT & LEADERBOARD FALLBACK RENDERERS
-        function appendChatMessageToDOM(author, msg, time, isMe) {
-            const container = document.getElementById('globalChatMessages');
-            if (!container) return;
-
-            container.innerHTML += `
-                <div class="flex flex-col ${isMe ? 'items-end' : 'items-start'}">
-                    <div class="flex items-center gap-2 mb-0.5">
-                        <span class="text-[10px] font-bold ${isMe ? 'text-cyan-400' : 'text-purple-400'}">${escapeHTML(author)}</span>
-                        <span class="text-[9px] text-slate-500">${escapeHTML(time)}</span>
-                    </div>
-                    <div class="px-3 py-2 rounded-2xl text-xs max-w-[85%] ${isMe ? 'bg-cyan-500/20 border border-cyan-500/30 text-slate-100 rounded-tr-none' : 'bg-slate-900 border border-slate-800 text-slate-300 rounded-tl-none'}">
-                        ${escapeHTML(msg)}
-                    </div>
-                </div>
-            `;
-        }
-
-        function renderFallbackLocalChat() {
-            const container = document.getElementById('globalChatMessages');
-            if (!container || container.children.length > 0) return;
-
-            const dummyMessages = [
-                { author: "Carlos (Ingeniería)", msg: "¡Hola a todos! ¿Alguien listo para repasar Cálculo esta tarde?", time: "10:15 AM" },
-                { author: "Sofía", msg: "¡Sí! Mina el Gato me acaba de dar una explicación excelente de las integrales.", time: "10:18 AM" },
-                { author: "Mateo", msg: "Asegúrense de usar el temporizador Pomodoro, ¡rinde un montón el tiempo!", time: "10:22 AM" }
-            ];
-
-            dummyMessages.forEach(m => appendChatMessageToDOM(m.author, m.msg, m.time, false));
-        }
-
-        function getMergedFallbackLeaderboard(firestoreUsers) {
-            const benchmarkUsers = [
-                { name: "Valentina Gómez", xp: 450, level: 5 },
-                { name: "Lucas Fernández", xp: 320, level: 4 },
-                { name: "Camila Torres", xp: 280, level: 3 },
-                { name: state.currentUser.name, xp: state.currentUser.xp, level: state.currentUser.level }
-            ];
-
-            const combined = [...firestoreUsers];
-            benchmarkUsers.forEach(bm => {
-                if (!combined.some(u => u.name === bm.name)) {
-                    combined.push(bm);
-                }
-            });
-
-            return combined.sort((a, b) => b.xp - a.xp);
-        }
-
-        function renderLeaderboardTable(users) {
-            const tbody = document.getElementById('leaderboardTableBody');
-            if (!tbody) return;
-
-            tbody.innerHTML = users.map((u, idx) => {
-                let rankBadge = `#${idx + 1}`;
-                if (idx === 0) rankBadge = `<span class="px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-400 font-bold border border-yellow-500/40">🥇 #1</span>`;
-                if (idx === 1) rankBadge = `<span class="px-2 py-0.5 rounded-full bg-slate-300/20 text-slate-300 font-bold border border-slate-400/40">🥈 #2</span>`;
-                if (idx === 2) rankBadge = `<span class="px-2 py-0.5 rounded-full bg-amber-600/20 text-amber-500 font-bold border border-amber-600/40">🥉 #3</span>`;
-
-                const isMe = u.name === state.currentUser.name;
-
-                return `
-                    <tr class="${isMe ? 'bg-indigo-600/20 font-bold' : 'hover:bg-slate-900/40'}">
-                        <td class="p-4">${rankBadge}</td>
-                        <td class="p-4 text-white flex items-center gap-2">
-                            ${escapeHTML(u.name)} ${isMe ? '<span class="text-[9px] bg-cyan-500 text-slate-950 px-1.5 py-0.5 rounded font-bold">TÚ</span>' : ''}
-                        </td>
-                        <td class="p-4 text-indigo-300">Nivel ${u.level || Math.floor((u.xp || 0)/100)+1}</td>
-                        <td class="p-4 text-right font-mono text-cyan-400 font-bold">${u.xp || 0} XP</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        // UTILITY HELPERS
-        function escapeHTML(str) {
-            return String(str || '').replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+        /* CHAT */
+        function escucharChat() {
+            if (unsubscribeChat) unsubscribeChat();
+            const q = query(collection(db, "chat_estudiantes"), orderBy("fecha", "asc"));
+            unsubscribeChat = onSnapshot(q, snap => {
+                const box = document.getElementById("chatBox");
+                if(!box) return;
+                box.innerHTML = "";
+                snap.forEach(d => {
+                    const m = d.data();
+                    const propio = m.uid === usuarioActual.uid;
+                    box.innerHTML += `
+                        <div class="mensaje-chat ${propio ? "mensaje-propio" : ""}">
+                            <div class="mensaje-autor">${m.autor}</div>
+                            <div>${m.texto}</div>
+                        </div>`;
+                });
+                box.scrollTop = box.scrollHeight;
             });
         }
 
-        function formatMarkdownText(text) {
-            let formatted = escapeHTML(text);
-            formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            formatted = formatted.replace(/\*(.*?)\*/g, '<em>$1</em>');
-            formatted = formatted.replace(/\n/g, '<br>');
-            return formatted;
+        window.enviarMensajeChat = async function() {
+            const input = document.getElementById("mensajeChat");
+            const texto = input.value.trim();
+            if(!texto) return;
+            await addDoc(collection(db, "chat_estudiantes"), {
+                autor: datosUsuario.nombre || "Estudiante",
+                texto, uid: usuarioActual.uid, fecha: serverTimestamp()
+            });
+            input.value = "";
+        };
+
+        /* RANKING */
+        async function cargarRanking() {
+            const q = query(collection(db, "estudiantes"), orderBy("xp", "desc"));
+            const snap = await getDocs(q);
+            const cont = document.getElementById("listaClasificacion");
+            cont.innerHTML = "";
+            let pos = 1;
+            snap.forEach(d => {
+                const est = d.data();
+                const esYo = d.id === usuarioActual.uid;
+                const niv = Math.floor((est.xp || 0) / 100) + 1;
+                cont.innerHTML += `
+                    <div class="elemento" style="${esYo ? "border-color:var(--primary); background:rgba(79, 70, 229, 0.05);" : ""}">
+                        <strong>#${pos}. ${est.nombre}</strong>
+                        <span>Nivel ${niv} — <strong>${est.xp || 0} XP</strong></span>
+                    </div>`;
+                pos++;
+            });
         }
     </script>
 </body>
+
 </html>
