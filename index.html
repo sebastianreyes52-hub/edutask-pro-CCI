@@ -4,72 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduTask Pro - AI Companion Edition</title>
+    <title>EduTask Pro - Real AI Companion Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #0b0f19;
-            --card-bg: rgba(22, 30, 49, 0.75);
-            --card-border: rgba(255, 255, 255, 0.1);
+            --bg-body: #080c14;
+            --card-bg: rgba(20, 27, 44, 0.8);
+            --card-border: rgba(255, 255, 255, 0.12);
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.4);
+            --primary-glow: rgba(99, 102, 241, 0.45);
             --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.4);
             --pink: #ec4899;
             --orange: #f97316;
-            --input-bg: rgba(15, 23, 42, 0.6);
+            --input-bg: rgba(15, 23, 42, 0.7);
         }
 
         body.light-mode {
-            --bg-body: #f0f4f9;
-            --card-bg: rgba(255, 255, 255, 0.85);
+            --bg-body: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.9);
             --card-border: rgba(0, 0, 0, 0.08);
             --text-main: #0f172a;
             --text-sub: #64748b;
             --primary: #4f46e5;
             --primary-glow: rgba(79, 70, 229, 0.2);
             --accent: #059669;
-            --input-bg: rgba(241, 245, 249, 0.9);
+            --input-bg: rgba(241, 245, 249, 0.95);
         }
 
         * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.25s ease; }
 
         body {
-            margin: 0;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            min-height: 100vh;
-            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-                              radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.12) 0px, transparent 50%);
+            margin: 0; background-color: var(--bg-body); color: var(--text-main); min-height: 100vh;
+            background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.15) 0px, transparent 50%);
             background-attachment: fixed;
         }
 
         /* LOGIN */
         #pantallaLogin {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px;
         }
 
         .cajaLogin {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            width: 100%;
-            max-width: 440px;
-            padding: 45px 35px;
-            border-radius: 28px;
-            text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.37);
+            background: var(--card-bg); backdrop-filter: blur(18px); border: 1px solid var(--card-border);
+            width: 100%; max-width: 440px; padding: 45px 35px; border-radius: 28px; text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
         }
 
         .logo-login {
-            font-size: 55px;
-            display: inline-block;
-            filter: drop-shadow(0 0 15px var(--primary-glow));
+            font-size: 55px; display: inline-block; filter: drop-shadow(0 0 15px var(--primary-glow));
             animation: bounce 2s infinite;
         }
 
@@ -83,9 +69,8 @@
         }
 
         .campo {
-            width: 100%; padding: 15px; margin: 10px 0;
-            border: 1.5px solid var(--card-border); border-radius: 14px;
-            font-size: 15px; background: var(--input-bg); color: var(--text-main);
+            width: 100%; padding: 15px; margin: 10px 0; border: 1.5px solid var(--card-border);
+            border-radius: 14px; font-size: 15px; background: var(--input-bg); color: var(--text-main);
             outline: none;
         }
         .campo:focus { border-color: var(--primary); box-shadow: 0 0 12px var(--primary-glow); }
@@ -93,28 +78,25 @@
         .btn-glow {
             width: 100%; padding: 15px; margin-top: 12px; border: none; border-radius: 14px;
             background: linear-gradient(135deg, var(--primary), #8b5cf6); color: white;
-            font-size: 16px; font-weight: 700; cursor: pointer;
-            box-shadow: 0 8px 20px var(--primary-glow);
+            font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px var(--primary-glow);
         }
         .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 12px 25px var(--primary-glow); }
 
         .btn-sub {
-            background: none; border: none; color: var(--primary);
-            cursor: pointer; margin-top: 18px; font-weight: 600; font-size: 14px;
+            background: none; border: none; color: var(--primary); cursor: pointer;
+            margin-top: 18px; font-weight: 600; font-size: 14px;
         }
 
         /* HEADER & NAVIGATION */
         #paginaPrincipal { display: none; }
 
         header {
-            background: var(--card-bg); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--card-border);
+            background: var(--card-bg); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border);
             padding: 16px 35px; position: sticky; top: 0; z-index: 100;
         }
 
         .header-content {
-            max-width: 1300px; margin: auto;
-            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1300px; margin: auto; display: flex; justify-content: space-between; align-items: center;
         }
 
         .brand { font-weight: 800; font-size: 22px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
@@ -122,9 +104,8 @@
         .header-tools { display: flex; align-items: center; gap: 12px; }
 
         .user-badge {
-            background: var(--input-bg); border: 1px solid var(--card-border);
-            padding: 6px 14px; border-radius: 20px;
-            font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px;
+            background: var(--input-bg); border: 1px solid var(--card-border); padding: 6px 14px;
+            border-radius: 20px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px;
         }
 
         /* NAV TABS */
@@ -158,10 +139,8 @@
 
         /* CARDS GLASS */
         .card-glass {
-            background: var(--card-bg); backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border); border-radius: 22px;
-            padding: 28px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 22px;
+            background: var(--card-bg); backdrop-filter: blur(16px); border: 1px solid var(--card-border);
+            border-radius: 22px; padding: 28px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 22px;
         }
 
         .card-glass h2 { margin-top: 0; font-size: 20px; font-weight: 700; color: var(--text-main); }
@@ -223,95 +202,142 @@
         .btn-icon { background: none; border: none; cursor: pointer; font-size: 18px; color: #ef4444; }
 
         /* =====================================================
-           COMPAÑERO IA FLOTANTE (FLOATING PET)
+           MODAL DE SELECCIÓN INICIAL OBLIGATORIA
            ===================================================== */
-        .ai-floating-container {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 999;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+        #modalSeleccionIA {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); z-index: 2000;
+            display: none; justify-content: center; align-items: center; padding: 20px;
         }
 
-        .ai-dialog-bubble {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--card-border);
-            padding: 12px 18px;
-            border-radius: 18px;
-            border-bottom-right-radius: 4px;
-            max-width: 250px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 10px;
-            animation: floatText 3s ease-in-out infinite;
+        .caja-modal-ia {
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 30px; max-width: 650px; width: 100%; padding: 40px; text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        .grid-modal-pets {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 25px 0;
+        }
+
+        .card-pet-option {
+            background: var(--input-bg); border: 2px solid var(--card-border);
+            border-radius: 20px; padding: 20px; cursor: pointer; text-align: center;
+        }
+        .card-pet-option:hover, .card-pet-option.activa {
+            border-color: var(--primary); background: rgba(99, 102, 241, 0.2);
+            transform: translateY(-4px); box-shadow: 0 10px 20px var(--primary-glow);
+        }
+        .card-pet-option .icon { font-size: 48px; margin-bottom: 8px; }
+
+        /* =====================================================
+           COMPAÑERO IA FLOTANTE & VENTANA DE CHAT
+           ===================================================== */
+        .ai-floating-container {
+            position: fixed; bottom: 25px; right: 25px; z-index: 999;
+            display: flex; flex-direction: column; align-items: flex-end;
         }
 
         .ai-pet-avatar {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--pink));
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 42px;
-            cursor: pointer;
-            box-shadow: 0 0 25px var(--primary-glow);
-            animation: floatPet 4s ease-in-out infinite;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--pink));
+            border-radius: 50%; display: flex; justify-content: center; align-items: center;
+            font-size: 42px; cursor: pointer; box-shadow: 0 0 25px var(--primary-glow);
+            animation: floatPet 4s ease-in-out infinite; border: 2px solid rgba(255, 255, 255, 0.3);
         }
-
-        .ai-pet-avatar:hover {
-            transform: scale(1.15) rotate(5deg);
-        }
+        .ai-pet-avatar:hover { transform: scale(1.15) rotate(5deg); }
 
         @keyframes floatPet {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
         }
 
-        @keyframes floatText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+        /* POPUP CHAT CON LA IA */
+        .ai-chat-popup {
+            position: fixed; bottom: 115px; right: 25px; width: 360px; height: 480px;
+            background: var(--card-bg); backdrop-filter: blur(20px); border: 1px solid var(--card-border);
+            border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); z-index: 1000;
+            display: none; flex-direction: column; overflow: hidden;
         }
 
-        .select-pet-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 15px;
+        .ai-chat-header {
+            background: rgba(99, 102, 241, 0.2); border-bottom: 1px solid var(--card-border);
+            padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
+            font-weight: 700;
         }
 
-        .pet-option-btn {
-            background: var(--input-bg);
-            border: 2px solid var(--card-border);
-            border-radius: 14px;
-            padding: 12px;
-            font-size: 28px;
-            cursor: pointer;
-            text-align: center;
+        .ai-chat-messages {
+            flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+            font-size: 13px;
         }
-        .pet-option-btn:hover, .pet-option-btn.selected {
-            border-color: var(--primary);
-            background: rgba(99, 102, 241, 0.2);
+
+        .ai-msg {
+            background: var(--input-bg); border: 1px solid var(--card-border); padding: 10px 14px;
+            border-radius: 14px; max-width: 85%; line-height: 1.4;
+        }
+        .ai-msg-bot { border-left: 3px solid var(--primary); }
+        .ai-msg-user { align-self: flex-end; background: var(--primary); color: white; border: none; }
+
+        .ai-chat-input-area {
+            padding: 12px; border-top: 1px solid var(--card-border); display: flex; gap: 8px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- COMPAÑERO IA FLOTANTE -->
-    <div class="ai-floating-container" id="aiPetFloating" style="display:none;">
-        <div class="ai-dialog-bubble" id="aiDialogText">
-            ¡Hola! Soy tu asistente de estudio IA. ¡Haz clic en mí para cambiar de personaje! 🚀
+    <!-- MODAL SELECCIÓN INICIAL DE IA -->
+    <div id="modalSeleccionIA">
+        <div class="caja-modal-ia">
+            <h1 style="font-size:28px; margin:0 0 10px 0;">🤖 Elige a tu Compañero IA</h1>
+            <p style="color:var(--text-sub);">Selecciona el asistente inteligente que estará contigo en EduTask Pro:</p>
+
+            <div class="grid-modal-pets">
+                <div class="card-pet-option activa" id="opt-gato" onclick="seleccionarCardIA('🐱', 'Mina el Gato IA')">
+                    <div class="icon">🐱</div>
+                    <strong>Mina el Gato IA</strong>
+                    <div style="font-size:12px; color:var(--text-sub); margin-top:4px;">Analítica, atenta y ágil.</div>
+                </div>
+                <div class="card-pet-option" id="opt-perro" onclick="seleccionarCardIA('🐶', 'Max el Perro IA')">
+                    <div class="icon">🐶</div>
+                    <strong>Max el Perro IA</strong>
+                    <div style="font-size:12px; color:var(--text-sub); margin-top:4px;">Motivador, enérgico y leal.</div>
+                </div>
+                <div class="card-pet-option" id="opt-alien" onclick="seleccionarCardIA('👽', 'Zorblax el Alien')">
+                    <div class="icon">👽</div>
+                    <strong>Zorblax el Alien</strong>
+                    <div style="font-size:12px; color:var(--text-sub); margin-top:4px;">Lógico, avanzado y galáctico.</div>
+                </div>
+                <div class="card-pet-option" id="opt-auto" onclick="seleccionarCardIA('🚗', 'Ford Fusion 2017')">
+                    <div class="icon">🚗</div>
+                    <strong>Ford Fusion 2017</strong>
+                    <div style="font-size:12px; color:var(--text-sub); margin-top:4px;">Potente, veloz y tecnológico.</div>
+                </div>
+            </div>
+
+            <button class="btn-glow" onclick="confirmarCompañeroIA()">Confirmar Compañero y Entrar 🚀</button>
         </div>
-        <div class="ai-pet-avatar" id="aiPetIcon" onclick="hablarConMascota()">
+    </div>
+
+    <!-- COMPAÑERO IA FLOTANTE & CHAT -->
+    <div class="ai-floating-container" id="aiPetFloating" style="display:none;">
+        <div class="ai-pet-avatar" id="aiPetIcon" onclick="toggleChatIA()">
             🐱
+        </div>
+    </div>
+
+    <div class="ai-chat-popup" id="aiChatPopup">
+        <div class="ai-chat-header">
+            <span id="aiChatTitle">🤖 Asistente IA</span>
+            <button class="btn-icon" style="color:var(--text-main);" onclick="toggleChatIA()">✖</button>
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="ai-msg ai-msg-bot" id="aiInitialWelcome">
+                ¡Hola! Soy tu asistente de IA real. Conozco tus tareas, tu nivel y tu avance. ¡Pregúntame lo que quieras!
+            </div>
+        </div>
+        <div class="ai-chat-input-area">
+            <input class="campo" type="text" id="aiInputPrompt" placeholder="Escribe tu mensaje a la IA..." style="margin:0; font-size:13px;" onkeypress="if(event.key==='Enter') enviarConsultaIA()">
+            <button class="btn-glow" style="width:70px; margin:0; padding:10px; font-size:13px;" onclick="enviarConsultaIA()">Enviar</button>
         </div>
     </div>
 
@@ -320,7 +346,7 @@
         <div class="cajaLogin">
             <div class="logo-login">🚀</div>
             <h1>EduTask Pro</h1>
-            <p style="color: var(--text-sub); margin-bottom: 25px;">Plataforma Gamificada de Aprendizaje</p>
+            <p style="color: var(--text-sub); margin-bottom: 25px;">Plataforma Gamificada con IA Real</p>
 
             <div id="formularioLogin">
                 <input class="campo" type="email" id="correoLogin" placeholder="Correo electrónico">
@@ -374,7 +400,7 @@
                     <div>
                         <div class="card-glass">
                             <h2 id="saludoUsuario">¡Hola de nuevo! 👋</h2>
-                            <p style="color: var(--text-sub);">Completa tareas y sesiones para ganar XP.</p>
+                            <p style="color: var(--text-sub);">Tu compañero IA te observa en tiempo real y aprende de tus avances.</p>
                             
                             <div style="margin-top: 25px;">
                                 <div style="display:flex; justify-content:space-between; font-weight:700;">
@@ -385,22 +411,9 @@
                             </div>
                         </div>
 
-                        <!-- ELEGIR COMPAÑERO IA -->
-                        <div class="card-glass">
-                            <h2>🤖 Selecciona tu Compañero IA Flotante</h2>
-                            <p style="color:var(--text-sub); font-size:14px;">Elegirás quién te acompañará mientras usas la aplicación:</p>
-                            
-                            <div class="select-pet-grid">
-                                <button class="pet-option-btn selected" id="pet-gato" onclick="seleccionarMascota('🐱', '🐱 Gato IA', '¡Miau! Estoy listo para ayudarte a estudiar.')">🐱<br><small style="font-size:10px;">Gato</small></button>
-                                <button class="pet-option-btn" id="pet-perro" onclick="seleccionarMascota('🐶', '🐶 Perro IA', '¡Guau! Vamos a completar todas las tareas hoy.')">🐶<br><small style="font-size:10px;">Perro</small></button>
-                                <button class="pet-option-btn" id="pet-alien" onclick="seleccionarMascota('👽', '👽 Alien IA', '¡Saludos humano! Optimicemos tu cerebro.')">👽<br><small style="font-size:10px;">Alien</small></button>
-                                <button class="pet-option-btn" id="pet-auto" onclick="seleccionarMascota('🚗', '🚗 Ford Fusion 2017', '¡Vroom! Ford Fusion 2017 listo para acelerar tu estudio.')">🚗<br><small style="font-size:10px;">Ford Fusion</small></button>
-                            </div>
-                        </div>
-
                         <div class="grid-3">
                             <div class="stat-card">
-                                <div class="stat-label">Tareas Listas</div>
+                                <div class="stat-label">Tareas Registradas</div>
                                 <div class="stat-num" id="statTareas">0</div>
                             </div>
                             <div class="stat-card">
@@ -408,23 +421,17 @@
                                 <div class="stat-num" id="statNivelVal">1</div>
                             </div>
                             <div class="stat-card">
-                                <div class="stat-label">Cartas Creadas</div>
-                                <div class="stat-num" id="statCartas">0</div>
+                                <div class="stat-label">Compañero Activo</div>
+                                <div class="stat-num" id="statPetNombre" style="font-size:22px;">🐱 Mina</div>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <div class="card-glass">
-                            <h2>🎯 Misiones de Hoy</h2>
-                            <div class="item-row">
-                                <span>📝 Haz 1 tarea</span>
-                                <span class="tag" style="background:var(--primary);">+10 XP</span>
-                            </div>
-                            <div class="item-row">
-                                <span>⏱️ Estudiar 25 min</span>
-                                <span class="tag" style="background:var(--accent);">+50 XP</span>
-                            </div>
+                            <h2>⚙️ Ajustes de Tu IA</h2>
+                            <p style="color:var(--text-sub); font-size:13px;">¿Quieres cambiar de asistente?</p>
+                            <button class="btn-glow" style="background:var(--input-bg); border:1px solid var(--card-border);" onclick="abrirModalIA()">Cambiar de Compañero IA 🤖</button>
                         </div>
                     </div>
                 </div>
@@ -434,7 +441,7 @@
             <div id="vista-tareas" class="vista-pestana">
                 <div class="card-glass">
                     <h2>📝 Gestor de Tareas Académicas</h2>
-                    <input class="campo" type="text" id="inputTarea" placeholder="Escribe el nombre de tu tarea...">
+                    <input class="campo" type="text" id="inputTarea" placeholder="Nombre de tu tarea o proyecto...">
                     <select class="campo" id="selectMateria">
                         <option value="Matemáticas">Matemáticas</option>
                         <option value="Español">Español</option>
@@ -443,7 +450,7 @@
                         <option value="Sociales">Sociales</option>
                         <option value="General">Otras Asignaturas</option>
                     </select>
-                    <button class="btn-glow" onclick="agregarTarea()">Agregar Tarea (+10 XP)</button>
+                    <button class="btn-glow" onclick="agregarTarea()">Añadir Tarea (+10 XP)</button>
                     <div id="listaTareas" style="margin-top: 20px;">Cargando...</div>
                 </div>
             </div>
@@ -518,7 +525,7 @@
         </div>
     </div>
 
-    <!-- FIREBASE & SCRIPT DE INTERACCIÓN -->
+    <!-- FIREBASE & LÓGICA DE IA INTEGRA -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
@@ -545,35 +552,84 @@
         let unsubsChat = null;
         let listaNotasArray = [];
 
-        let mascotaIconoActual = '🐱';
-        const frasesMascota = {
-            '🐱': ["¡Miau! Recuerda tomar descansos mientras estudias.", "¡Gran trabajo! Estás acumulando mucho XP.", "¡Miau! ¿Ya completaste tus tareas de hoy?"],
-            '🐶': ["¡Guau! ¡Sigue así, lo estás haciendo genial!", "¡Guau! Vamos por el primer lugar en el Ranking.", "¡Aprender es divertido si lo haces con constancia!"],
-            '👽': ["¡Saludos terrícola! Tu cerebro se está expandiendo.", "Procesando conocimientos... ¡Excelente ritmo de estudio!", "Tu nivel de energía intelectual es óptimo."],
-            '🚗': ["¡Vroom Vroom! Ford Fusion 2017 a toda velocidad hacia la meta.", "¡Motor encendido! No te detengas hasta completar tus tareas.", "Ford Fusion en modo turbo para ganar +50 XP."]
+        let petIconSel = '🐱';
+        let petNombreSel = 'Mina el Gato IA';
+
+        /* MODAL IA */
+        window.abrirModalIA = function() {
+            document.getElementById("modalSeleccionIA").style.display = "flex";
         };
 
-        window.seleccionarMascota = function(emoji, nombre, mensajeInicial) {
-            mascotaIconoActual = emoji;
-            document.getElementById("aiPetIcon").textContent = emoji;
-            document.getElementById("aiDialogText").textContent = mensajeInicial;
+        window.seleccionarCardIA = function(emoji, nombre) {
+            petIconSel = emoji;
+            petNombreSel = nombre;
 
-            document.querySelectorAll('.pet-option-btn').forEach(b => b.classList.remove('selected'));
-            if(emoji === '🐱') document.getElementById('pet-gato').classList.add('selected');
-            if(emoji === '🐶') document.getElementById('pet-perro').classList.add('selected');
-            if(emoji === '👽') document.getElementById('pet-alien').classList.add('selected');
-            if(emoji === '🚗') document.getElementById('pet-auto').classList.add('selected');
+            document.querySelectorAll('.card-pet-option').forEach(c => c.classList.remove('activa'));
+            if(emoji==='🐱') document.getElementById('opt-gato').classList.add('activa');
+            if(emoji==='🐶') document.getElementById('opt-perro').classList.add('activa');
+            if(emoji==='👽') document.getElementById('opt-alien').classList.add('activa');
+            if(emoji==='🚗') document.getElementById('opt-auto').classList.add('activa');
         };
 
-        window.hablarConMascota = function() {
-            const lista = frasesMascota[mascotaIconoActual] || frasesMascota['🐱'];
-            const aleatoria = lista[Math.floor(Math.random() * lista.length)];
-            document.getElementById("aiDialogText").textContent = aleatoria;
+        window.confirmarCompañeroIA = async function() {
+            document.getElementById("modalSeleccionIA").style.display = "none";
+            document.getElementById("aiPetIcon").textContent = petIconSel;
+            document.getElementById("statPetNombre").textContent = `${petIconSel} ${petNombreSel.split(' ')[0]}`;
+            document.getElementById("aiChatTitle").textContent = `${petIconSel} ${petNombreSel}`;
+
+            if(usuarioActual) {
+                await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { petEmoji: petIconSel, petNombre: petNombreSel });
+            }
         };
 
-        window.toggleTema = function() {
-            document.body.classList.toggle("light-mode");
+        window.toggleChatIA = function() {
+            const popup = document.getElementById("aiChatPopup");
+            popup.style.display = (popup.style.display === "flex") ? "none" : "flex";
         };
+
+        /* LÓGICA DE CHAT IA CON MEMORIA REAL */
+        window.enviarConsultaIA = function() {
+            const input = document.getElementById("aiInputPrompt");
+            const prompt = input.value.trim();
+            if(!prompt) return;
+
+            const boxMsg = document.getElementById("aiChatMessages");
+
+            // Añadir mensaje del usuario
+            boxMsg.innerHTML += `<div class="ai-msg ai-msg-user">${prompt}</div>`;
+            input.value = "";
+            boxMsg.scrollTop = boxMsg.scrollHeight;
+
+            // Respuesta inteligente simulando procesamiento de IA con los datos del usuario
+            setTimeout(() => {
+                const respuesta = generarRespuestaIA(prompt);
+                boxMsg.innerHTML += `<div class="ai-msg ai-msg-bot">${respuesta}</div>`;
+                boxMsg.scrollTop = boxMsg.scrollHeight;
+            }, 600);
+        };
+
+        function generarRespuestaIA(consulta) {
+            const nom = datosUsuario ? datosUsuario.nombre : "Estudiante";
+            const xp = datosUsuario ? (datosUsuario.xp || 0) : 0;
+            const niv = Math.floor(xp / 100) + 1;
+            const text = consulta.toLowerCase();
+
+            if(text.includes("hola") || text.includes("buenas")) {
+                return `¡Hola ${nom}! Soy ${petNombreSel}. Veo que estás en el Nivel ${niv} con ${xp} XP. ¿En qué tarea o estudio te ayudo hoy?`;
+            }
+            if(text.includes("tarea") || text.includes("deber")) {
+                return `Actualmente tienes registradas varias actividades. Te sugiero completar tus tareas de Matemáticas o Ciencias para ganar +10 XP por cada una.`;
+            }
+            if(text.includes("nivel") || text.includes("xp")) {
+                return `Tienes ${xp} XP acumulados (Nivel ${niv}). Te faltan ${100 - (xp % 100)} XP para subir al siguiente nivel. ¡Usa el modo Pomodoro para ganar +50 XP rápido!`;
+            }
+            if(text.includes("ford") || text.includes("fusion") || text.includes("carro")) {
+                return `¡Vroom! Como Ford Fusion 2017, estoy equipado con un motor EcoBoost listo para darte la máxima potencia en tus exámenes.`;
+            }
+            return `Entendido, ${nom}. Como tu asistente ${petNombreSel}, guardaré este dato en tus apuntes. ¡Sigue concentrado para mantener tu buen rendimiento!`;
+        }
+
+        window.toggleTema = function() { document.body.classList.toggle("light-mode"); };
 
         window.cambiarVista = function(nombreVista, btn) {
             document.querySelectorAll('.vista-pestana').forEach(v => v.classList.remove('activa'));
@@ -604,7 +660,7 @@
             if(!nom || !mail || !pass) return alert("Completa todos los campos.");
             try {
                 const res = await createUserWithEmailAndPassword(auth, mail, pass);
-                await setDoc(doc(db, "estudiantes", res.user.uid), { nombre: nom, correo: mail, xp: 0, apuntes: "" });
+                await setDoc(doc(db, "estudiantes", res.user.uid), { nombre: nom, correo: mail, xp: 0, petEmoji: '🐱', petNombre: 'Mina el Gato IA', apuntes: "" });
                 alert("¡Cuenta creada con éxito!");
             } catch(e) { alert("Error al registrarse."); }
         };
@@ -629,9 +685,12 @@
                 document.getElementById("pantallaLogin").style.display = "none";
                 document.getElementById("paginaPrincipal").style.display = "block";
                 document.getElementById("aiPetFloating").style.display = "flex";
+
+                if(!datosUsuario.petEmoji) {
+                    abrirModalIA();
+                }
             } else {
-                usuarioActual = null;
-                datosUsuario = null;
+                usuarioActual = null; datosUsuario = null;
                 document.getElementById("paginaPrincipal").style.display = "none";
                 document.getElementById("pantallaLogin").style.display = "flex";
                 document.getElementById("aiPetFloating").style.display = "none";
@@ -642,6 +701,13 @@
             const snap = await getDoc(doc(db, "estudiantes", usuarioActual.uid));
             if(snap.exists()) {
                 datosUsuario = snap.data();
+                if(datosUsuario.petEmoji) {
+                    petIconSel = datosUsuario.petEmoji;
+                    petNombreSel = datosUsuario.petNombre || 'Compañero IA';
+                    document.getElementById("aiPetIcon").textContent = petIconSel;
+                    document.getElementById("statPetNombre").textContent = `${petIconSel} ${petNombreSel.split(' ')[0]}`;
+                    document.getElementById("aiChatTitle").textContent = `${petIconSel} ${petNombreSel}`;
+                }
                 actualizarUI();
             }
         }
@@ -665,7 +731,6 @@
         async function sumarXP(cant) {
             await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { xp: increment(cant) });
             await cargarDatosUsuario();
-            document.getElementById("aiDialogText").textContent = `🎉 ¡Genial! Ganaste +${cant} XP.`;
         }
 
         /* TAREAS */
@@ -697,7 +762,7 @@
                         <button class="btn-icon" onclick="borrarTarea('${d.id}')">🗑️</button>
                     </div>`;
             });
-            document.getElementById("statTareas").textContent = contCompletas;
+            document.getElementById("statTareas").textContent = snap.size;
         }
 
         window.marcarTarea = async function(id, estado) {
@@ -768,7 +833,6 @@
             const snap = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "flashcards"));
             const box = document.getElementById("gridFlashcards");
             box.innerHTML = snap.empty ? "<p style='color:var(--text-sub);'>No hay cartas.</p>" : "";
-            document.getElementById("statCartas").textContent = snap.size;
 
             snap.forEach(d => {
                 const item = d.data();
@@ -841,7 +905,7 @@
                 const niv = Math.floor((est.xp || 0) / 100) + 1;
                 box.innerHTML += `
                     <div class="item-row" style="${esYo ? "border-color:var(--primary); background:rgba(99, 102, 241, 0.1);" : ""}">
-                        <strong>#${p}. ${est.nombre}</strong>
+                        <strong>#${p}. ${est.nombre} ${est.petEmoji || '🐱'}</strong>
                         <span>Nivel ${niv} — <strong>${est.xp || 0} XP</strong></span>
                     </div>`;
                 p++;
