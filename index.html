@@ -6,15 +6,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EduTask</title>
+    <title>EduTask Pro</title>
 
     <style>
 
+        :root {
+            --bg-color: #f2f5f9;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --border-color: #dbe3ef;
+            --element-bg: #f2f5f9;
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --border-color: #334155;
+            --element-bg: #334155;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f2f5f9;
-            color: #1f2937;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* LOGIN */
@@ -35,6 +56,7 @@
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: #1f2937;
         }
 
         .logo {
@@ -43,6 +65,7 @@
 
         .cajaLogin h1 {
             color: #2563eb;
+            margin-bottom: 5px;
         }
 
         .cajaLogin p {
@@ -58,6 +81,8 @@
             border: 2px solid #dbe3ef;
             border-radius: 10px;
             font-size: 16px;
+            background-color: white;
+            color: #1f2937;
         }
 
         .botonPrincipal {
@@ -83,6 +108,7 @@
             color: #2563eb;
             cursor: pointer;
             margin-top: 15px;
+            font-weight: bold;
         }
 
         /* PAGINA PRINCIPAL */
@@ -92,63 +118,114 @@
         }
 
         header {
-            background-color: #2563eb;
+            background-color: var(--primary);
             color: white;
-            padding: 20px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .encabezado {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .encabezado h1 {
             color: white;
             margin: 0;
+            font-size: 24px;
         }
 
-        .contenido {
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 20px;
-        }
-
-        .bienvenida {
-            background-color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin-bottom: 25px;
-        }
-
-        .bienvenida h2 {
-            color: #2563eb;
-        }
-
-        /* BOTONES */
-
-        .botones {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        .header-acciones {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
 
-        .botones button {
-            padding: 20px;
+        .btn-header {
+            background-color: rgba(255, 255, 255, 0.2);
             border: none;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .btn-header:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .contenido {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .bienvenida {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .bienvenida h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* BARRA DE NIVEL Y PROGRESO */
+        .progreso-container {
+            margin-top: 15px;
+        }
+
+        .barra-xp-bg {
+            background-color: var(--element-bg);
+            border-radius: 10px;
+            height: 16px;
+            overflow: hidden;
+            margin-top: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .barra-xp-fill {
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* BOTONES DE MENU */
+
+        .botones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .botones button {
+            padding: 15px 10px;
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            background-color: white;
-            color: #2563eb;
-            font-size: 16px;
+            background-color: var(--card-bg);
+            color: var(--primary);
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.1s, background-color 0.2s;
         }
 
         .botones button:hover {
-            background-color: #eaf1ff;
+            transform: translateY(-2px);
+            background-color: var(--element-bg);
         }
 
         /* TARJETAS */
@@ -158,60 +235,80 @@
         }
 
         .tarjeta {
-            background-color: white;
+            background-color: var(--card-bg);
             padding: 25px;
             border-radius: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
             margin-bottom: 20px;
         }
 
         .tarjeta h2 {
-            color: #2563eb;
+            color: var(--primary);
+            margin-top: 0;
         }
 
-        input {
+        input, select, textarea {
             padding: 11px;
-            border: 2px solid #dbe3ef;
+            border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 15px;
-            margin: 5px;
+            margin: 5px 0;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-sizing: border-box;
         }
 
         .botonAccion {
             padding: 11px 18px;
             border: none;
             border-radius: 8px;
-            background-color: #2563eb;
+            background-color: var(--primary);
             color: white;
             cursor: pointer;
             font-size: 15px;
+            font-weight: bold;
+            margin-top: 5px;
         }
 
         .botonAccion:hover {
-            background-color: #1d4ed8;
+            background-color: var(--primary-hover);
         }
 
         .elemento {
-            background-color: #f2f5f9;
-            padding: 12px;
+            background-color: var(--element-bg);
+            padding: 12px 15px;
             margin-top: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary);
+        }
+
+        .tag-materia {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            margin-left: 8px;
         }
 
         .completada {
             text-decoration: line-through;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         #tiempo {
-            font-size: 50px;
-            color: #2563eb;
-            margin: 20px;
+            font-size: 55px;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
         }
 
         .puesto {
-            background-color: #f2f5f9;
+            background-color: var(--element-bg);
             padding: 15px;
             margin: 8px 0;
             border-radius: 10px;
@@ -219,8 +316,100 @@
         }
 
         .miPuesto {
-            background-color: #eaf1ff;
-            border: 2px solid #2563eb;
+            border: 2px solid var(--primary);
+        }
+
+        /* CHAT */
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: var(--element-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .mensaje-chat {
+            background-color: var(--card-bg);
+            padding: 10px 14px;
+            border-radius: 10px;
+            max-width: 80%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .mensaje-propio {
+            align-self: flex-end;
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .mensaje-autor {
+            font-size: 11px;
+            font-weight: bold;
+            opacity: 0.8;
+            margin-bottom: 3px;
+        }
+
+        /* FLASHCARDS */
+        .tarjeta-estudio {
+            width: 100%;
+            height: 180px;
+            perspective: 1000px;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+
+        .tarjeta-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 15px;
+        }
+
+        .tarjeta-estudio.volteada .tarjeta-inner {
+            transform: rotateY(180deg);
+        }
+
+        .tarjeta-front, .tarjeta-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tarjeta-front {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tarjeta-back {
+            background-color: #10b981;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .btn-borrar {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-size: 16px;
         }
 
     </style>
@@ -241,7 +430,7 @@
                 📚
             </div>
 
-            <h1>EduTask</h1>
+            <h1>EduTask Pro</h1>
 
             <p id="textoLogin">
                 Inicia sesión para continuar
@@ -333,11 +522,17 @@
 
             <div class="encabezado">
 
-                <h1>📚 EduTask</h1>
+                <h1>📚 EduTask Pro</h1>
 
-                <span id="bienvenida">
-                    ¡Hola!
-                </span>
+                <div class="header-acciones">
+
+                    <span id="bienvenida">¡Hola!</span>
+
+                    <button class="btn-header" onclick="toggleModoOscuro()">🌙 / ☀️</button>
+
+                    <button class="btn-header" onclick="cerrarSesion()">🚪 Salir</button>
+
+                </div>
 
             </div>
 
@@ -348,40 +543,50 @@
 
             <div class="bienvenida">
 
-                <h2 id="saludo">
-                    Bienvenido a EduTask
-                </h2>
+                <h2 id="saludo">Bienvenido a EduTask</h2>
 
-                <p>
-                    Tu espacio para organizar tus actividades académicas.
-                </p>
+                <p>Tu espacio para organizar tus actividades académicas.</p>
+
+                <div class="progreso-container">
+
+                    <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:14px;">
+
+                        <span id="textoNivel">Nivel 1 (0 XP)</span>
+
+                        <span id="textoSigNivel">Siguiente nivel: 100 XP</span>
+
+                    </div>
+
+                    <div class="barra-xp-bg">
+
+                        <div class="barra-xp-fill" id="barraXP"></div>
+
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <!-- BOTONES -->
+            <!-- BOTONES NAVEGACION -->
 
             <div class="botones">
 
-                <button onclick="mostrarTareas()">
-                    📝 Tareas
-                </button>
+                <button onclick="mostrarTareas()">📝 Tareas</button>
 
-                <button onclick="mostrarCalendario()">
-                    📅 Calendario
-                </button>
+                <button onclick="mostrarCalendario()">📅 Calendario</button>
 
-                <button onclick="mostrarExamenes()">
-                    📖 Exámenes
-                </button>
+                <button onclick="mostrarExamenes()">📖 Exámenes</button>
 
-                <button onclick="mostrarEstudiar()">
-                    ⏱️ Estudiar
-                </button>
+                <button onclick="mostrarEstudiar()">⏱️ Estudiar</button>
 
-                <button onclick="mostrarClasificacion()">
-                    🏆 Clasificación
-                </button>
+                <button onclick="mostrarFlashcards()">🎴 Cartas</button>
+
+                <button onclick="mostrarNotas()">📓 Apuntes</button>
+
+                <button onclick="mostrarChat()">💬 Chat</button>
+
+                <button onclick="mostrarClasificacion()">🏆 Ranking</button>
 
             </div>
 
@@ -394,7 +599,7 @@
 
 
 
-    <!-- FIREBASE -->
+    <!-- FIREBASE & SCRIPT -->
 
     <script type="module">
 
@@ -419,8 +624,12 @@
             increment,
             collection,
             getDocs,
+            addDoc,
+            deleteDoc,
+            onSnapshot,
             orderBy,
-            query
+            query,
+            serverTimestamp
         }
         from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
@@ -445,14 +654,47 @@
 
         let usuarioActual = null;
 
+        let datosUsuario = null;
+
         let temporizador = null;
 
         let segundosRestantes = 25 * 60;
 
+        let unsubscribeChat = null;
+
+
+        const coloresMaterias = {
+
+            "Matemáticas": "#ef4444",
+
+            "Español": "#f59e0b",
+
+            "Ciencias": "#10b981",
+
+            "Inglés": "#3b82f6",
+
+            "Sociales": "#8b5cf6",
+
+            "General": "#6b7280"
+
+        };
+
 
 
         /* =====================================================
-           MOSTRAR LOGIN
+           MODO OSCURO
+           ===================================================== */
+
+        window.toggleModoOscuro = function() {
+
+            document.body.classList.toggle("dark-mode");
+
+        };
+
+
+
+        /* =====================================================
+           LOGIN & REGISTRO
            ===================================================== */
 
         window.mostrarLogin = function() {
@@ -461,16 +703,10 @@
 
             document.getElementById("formularioRegistro").style.display = "none";
 
-            document.getElementById("textoLogin").textContent =
-                "Inicia sesión para continuar";
+            document.getElementById("textoLogin").textContent = "Inicia sesión para continuar";
 
         };
 
-
-
-        /* =====================================================
-           MOSTRAR REGISTRO
-           ===================================================== */
 
         window.mostrarRegistro = function() {
 
@@ -478,27 +714,18 @@
 
             document.getElementById("formularioRegistro").style.display = "block";
 
-            document.getElementById("textoLogin").textContent =
-                "Crea tu cuenta de estudiante";
+            document.getElementById("textoLogin").textContent = "Crea tu cuenta de estudiante";
 
         };
 
 
-
-        /* =====================================================
-           REGISTRAR USUARIO
-           ===================================================== */
-
         window.registrarUsuario = async function() {
 
-            const nombre =
-                document.getElementById("nombreRegistro").value.trim();
+            const nombre = document.getElementById("nombreRegistro").value.trim();
 
-            const correo =
-                document.getElementById("correoRegistro").value.trim();
+            const correo = document.getElementById("correoRegistro").value.trim();
 
-            const password =
-                document.getElementById("passwordRegistro").value;
+            const password = document.getElementById("passwordRegistro").value;
 
 
             if (nombre === "" || correo === "" || password === "") {
@@ -510,72 +737,42 @@
             }
 
 
-            if (password.length < 6) {
-
-                alert("La contraseña debe tener al menos 6 caracteres.");
-
-                return;
-
-            }
-
-
             try {
 
-                const resultado =
-                    await createUserWithEmailAndPassword(
-                        auth,
-                        correo,
-                        password
-                    );
-
+                const resultado = await createUserWithEmailAndPassword(auth, correo, password);
 
                 const usuario = resultado.user;
 
 
-                /* Creamos el estudiante en Firestore */
+                await setDoc(doc(db, "estudiantes", usuario.uid), {
 
-                await setDoc(
-                    doc(db, "estudiantes", usuario.uid),
-                    {
-                        nombre: nombre,
-                        correo: correo,
-                        xp: 0
-                    }
-                );
+                    nombre: nombre,
+
+                    correo: correo,
+
+                    xp: 0,
+
+                    apuntes: ""
+
+                });
 
 
-                alert("Cuenta creada correctamente.");
+                alert("¡Cuenta creada correctamente!");
 
-                entrarAPagina(nombre);
+            } catch (error) {
 
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "No se pudo crear la cuenta: " +
-                    traducirError(error.code)
-                );
+                alert("Error: " + traducirError(error.code));
 
             }
 
         };
 
 
-
-        /* =====================================================
-           INICIAR SESION
-           ===================================================== */
-
         window.iniciarSesion = async function() {
 
-            const correo =
-                document.getElementById("correoLogin").value.trim();
+            const correo = document.getElementById("correoLogin").value.trim();
 
-            const password =
-                document.getElementById("passwordLogin").value;
+            const password = document.getElementById("passwordLogin").value;
 
 
             if (correo === "" || password === "") {
@@ -589,620 +786,22 @@
 
             try {
 
-                const resultado =
-                    await signInWithEmailAndPassword(
-                        auth,
-                        correo,
-                        password
-                    );
+                await signInWithEmailAndPassword(auth, correo, password);
 
+            } catch (error) {
 
-                const usuario = resultado.user;
-
-
-                const documento =
-                    await getDoc(
-                        doc(db, "estudiantes", usuario.uid)
-                    );
-
-
-                if (documento.exists()) {
-
-                    const datos = documento.data();
-
-                    entrarAPagina(datos.nombre);
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "No se pudo iniciar sesión: " +
-                    traducirError(error.code)
-                );
+                alert("Error: " + traducirError(error.code));
 
             }
 
         };
 
 
+        window.cerrarSesion = function() {
 
-        /* =====================================================
-           ENTRAR A LA PAGINA
-           ===================================================== */
+            if (unsubscribeChat) unsubscribeChat();
 
-        function entrarAPagina(nombre) {
-
-            document.getElementById("pantallaLogin").style.display = "none";
-
-            document.getElementById("paginaPrincipal").style.display = "block";
-
-            document.getElementById("bienvenida").textContent =
-                "¡Hola, " + nombre + "!";
-
-            document.getElementById("saludo").textContent =
-                "Bienvenido a EduTask, " + nombre + ".";
-
-        }
-
-
-
-        /* =====================================================
-           TAREAS
-           ===================================================== */
-
-        window.mostrarTareas = function() {
-
-            document.getElementById("seccionFunciones").innerHTML = `
-
-                <div class="tarjeta">
-
-                    <h2>Mis tareas</h2>
-
-                    <p>
-                        Agrega las tareas que tengas pendientes.
-                    </p>
-
-                    <input
-                        type="text"
-                        id="nuevaTarea"
-                        placeholder="Ej: Trabajo de matemáticas"
-                    >
-
-                    <button
-                        class="botonAccion"
-                        onclick="agregarTarea()"
-                    >
-                        Agregar tarea
-                    </button>
-
-                    <div id="listaTareas"></div>
-
-                </div>
-
-            `;
-
-        };
-
-
-        window.agregarTarea = function() {
-
-            const tarea =
-                document.getElementById("nuevaTarea").value.trim();
-
-
-            if (tarea === "") {
-
-                alert("Escribe una tarea.");
-
-                return;
-
-            }
-
-
-            document.getElementById("listaTareas").innerHTML += `
-
-                <div class="elemento">
-
-                    <input
-                        type="checkbox"
-                        onchange="completarTarea(this)"
-                    >
-
-                    <span>${tarea}</span>
-
-                </div>
-
-            `;
-
-
-            document.getElementById("nuevaTarea").value = "";
-
-        };
-
-
-        window.completarTarea = function(casilla) {
-
-            const tarea =
-                casilla.parentElement.querySelector("span");
-
-            tarea.classList.toggle("completada");
-
-        };
-
-
-
-        /* =====================================================
-           CALENDARIO
-           ===================================================== */
-
-        window.mostrarCalendario = function() {
-
-            document.getElementById("seccionFunciones").innerHTML = `
-
-                <div class="tarjeta">
-
-                    <h2>Calendario</h2>
-
-                    <p>
-                        Agrega tus actividades.
-                    </p>
-
-                    <input
-                        type="date"
-                        id="fechaActividad"
-                    >
-
-                    <input
-                        type="text"
-                        id="nombreActividad"
-                        placeholder="Nombre de la actividad"
-                    >
-
-                    <button
-                        class="botonAccion"
-                        onclick="agregarActividad()"
-                    >
-                        Agregar
-                    </button>
-
-                    <div id="listaActividades"></div>
-
-                </div>
-
-            `;
-
-        };
-
-
-        window.agregarActividad = function() {
-
-            const fecha =
-                document.getElementById("fechaActividad").value;
-
-            const actividad =
-                document
-                .getElementById("nombreActividad")
-                .value
-                .trim();
-
-
-            if (fecha === "" || actividad === "") {
-
-                alert("Completa la fecha y la actividad.");
-
-                return;
-
-            }
-
-
-            document.getElementById("listaActividades").innerHTML += `
-
-                <div class="elemento">
-
-                    📅 ${fecha} — ${actividad}
-
-                </div>
-
-            `;
-
-
-            document.getElementById("nombreActividad").value = "";
-
-        };
-
-
-
-        /* =====================================================
-           EXAMENES
-           ===================================================== */
-
-        window.mostrarExamenes = function() {
-
-            document.getElementById("seccionFunciones").innerHTML = `
-
-                <div class="tarjeta">
-
-                    <h2>Mis exámenes</h2>
-
-                    <p>
-                        Agrega los exámenes que tengas próximos.
-                    </p>
-
-                    <input
-                        type="text"
-                        id="nuevoExamen"
-                        placeholder="Ej: Examen de química"
-                    >
-
-                    <input
-                        type="date"
-                        id="fechaExamen"
-                    >
-
-                    <button
-                        class="botonAccion"
-                        onclick="agregarExamen()"
-                    >
-                        Agregar examen
-                    </button>
-
-                    <div id="listaExamenes"></div>
-
-                </div>
-
-            `;
-
-        };
-
-
-        window.agregarExamen = function() {
-
-            const examen =
-                document
-                .getElementById("nuevoExamen")
-                .value
-                .trim();
-
-            const fecha =
-                document.getElementById("fechaExamen").value;
-
-
-            if (examen === "" || fecha === "") {
-
-                alert("Completa el nombre y la fecha.");
-
-                return;
-
-            }
-
-
-            document.getElementById("listaExamenes").innerHTML += `
-
-                <div class="elemento">
-
-                    📖 ${examen} — ${fecha}
-
-                </div>
-
-            `;
-
-
-            document.getElementById("nuevoExamen").value = "";
-
-        };
-
-
-
-        /* =====================================================
-           POMODORO
-           ===================================================== */
-
-        window.mostrarEstudiar = function() {
-
-            document.getElementById("seccionFunciones").innerHTML = `
-
-                <div class="tarjeta">
-
-                    <h2>Modo de estudio</h2>
-
-                    <p>
-                        Completa un Pomodoro de 25 minutos
-                        para ganar 50 XP.
-                    </p>
-
-                    <div id="tiempo">
-                        25:00
-                    </div>
-
-                    <button
-                        class="botonAccion"
-                        onclick="iniciarTemporizador()"
-                    >
-                        Iniciar
-                    </button>
-
-                    <button
-                        class="botonAccion"
-                        onclick="pausarTemporizador()"
-                    >
-                        Pausar
-                    </button>
-
-                    <button
-                        class="botonAccion"
-                        onclick="reiniciarTemporizador()"
-                    >
-                        Reiniciar
-                    </button>
-
-                </div>
-
-            `;
-
-
-            segundosRestantes = 25 * 60;
-
-            temporizador = null;
-
-        };
-
-
-
-        window.iniciarTemporizador = function() {
-
-            if (temporizador !== null) {
-
-                return;
-
-            }
-
-
-            temporizador = setInterval(async function() {
-
-                segundosRestantes--;
-
-
-                const minutos =
-                    Math.floor(segundosRestantes / 60);
-
-                const segundos =
-                    segundosRestantes % 60;
-
-
-                const reloj =
-                    document.getElementById("tiempo");
-
-
-                if (reloj) {
-
-                    reloj.textContent =
-                        minutos + ":" +
-                        String(segundos).padStart(2, "0");
-
-                }
-
-
-                if (segundosRestantes <= 0) {
-
-                    clearInterval(temporizador);
-
-                    temporizador = null;
-
-                    await ganarXP();
-
-                }
-
-            }, 1000);
-
-        };
-
-
-
-        window.pausarTemporizador = function() {
-
-            clearInterval(temporizador);
-
-            temporizador = null;
-
-        };
-
-
-
-        window.reiniciarTemporizador = function() {
-
-            clearInterval(temporizador);
-
-            temporizador = null;
-
-            segundosRestantes = 25 * 60;
-
-
-            const reloj =
-                document.getElementById("tiempo");
-
-
-            if (reloj) {
-
-                reloj.textContent = "25:00";
-
-            }
-
-        };
-
-
-
-        /* =====================================================
-           GANAR XP
-           ===================================================== */
-
-        async function ganarXP() {
-
-            if (!auth.currentUser) {
-
-                alert("No hay un usuario conectado.");
-
-                return;
-
-            }
-
-
-            try {
-
-                const referencia =
-                    doc(
-                        db,
-                        "estudiantes",
-                        auth.currentUser.uid
-                    );
-
-
-                await updateDoc(
-                    referencia,
-                    {
-                        xp: increment(50)
-                    }
-                );
-
-
-                alert(
-                    "¡Pomodoro completado! Ganaste 50 XP."
-                );
-
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                alert(
-                    "No se pudieron guardar los XP."
-                );
-
-            }
-
-        }
-
-
-
-        /* =====================================================
-           CLASIFICACION
-           ===================================================== */
-
-        window.mostrarClasificacion = async function() {
-
-            document.getElementById("seccionFunciones").innerHTML = `
-
-                <div class="tarjeta">
-
-                    <h2>🏆 Clasificación</h2>
-
-                    <p>
-                        Los estudiantes aparecen ordenados
-                        según sus XP.
-                    </p>
-
-                    <div id="listaClasificacion">
-                        Cargando clasificación...
-                    </div>
-
-                </div>
-
-            `;
-
-
-            try {
-
-                const referencia =
-                    collection(db, "estudiantes");
-
-
-                const consulta =
-                    query(
-                        referencia,
-                        orderBy("xp", "desc")
-                    );
-
-
-                const resultado =
-                    await getDocs(consulta);
-
-
-                const lista =
-                    document.getElementById(
-                        "listaClasificacion"
-                    );
-
-
-                lista.innerHTML = "";
-
-
-                let posicion = 1;
-
-
-                resultado.forEach(function(documento) {
-
-                    const estudiante =
-                        documento.data();
-
-
-                    const esUsuarioActual =
-                        auth.currentUser &&
-                        documento.id === auth.currentUser.uid;
-
-
-                    lista.innerHTML += `
-
-                        <div class="puesto
-                        ${esUsuarioActual ? "miPuesto" : ""}">
-
-                            <strong>
-                                ${posicion}.
-                                ${estudiante.nombre}
-                            </strong>
-
-                            — ${estudiante.xp || 0} XP
-
-                        </div>
-
-                    `;
-
-
-                    posicion++;
-
-                });
-
-
-                if (posicion === 1) {
-
-                    lista.innerHTML =
-                        "<p>No hay estudiantes registrados todavía.</p>";
-
-                }
-
-            }
-
-            catch (error) {
-
-                console.error(error);
-
-                document.getElementById(
-                    "listaClasificacion"
-                ).innerHTML = `
-
-                    <p>
-                        No se pudo cargar la clasificación.
-                        Revisa la configuración de Firebase.
-                    </p>
-
-                `;
-
-            }
+            signOut(auth);
 
         };
 
@@ -1218,20 +817,23 @@
 
                 usuarioActual = usuario;
 
+                await cargarDatosUsuario();
 
-                const documento =
-                    await getDoc(
-                        doc(db, "estudiantes", usuario.uid)
-                    );
+                document.getElementById("pantallaLogin").style.display = "none";
 
+                document.getElementById("paginaPrincipal").style.display = "block";
 
-                if (documento.exists()) {
+                mostrarTareas();
 
-                    const datos = documento.data();
+            } else {
 
-                    entrarAPagina(datos.nombre);
+                usuarioActual = null;
 
-                }
+                datosUsuario = null;
+
+                document.getElementById("paginaPrincipal").style.display = "none";
+
+                document.getElementById("pantallaLogin").style.display = "flex";
 
             }
 
@@ -1239,29 +841,837 @@
 
 
 
+        async function cargarDatosUsuario() {
+
+            if (!usuarioActual) return;
+
+            const documento = await getDoc(doc(db, "estudiantes", usuarioActual.uid));
+
+            if (documento.exists()) {
+
+                datosUsuario = documento.data();
+
+                actualizarInterfazUsuario();
+
+            }
+
+        }
+
+
+
+        function actualizarInterfazUsuario() {
+
+            if (!datosUsuario) return;
+
+            const nombre = datosUsuario.nombre || "Estudiante";
+
+            const xp = datosUsuario.xp || 0;
+
+
+            document.getElementById("bienvenida").textContent = "¡Hola, " + nombre + "!";
+
+            document.getElementById("saludo").textContent = "Bienvenido a EduTask, " + nombre + ".";
+
+
+            // Calculo de Nivel (Cada 100 XP es 1 nivel)
+
+            const nivel = Math.floor(xp / 100) + 1;
+
+            const xpEnNivelActual = xp % 100;
+
+
+            document.getElementById("textoNivel").textContent = `Nivel ${nivel} (${xp} XP Totales)`;
+
+            document.getElementById("textoSigNivel").textContent = `Siguiente nivel: ${100 - xpEnNivelActual} XP`;
+
+            document.getElementById("barraXP").style.width = `${xpEnNivelActual}%`;
+
+        }
+
+
+
         /* =====================================================
-           ERRORES DE FIREBASE
+           TAREAS (CON FIRESTORE & CATEGORIAS)
+           ===================================================== */
+
+        window.mostrarTareas = async function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>📝 Mis Tareas</h2>
+
+                    <p>Agrega tus tareas pendientes con materia.</p>
+
+                    <input type="text" id="nuevaTarea" placeholder="Ej: Resolver taller de ecuaciones" style="width:100%;">
+
+                    <select id="materiaTarea" style="width:100%;">
+
+                        <option value="General">Materia: General</option>
+
+                        <option value="Matemáticas">Matemáticas</option>
+
+                        <option value="Español">Español</option>
+
+                        <option value="Ciencias">Ciencias</option>
+
+                        <option value="Inglés">Inglés</option>
+
+                        <option value="Sociales">Sociales</option>
+
+                    </select>
+
+                    <button class="botonAccion" onclick="agregarTarea()">Agregar Tarea</button>
+
+                    <div id="listaTareas" style="margin-top:15px;">Cargando tareas...</div>
+
+                </div>
+
+            `;
+
+            cargarTareas();
+
+        };
+
+
+        window.agregarTarea = async function() {
+
+            const titulo = document.getElementById("nuevaTarea").value.trim();
+
+            const materia = document.getElementById("materiaTarea").value;
+
+
+            if (titulo === "") return alert("Escribe el nombre de la tarea.");
+
+
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "tareas"), {
+
+                titulo: titulo,
+
+                materia: materia,
+
+                completada: false,
+
+                creado: serverTimestamp()
+
+            });
+
+
+            mostrarTareas();
+
+        };
+
+
+        async function cargarTareas() {
+
+            const snapshot = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "tareas"));
+
+            const contenedor = document.getElementById("listaTareas");
+
+            contenedor.innerHTML = "";
+
+
+            if (snapshot.empty) {
+
+                contenedor.innerHTML = "<p>No tienes tareas registradas.</p>";
+
+                return;
+
+            }
+
+
+            snapshot.forEach((docu) => {
+
+                const t = docu.data();
+
+                const color = coloresMaterias[t.materia] || "#2563eb";
+
+
+                contenedor.innerHTML += `
+
+                    <div class="elemento" style="border-left-color: ${color}">
+
+                        <div>
+
+                            <input type="checkbox" ${t.completada ? "checked" : ""} onchange="completarTarea('${docu.id}', this.checked)">
+
+                            <span class="${t.completada ? "completada" : ""}">${t.titulo}</span>
+
+                            <span class="tag-materia" style="background-color:${color}">${t.materia}</span>
+
+                        </div>
+
+                        <button class="btn-borrar" onclick="eliminarTarea('${docu.id}')">🗑️</button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        window.completarTarea = async function(id, completada) {
+
+            await updateDoc(doc(db, "estudiantes", usuarioActual.uid, "tareas", id), { completada: completada });
+
+            cargarTareas();
+
+        };
+
+
+        window.eliminarTarea = async function(id) {
+
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "tareas", id));
+
+            cargarTareas();
+
+        };
+
+
+
+        /* =====================================================
+           CALENDARIO
+           ===================================================== */
+
+        window.mostrarCalendario = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>📅 Calendario de Actividades</h2>
+
+                    <input type="date" id="fechaActividad">
+
+                    <input type="text" id="nombreActividad" placeholder="Nombre de la actividad">
+
+                    <button class="botonAccion" onclick="agregarActividad()">Agregar Actividad</button>
+
+                    <div id="listaActividades" style="margin-top:15px;">Cargando...</div>
+
+                </div>
+
+            `;
+
+            cargarActividades();
+
+        };
+
+
+        window.agregarActividad = async function() {
+
+            const fecha = document.getElementById("fechaActividad").value;
+
+            const nombre = document.getElementById("nombreActividad").value.trim();
+
+
+            if (!fecha || !nombre) return alert("Completa la fecha y la actividad.");
+
+
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "calendario"), { fecha, nombre });
+
+            mostrarCalendario();
+
+        };
+
+
+        async function cargarActividades() {
+
+            const snapshot = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "calendario"));
+
+            const contenedor = document.getElementById("listaActividades");
+
+            contenedor.innerHTML = "";
+
+
+            snapshot.forEach((docu) => {
+
+                const a = docu.data();
+
+                contenedor.innerHTML += `
+
+                    <div class="elemento">
+
+                        <span>📅 <strong>${a.fecha}</strong> — ${a.nombre}</span>
+
+                        <button class="btn-borrar" onclick="eliminarActividad('${docu.id}')">🗑️</button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        window.eliminarActividad = async function(id) {
+
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "calendario", id));
+
+            cargarActividades();
+
+        };
+
+
+
+        /* =====================================================
+           EXAMENES (CON AVISO)
+           ===================================================== */
+
+        window.mostrarExamenes = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>📖 Mis Exámenes Próximos</h2>
+
+                    <input type="text" id="nuevoExamen" placeholder="Ej: Examen de Física">
+
+                    <input type="date" id="fechaExamen">
+
+                    <button class="botonAccion" onclick="agregarExamen()">Agregar Examen</button>
+
+                    <div id="listaExamenes" style="margin-top:15px;">Cargando...</div>
+
+                </div>
+
+            `;
+
+            cargarExamenes();
+
+        };
+
+
+        window.agregarExamen = async function() {
+
+            const nombre = document.getElementById("nuevoExamen").value.trim();
+
+            const fecha = document.getElementById("fechaExamen").value;
+
+
+            if (!nombre || !fecha) return alert("Completa el nombre y la fecha.");
+
+
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "examenes"), { nombre, fecha });
+
+            mostrarExamenes();
+
+        };
+
+
+        async function cargarExamenes() {
+
+            const snapshot = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "examenes"));
+
+            const contenedor = document.getElementById("listaExamenes");
+
+            contenedor.innerHTML = "";
+
+
+            const hoy = new Date().toISOString().split('T')[0];
+
+
+            snapshot.forEach((docu) => {
+
+                const e = docu.data();
+
+                const esHoy = e.fecha === hoy;
+
+
+                contenedor.innerHTML += `
+
+                    <div class="elemento" style="${esHoy ? "border-left-color: #ef4444; background-color:#fee2e2;" : ""}">
+
+                        <span>📖 <strong>${e.nombre}</strong> — ${e.fecha} ${esHoy ? "🚨 <strong>¡ES HOY!</strong>" : ""}</span>
+
+                        <button class="btn-borrar" onclick="eliminarExamen('${docu.id}')">🗑️</button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        window.eliminarExamen = async function(id) {
+
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "examenes", id));
+
+            cargarExamenes();
+
+        };
+
+
+
+        /* =====================================================
+           POMODORO (CON ALARMA DE SONIDO Y GANAR XP)
+           ===================================================== */
+
+        window.mostrarEstudiar = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta" style="text-align:center;">
+
+                    <h2>⏱️ Modo de Estudio Pomodoro</h2>
+
+                    <p>Completa 25 minutos de concentración para ganar <strong>+50 XP</strong>.</p>
+
+                    <div id="tiempo">25:00</div>
+
+                    <button class="botonAccion" onclick="iniciarTemporizador()">Iniciar</button>
+
+                    <button class="botonAccion" onclick="pausarTemporizador()" style="background-color:#f59e0b;">Pausar</button>
+
+                    <button class="botonAccion" onclick="reiniciarTemporizador()" style="background-color:#ef4444;">Reiniciar</button>
+
+                </div>
+
+            `;
+
+            segundosRestantes = 25 * 60;
+
+            temporizador = null;
+
+        };
+
+
+        window.iniciarTemporizador = function() {
+
+            if (temporizador !== null) return;
+
+
+            temporizador = setInterval(async function() {
+
+                segundosRestantes--;
+
+
+                const mins = Math.floor(segundosRestantes / 60);
+
+                const segs = segundosRestantes % 60;
+
+
+                const reloj = document.getElementById("tiempo");
+
+                if (reloj) reloj.textContent = `${mins}:${String(segs).padStart(2, "0")}`;
+
+
+                if (segundosRestantes <= 0) {
+
+                    clearInterval(temporizador);
+
+                    temporizador = null;
+
+                    reproducirAlarma();
+
+                    await sumarXP(50);
+
+                    alert("🎉 ¡Felicidades! Completaste tu sesión de estudio y ganaste +50 XP.");
+
+                }
+
+            }, 1000);
+
+        };
+
+
+        window.pausarTemporizador = function() {
+
+            clearInterval(temporizador);
+
+            temporizador = null;
+
+        };
+
+
+        window.reiniciarTemporizador = function() {
+
+            clearInterval(temporizador);
+
+            temporizador = null;
+
+            segundosRestantes = 25 * 60;
+
+            const reloj = document.getElementById("tiempo");
+
+            if (reloj) reloj.textContent = "25:00";
+
+        };
+
+
+        function reproducirAlarma() {
+
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+            const osc = ctx.createOscillator();
+
+            osc.type = "sine";
+
+            osc.frequency.value = 800;
+
+            osc.connect(ctx.destination);
+
+            osc.start();
+
+            setTimeout(() => osc.stop(), 1000);
+
+        }
+
+
+        async function sumarXP(cantidad) {
+
+            const ref = doc(db, "estudiantes", usuarioActual.uid);
+
+            await updateDoc(ref, { xp: increment(cantidad) });
+
+            await cargarDatosUsuario();
+
+        }
+
+
+
+        /* =====================================================
+           CARTAS DE ESTUDIO (FLASHCARDS)
+           ===================================================== */
+
+        window.mostrarFlashcards = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>🎴 Juego de Cartas de Estudio</h2>
+
+                    <p>Crea tarjetas para repasar preguntas y respuestas rápido.</p>
+
+                    <input type="text" id="preguntaCarta" placeholder="Pregunta (ej: ¿Capital de Colombia?)" style="width:100%;">
+
+                    <input type="text" id="respuestaCarta" placeholder="Respuesta (ej: Bogotá)" style="width:100%;">
+
+                    <button class="botonAccion" onclick="agregarCarta()">Crear Carta</button>
+
+                    <div id="contenedorCartas" style="margin-top:20px;">Cargando...</div>
+
+                </div>
+
+            `;
+
+            cargarCartas();
+
+        };
+
+
+        window.agregarCarta = async function() {
+
+            const pregunta = document.getElementById("preguntaCarta").value.trim();
+
+            const respuesta = document.getElementById("respuestaCarta").value.trim();
+
+
+            if (!pregunta || !respuesta) return alert("Completa ambos campos.");
+
+
+            await addDoc(collection(db, "estudiantes", usuarioActual.uid, "cartas"), { pregunta, respuesta });
+
+            mostrarFlashcards();
+
+        };
+
+
+        async function cargarCartas() {
+
+            const snapshot = await getDocs(collection(db, "estudiantes", usuarioActual.uid, "cartas"));
+
+            const contenedor = document.getElementById("contenedorCartas");
+
+            contenedor.innerHTML = "";
+
+
+            snapshot.forEach((docu) => {
+
+                const c = docu.data();
+
+                contenedor.innerHTML += `
+
+                    <div class="tarjeta-estudio" onclick="this.classList.toggle('volteada')">
+
+                        <div class="tarjeta-inner">
+
+                            <div class="tarjeta-front">
+
+                                ❓ ${c.pregunta}
+
+                            </div>
+
+                            <div class="tarjeta-back">
+
+                                💡 ${c.respuesta}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <button class="btn-borrar" style="margin-bottom:20px;" onclick="eliminarCarta('${docu.id}')">Eliminar esta carta 🗑️</button>
+
+                `;
+
+            });
+
+        }
+
+
+        window.eliminarCarta = async function(id) {
+
+            await deleteDoc(doc(db, "estudiantes", usuarioActual.uid, "cartas", id));
+
+            cargarCartas();
+
+        };
+
+
+
+        /* =====================================================
+           NOTAS / APUNTES RAPIDOS
+           ===================================================== */
+
+        window.mostrarNotas = function() {
+
+            const notasTexto = datosUsuario ? (datosUsuario.apuntes || "") : "";
+
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>📓 Bloc de Notas e Apuntes</h2>
+
+                    <p>Escribe aquí tus resúmenes o notas importantes. Se guardan en la nube.</p>
+
+                    <textarea id="textoNotas" style="width:100%; height:200px;">${notasTexto}</textarea>
+
+                    <button class="botonAccion" onclick="guardarNotas()">Guardar Notas 💾</button>
+
+                </div>
+
+            `;
+
+        };
+
+
+        window.guardarNotas = async function() {
+
+            const texto = document.getElementById("textoNotas").value;
+
+            await updateDoc(doc(db, "estudiantes", usuarioActual.uid), { apuntes: texto });
+
+            alert("¡Notas guardadas correctamente!");
+
+        };
+
+
+
+        /* =====================================================
+           CHAT EN TIEMPO REAL ENTRE ESTUDIANTES
+           ===================================================== */
+
+        window.mostrarChat = function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>💬 Chat Global de Estudiantes</h2>
+
+                    <p>Conversa y estudia con tus compañeros en vivo.</p>
+
+                    <div class="chat-box" id="chatBox">Cargando chat...</div>
+
+                    <div style="display:flex; gap:10px;">
+
+                        <input type="text" id="mensajeChat" placeholder="Escribe un mensaje..." style="flex:1;">
+
+                        <button class="botonAccion" onclick="enviarMensajeChat()">Enviar</button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+            escucharChat();
+
+        };
+
+
+        function escucharChat() {
+
+            if (unsubscribeChat) unsubscribeChat();
+
+
+            const q = query(collection(db, "chat_estudiantes"), orderBy("fecha", "asc"));
+
+
+            unsubscribeChat = onSnapshot(q, (snapshot) => {
+
+                const chatBox = document.getElementById("chatBox");
+
+                if (!chatBox) return;
+
+
+                chatBox.innerHTML = "";
+
+
+                snapshot.forEach((docu) => {
+
+                    const m = docu.data();
+
+                    const esPropio = m.uid === usuarioActual.uid;
+
+
+                    chatBox.innerHTML += `
+
+                        <div class="mensaje-chat ${esPropio ? "mensaje-propio" : ""}">
+
+                            <div class="mensaje-autor">${m.autor}</div>
+
+                            <div>${m.texto}</div>
+
+                        </div>
+
+                    `;
+
+                });
+
+
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+            });
+
+        }
+
+
+        window.enviarMensajeChat = async function() {
+
+            const campo = document.getElementById("mensajeChat");
+
+            const texto = campo.value.trim();
+
+
+            if (!texto) return;
+
+
+            await addDoc(collection(db, "chat_estudiantes"), {
+
+                autor: datosUsuario.nombre || "Estudiante",
+
+                texto: texto,
+
+                uid: usuarioActual.uid,
+
+                fecha: serverTimestamp()
+
+            });
+
+
+            campo.value = "";
+
+        };
+
+
+
+        /* =====================================================
+           RANKING / CLASIFICACION
+           ===================================================== */
+
+        window.mostrarClasificacion = async function() {
+
+            document.getElementById("seccionFunciones").innerHTML = `
+
+                <div class="tarjeta">
+
+                    <h2>🏆 Tabla de Clasificación</h2>
+
+                    <p>Ordenados por Nivel y XP acumulado.</p>
+
+                    <div id="listaClasificacion">Cargando...</div>
+
+                </div>
+
+            `;
+
+
+            try {
+
+                const q = query(collection(db, "estudiantes"), orderBy("xp", "desc"));
+
+                const snapshot = await getDocs(q);
+
+
+                const contenedor = document.getElementById("listaClasificacion");
+
+                contenedor.innerHTML = "";
+
+
+                let pos = 1;
+
+
+                snapshot.forEach((docu) => {
+
+                    const est = docu.data();
+
+                    const esYo = docu.id === usuarioActual.uid;
+
+                    const nivel = Math.floor((est.xp || 0) / 100) + 1;
+
+
+                    contenedor.innerHTML += `
+
+                        <div class="puesto ${esYo ? "miPuesto" : ""}">
+
+                            <strong>${pos}. ${est.nombre}</strong> — Nivel ${nivel} (${est.xp || 0} XP)
+
+                        </div>
+
+                    `;
+
+                    pos++;
+
+                });
+
+            } catch (error) {
+
+                document.getElementById("listaClasificacion").innerHTML = "<p>Error al cargar ranking.</p>";
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           TRADUCIR ERRORES
            ===================================================== */
 
         function traducirError(codigo) {
 
-            if (codigo === "auth/email-already-in-use") {
-                return "Ese correo ya tiene una cuenta.";
-            }
+            if (codigo === "auth/email-already-in-use") return "Ese correo ya está registrado.";
 
-            if (codigo === "auth/invalid-email") {
-                return "El correo no es válido.";
-            }
+            if (codigo === "auth/invalid-email") return "El correo no es válido.";
 
-            if (codigo === "auth/weak-password") {
-                return "La contraseña es demasiado débil.";
-            }
+            if (codigo === "auth/weak-password") return "La contraseña debe tener mínimo 6 caracteres.";
 
-            if (codigo === "auth/invalid-credential") {
-                return "Correo o contraseña incorrectos.";
-            }
+            if (codigo === "auth/invalid-credential") return "Correo o contraseña incorrectos.";
 
-            return "Ocurrió un error. Revisa los datos.";
+            return "Ocurrió un error. Intenta de nuevo.";
 
         }
 
